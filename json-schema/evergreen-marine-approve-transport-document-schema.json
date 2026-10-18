@@ -1,0 +1,20 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/evergreen-marine/main/json-schema/evergreen-marine-approve-transport-document-schema.json",
+  "title": "Approve Transport Document",
+  "x-generated": "2026-10-18",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/evergreen-marine-transport-document-openapi.yml#/components/schemas/ApproveTransportDocument",
+  "type": "object",
+  "properties": {
+    "transportDocumentStatus": {
+      "type": "string",
+      "maxLength": 50,
+      "description": "The status of the `Transport Document`. It can only be `APPROVED`\n"
+    }
+  },
+  "required": [
+    "transportDocumentStatus"
+  ]
+}

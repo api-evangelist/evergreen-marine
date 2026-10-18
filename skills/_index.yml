@@ -1,0 +1,47 @@
+name: Evergreen Marine agent skills
+generated: '2026-10-18'
+method: generated
+source: openapi/ set; no provider-published skills or AGENTS.md found
+skills:
+- file: skills/evergreen-marine-track-shipment-events.md
+  name: evergreen-marine-track-shipment-events
+  api: openapi/evergreen-marine-track-and-trace-openapi.yml
+  operations:
+  - eventGetUsingGET
+  - subscriptionsGetUsingGET
+  - subscriptionsGetIDUsingGET
+  - subscriptionsPutIDUsingPUT
+  - subscriptionsDeleteIDUsingDELETE
+- file: skills/evergreen-marine-book-a-shipment.md
+  name: evergreen-marine-book-a-shipment
+  api: openapi/evergreen-marine-booking-openapi.yml
+  operations:
+  - create-bookings
+  - get-bookings
+  - update-bookings
+  - cancel-booking
+- file: skills/evergreen-marine-submit-shipping-instructions-and-approve-draft-bl.md
+  name: evergreen-marine-submit-shipping-instructions-and-approve-draft-bl
+  api: openapi/evergreen-marine-shipping-instructions-openapi.yml
+  operations:
+  - create-shipping-instructions
+  - update-shipping-instructions
+  - get-transport-document
+  - approve-transport-document
+- file: skills/evergreen-marine-find-sailing-schedules.md
+  name: evergreen-marine-find-sailing-schedules
+  api: openapi/evergreen-marine-commercial-schedules-openapi.yml
+  operations:
+  - get-v1-point-to-point
+  - get-v1-port-schedules
+  - get-v1-vessel-schedule
+- file: skills/evergreen-marine-surrender-an-ebl.md
+  name: evergreen-marine-surrender-an-ebl
+  api: openapi/evergreen-marine-ebl-surrender-openapi.yml
+  operations:
+  - create-surrender-request
+- file: skills/evergreen-marine-retrieve-arrival-notices.md
+  name: evergreen-marine-retrieve-arrival-notices
+  api: openapi/evergreen-marine-arrival-notice-openapi.yml
+  operations:
+  - get-arrival-notices

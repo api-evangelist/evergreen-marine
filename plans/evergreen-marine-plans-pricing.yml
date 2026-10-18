@@ -1,0 +1,27 @@
+generated: '2026-10-18'
+method: searched
+source: https://www.shipmentlink.com/_ec/APIPORTAL_FAQ
+name: Evergreen Marine pricing
+audience: developer-api
+pricing_basis: free
+published: false
+delivery:
+  delivery: managed
+  evidence: Hosted API service
+plans:
+- name: Free API Access
+  description: Free access to Track & Trace API services
+  price_text: Free service at present
+  features:
+  - Track & Trace API access
+  - Booking API access
+  - Shipping Instruction API access
+  - Transport Document API access
+  - Arrival Notice API access
+  - Commercial Schedules API access
+  limits:
+  - limit_text: Requires registration and approval process
+  notes: |
+    FAQ Question 9: "Does the client pay for your API service?"
+    Answer: "API Track & Trace is a free service at present."
+    Other APIs (Booking, Shipping Instruction, etc.) are also available through the same registration process.

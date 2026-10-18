@@ -1,0 +1,2294 @@
+generated: '2026-10-18'
+method: derived
+generator: derive-data-model.py
+source:
+- openapi/evergreen-marine-arrival-notice-openapi.yml
+- openapi/evergreen-marine-booking-openapi.yml
+- openapi/evergreen-marine-commercial-schedules-openapi.yml
+- openapi/evergreen-marine-ebl-issuance-openapi.yml
+- openapi/evergreen-marine-ebl-surrender-openapi.yml
+- openapi/evergreen-marine-shipping-instructions-openapi.yml
+- openapi/evergreen-marine-track-and-trace-openapi.yml
+- openapi/evergreen-marine-transport-document-openapi.yml
+notation: has_one = property $ref; has_many = array of $ref; belongs_to = <entity>_id field
+summary:
+  entities: 202
+  entities_in_spec: 202
+  relationships: 414
+entities:
+- name: ActiveReeferSettings
+  fields: 12
+  description: The specifications for a Reefer equipment. Only applicable when `isNonOperatingReefer` is false.
+- name: Address
+  fields: 9
+  description: An object for storing address-related information.
+- name: AdvanceManifestFiling
+  fields: 2
+  description: An Advance Manifest Filing defined by a Manifest type code in combination with a country code.
+- name: AmendedBookingFullNotification
+  fields: 0
+  description: 'This property contains the amended booking in case:'
+- name: ApproveTransportDocument
+  fields: 1
+- name: ArrivalNotice
+  fields: 31
+  description: Full content of an Arrival Notice document.
+- name: ArrivalNoticeNotification
+  fields: 9
+  description: Lightweight notification that can be sent when a new or updated Arrival Notice is available
+- name: Barge
+  fields: 7
+- name: BargeTransport
+  fields: 8
+  description: Transport mode Barge.
+- name: Booking
+  fields: 51
+- name: BookingAgent
+  fields: 6
+  description: The party placing the booking request on behalf of the customer.
+- name: BookingFullNotification
+  fields: 0
+  description: This property contains the booking in case the subscriber is subscribing to the `Full State Transfer`
+    of the Booking.
+- name: BookingNotification
+  fields: 8
+  description: '`CloudEvent` specific properties for the `Notification`.'
+- name: BookingNotificationData
+  fields: 8
+  description: '`Booking` specific properties for the `Notification`'
+- name: Buyer
+  fields: 6
+  description: The buyer is the last known entity to whom the goods are sold or agreed to be sold. If the goods
+    are to be imported otherwise than in pursuance of a purchase, the details of the owner of the goods sha
+- name: BuyerHBL
+  fields: 6
+  description: The buyer is the last known entity to whom the goods are sold or agreed to be sold. If the goods
+    are to be imported otherwise than in pursuance of a purchase, the details of the owner of the goods sha
+- name: CancelBookingRequest
+  fields: 1
+- name: CargoGrossVolume
+  fields: 2
+  description: The estimated grand total volume of the cargo.
+- name: CargoGrossWeight
+  fields: 2
+  description: The estimated grand total gross weight of the cargo, including packaging items being carried, which
+    can be expressed in imperial or metric terms, as provided by the shipper.
+- name: CargoGrossWeightReq
+  fields: 2
+  description: The estimated grand total gross weight of the cargo, including packaging items being carried, which
+    can be expressed in imperial or metric terms, as provided by the shipper.
+- name: CargoItem
+  fields: 12
+  description: A cargoItem is the smallest unit used in stuffing. It cannot be split across containers.
+- name: CargoItemHBL
+  fields: 3
+  description: A `cargoItem` is the smallest unit used by stuffing. A `cargoItem` cannot be split across containers.
+- name: CargoItemShipper
+  fields: 11
+  description: A `cargoItem` is the smallest unit used by stuffing. A `cargoItem` cannot be split across containers.
+- name: CargoNetVolume
+  fields: 2
+  description: The estimated net total volume of the cargo.
+- name: CargoNetWeight
+  fields: 2
+  description: The estimated grand total net weight of the cargo, excluding packaging items being carried, which
+    can be expressed in imperial or metric terms, as provided by the shipper.
+- name: CarrierBookingOffice
+  fields: 4
+  description: The carrier office responsible for processing the booking.
+- name: CarriersAgentAtDestination
+  fields: 3
+  description: The party on the import side assigned by the carrier to whom the customer need to reach out to for
+    cargo release.
+- name: Charge
+  fields: 12
+  description: Addresses the monetary value of freight and other service charges for a shipment.
+- name: City
+  fields: 3
+  description: An object for storing city, state/region and country related information
+- name: ClassifiedDate
+  fields: 2
+  description: Date classified as planned, estimated or actual
+- name: ClassifiedDateTime
+  fields: 2
+  description: Date and time classified as planned, estimated or actual
+- name: Commodity
+  fields: 13
+  description: Type of goods, defined by its commodity type
+- name: CommodityShipper
+  fields: 12
+  description: Type of goods, defined by its commodity type
+- name: ConfirmedEquipment
+  fields: 4
+  description: The confirmed equipments for the booking
+- name: Consignee
+  fields: 7
+  description: The party to which goods are consigned in the Master Bill of Lading.
+- name: ConsigneeHBL
+  fields: 6
+  description: The ultimate recipient of the cargo. It must be different from the freight forwarder, (de)consolidator,
+    postal operator, or customs agent.
+- name: ConsigneeShipper
+  fields: 9
+  description: The party to which goods are consigned in the `Master Bill of Lading`.
+- name: ConsignmentItem
+  fields: 10
+  description: Defines a list of `CargoItems` belonging together and the associated `Booking`. A `ConsignmentItem`
+    can be split across multiple containers by referencing multiple `CargoItems`.
+- name: ConsignmentItemHBL
+  fields: 4
+  description: Defines a list of `CargoItems` belonging together in the same consignment. A `ConsignmentItem` can
+    be split across multiple containers (`UtilizedTransportEquipment`) by referencing multiple `CargoItem
+- name: ConsignmentItemShipper
+  fields: 11
+  description: Defines a list of `CargoItems` belonging together and the associated `Booking`. A `ConsignmentItem`
+    can be split across multiple containers (`UtilizedTransportEquipment`) by referencing multiple `Carg
+- name: ContainerPositioning
+  fields: 2
+  description: An object to capture the `Location` together with an optional `Date and Time`.
+- name: ContainerPositioningEstimated
+  fields: 2
+  description: An object to capture the `Location` together with an optional `Date and Time`.
+- name: ContainerPositioningLocation
+  fields: 5
+  description: An object to capture the `Container Positioning Location`.
+- name: CreateBooking
+  fields: 38
+- name: CreateBookingResponse
+  fields: 1
+  description: '**Only** the `carrierBookingRequestReference` is returned.'
+- name: CreateShippingInstructions
+  fields: 32
+  description: The `Shipping Instructions` is an enrichment to the original booking shared by the Shipper to the
+    Carrier. The information given by the Shipper through the `Shipping Instructions` is the information r
+- name: CreateShippingInstructionsResponse
+  fields: 1
+  description: '**Only** the `shippingInstructionsReference` is returned.'
+- name: CustomsClearance
+  fields: 5
+  description: Customs clearance information
+- name: CustomsReference
+  fields: 3
+  description: Reference associated with customs and/or excise purposes required by relevant authorities for the
+    import, export, or transit of goods.
+- name: CutOffTime
+  fields: 2
+  description: Cut Off Times.
+- name: DangerousGoods
+  fields: 31
+  description: Specification for Dangerous Goods. Provide one of UNNumber or NANumber. Based on IMDG Code Amendment
+    41-22.
+- name: DestinationChargesPaymentTerm
+  fields: 3
+  description: An indicator of whether destination charges are prepaid (`PRE`) or collect (`COL`). When prepaid,
+    the charges are the responsibility of the shipper or the Invoice payer on behalf of the shipper (if pr
+- name: DetailedError
+  fields: 6
+  description: A detailed description of what has caused the error.
+- name: DischargeLocation
+  fields: 4
+  description: An object to capture the `Discharge Location`.
+- name: DocumentParties
+  fields: 6
+  description: All `Parties` with associated roles.
+- name: DocumentPartiesHouseBL
+  fields: 6
+  description: All `Parties` with associated roles for this `House Bill of Lading`.
+- name: DocumentPartiesReq
+  fields: 6
+  description: All `Parties` with associated roles.
+- name: DocumentPartiesShippingInstructions
+  fields: 8
+  description: All `Parties` with associated roles.
+- name: DocumentParty
+  fields: 8
+  description: Document party
+- name: EmbeddedDocument
+  fields: 3
+  description: Name, Base64-encoded content and content type of an embedded document
+- name: EmergencyContactDetails
+  fields: 4
+  description: 24 hr emergency contact details
+- name: EmptyContainerDepotReleaseLocation
+  fields: 5
+  description: An object to capture the `Empty Container Depot Release Location`.
+- name: EmptyContainerPickup
+  fields: 2
+  description: The date and time and location for the empty container pick-up.
+- name: Endorsee
+  fields: 6
+  description: The party to whom the title to the goods is transferred by means of endorsement.
+- name: EndorseeShipper
+  fields: 6
+  description: The party to whom the title to the goods is transferred by means of endorsement.
+- name: EndorsementChainLink
+  fields: 4
+  description: Entry in the endorsement chain.
+- name: Equipment
+  fields: 3
+  description: Used for storing cargo during transport. Equipment size/type is defined by the ISO 6346 code. Common
+    sizes include 20'/40'/45' containers.
+- name: EquipmentEvent
+  fields: 13
+- name: ErrorResponse
+  fields: 8
+  description: Unexpected error
+- name: EventProcessedTo
+  fields: 1
+- name: EventServiceData
+  fields: 3
+- name: ExportLicense
+  fields: 4
+  description: '`Export License` requirements.'
+- name: ExportLicenseShipper
+  fields: 4
+  description: '`Export License` requirements'
+- name: Facility
+  fields: 3
+  description: Facility identified by a code as defined by a code list provider.
+- name: Feedback
+  fields: 5
+  description: 'Feedback that can be provided includes, but is not limited to:'
+- name: FeedbackElement
+  fields: 3
+  description: An individual piece of feedback (potentially out of several) providing information on how an API
+    request is processed
+- name: FreeTime
+  fields: 8
+  description: Free time condition applicable to this shipment at destination.
+- name: GeoCoordinate
+  fields: 2
+  description: An object used to express a location using its geographic coordinates.
+- name: GetArrivalNoticesError
+  fields: 1
+  description: Error API response to a `GET ArrivalNotices` request
+- name: GetArrivalNoticesResponse
+  fields: 2
+  description: API response to a `GET ArrivalNotices` request
+- name: GrossWeight
+  fields: 2
+  description: Total weight of the goods carried, including packaging.
+- name: HouseBillOfLading
+  fields: 10
+  description: A legal contract between the Ocean Transport Intermediary (OTI), such as a Non-Vessel Operating Common
+    Carrier (NVOCC) or a freight forwarder, and the shipper that acknowledges the receipt of goods an
+- name: IdentifyingCode
+  fields: 3
+  description: Code-based identifier for a party. Includes the provider, code, and list name.
+- name: ImmediateTransportationEntry
+  fields: 3
+  description: An Immediate Transportation (IT) entry is a U.S. Customs and Border Protection (CBP) mechanism
+- name: ImportLicense
+  fields: 4
+  description: '`Import License` requirements.'
+- name: ImportLicenseShipper
+  fields: 4
+  description: '`Import License` requirements'
+- name: InnerPackaging
+  fields: 3
+  description: Object for inner packaging specification.
+- name: InvoicePayableAt
+  fields: 1
+  description: Location where payment of ocean freight and charges for the main transport will take place by the
+    customer.
+- name: InvoicePayableAtShippingInstructions
+  fields: 1
+  description: Location where payment of ocean freight and charges for the main transport will take place by the
+    customer.
+- name: IssuanceError
+  fields: 2
+- name: IssuanceResponse
+  fields: 5
+- name: IssueToParty
+  fields: 4
+  description: The party to whom the `Bill of Lading` must be issued.
+- name: IssuingParty
+  fields: 5
+  description: The company or a legal entity issuing the `Transport Document`.
+- name: Leg
+  fields: 8
+  description: Details of one specific leg of the transport plan
+- name: Limits
+  fields: 6
+  description: Limits for the `Dangerous Goods`. The same `Temperature Unit` must apply to all attributes in this
+    structure.
+- name: LoadLocation
+  fields: 4
+  description: An object to capture the `Load Location`.
+- name: Location
+  fields: 6
+  description: Location information
+- name: NationalCommodityCode
+  fields: 3
+  description: 'The national commodity classification code linked to a country with a value. Examples: NCM (Brazil),
+    HTS (US), TARIC (EU).'
+- name: NetExplosiveContent
+  fields: 2
+  description: The total weight of the explosive substances, without the packaging��s, casings, etc.
+- name: NetVolume
+  fields: 2
+  description: The volume of the referenced dangerous goods.
+- name: NetWeight
+  fields: 2
+  description: Total weight of the goods carried, excluding packaging.
+- name: NotifyParty
+  fields: 8
+  description: The person to be notified when a shipment arrives at its destination.
+- name: NotifyPartyHBL
+  fields: 6
+  description: The person to be notified when a shipment arrives at its destination.
+- name: OnwardInlandRouting
+  fields: 4
+  description: An object to capture `Onward Inland Routing` location specified as the end location of the inland
+    movement that takes place after the container(s) being delivered to the port of discharge/place of del
+- name: OriginChargesPaymentTerm
+  fields: 3
+  description: An indicator of whether origin charges are prepaid (`PRE`) or collect (`COL`). When prepaid, the
+    charges are the responsibility of the shipper or the Invoice payer on behalf of the shipper (if provide
+- name: OtherDocumentParty
+  fields: 2
+  description: A list of document parties that can be optionally provided at booking stage
+- name: OtherDocumentPartyHBL
+  fields: 2
+  description: A list of document parties that can be optionally provided in the `Shipping Instructions` and `Transport
+    Document`.
+- name: OtherTransport
+  fields: 1
+  description: Other Transport modes.
+- name: OuterPackaging
+  fields: 6
+  description: Outer packaging or overpack specification, such as palletized or crated groupings of packages.
+- name: OuterPackagingHBL
+  fields: 4
+  description: Object for outer packaging/overpack specification. Examples of overpacks are a number of packages
+    stacked on to a pallet and secured by strapping or placed in a protective outer packaging such as a bo
+- name: OuterPackagingShipper
+  fields: 4
+  description: Object for outer packaging/overpack specification. Examples of overpacks are a number of packages
+    stacked on to a pallet and secured by strapping or placed in a protective outer packaging such as a bo
+- name: Party
+  fields: 6
+  description: Refers to a company or a legal entity.
+- name: PartyAddress
+  fields: 9
+  description: An object for storing address related information
+- name: PartyContactDetail
+  fields: 3
+  description: The contact details of the person to contact.
+- name: PartyContactDetailHBL
+  fields: 1
+  description: The contact details of the person to contact. It is mandatory to provide either `phone` and/or `email`
+    along with the `name`, both can be provided.
+- name: PartyContactDetailWithPattern
+  fields: 1
+  description: The contact details of the person to contact. It is mandatory to provide either `phone` and/or `email`
+    along with the `name`, both can be provided.
+- name: PartyHBL
+  fields: 6
+  description: Refers to a company or a legal entity.
+- name: PaymentRemittance
+  fields: 5
+  description: Bank account information provided by the carrier for customers to make payments of the outstanding
+    charges
+- name: PickupInformation
+  fields: 2
+  description: Consolidates the information required to pick up the container.
+- name: PlaceOfAcceptance
+  fields: 3
+  description: 'An object to capture `Place of Acceptance` location specified as: identification of the seaport,
+    freight terminal or other place at which the goods are taken over from the shipper by the Ocean Transpo'
+- name: PlaceOfArrival
+  fields: 3
+  description: The Location specifying where the place of arrival is located.
+- name: PlaceOfBLIssue
+  fields: 1
+  description: An object to capture where the original Transport Document (`Bill of Lading`) will be issued.
+- name: PlaceOfDelivery
+  fields: 3
+  description: The Location specifying where the place of delivery is located.
+- name: PlaceOfDeparture
+  fields: 3
+  description: The Location specifying where the place of departure is located.
+- name: PlaceOfFinalDelivery
+  fields: 3
+  description: 'An object to capture `Place of Final Delivery` location specified as: Identification of the seaport,
+    freight terminal or other place at which the goods are handed over from the `Ocean Transport Interm'
+- name: PlaceOfIssue
+  fields: 1
+  description: An object to capture where the original Transport Document (`Bill of Lading`) will be issued.
+- name: PlaceOfReceipt
+  fields: 3
+  description: The Location specifying where the place of receipt is located.
+- name: PointToPoint
+  fields: 8
+- name: PortOfDischarge
+  fields: 3
+  description: 'An object to capture `Port of Discharge` location specified as: the location where the cargo is
+    discharged from the last sea-going vessel.'
+- name: PortOfLoading
+  fields: 3
+  description: 'An object to capture `Port of Loading` location specified as: the location where the cargo is loaded
+    onto a first sea-going vessel for water transportation.'
+- name: PortSchedule
+  fields: 2
+- name: PortScheduleLocation
+  fields: 3
+  description: 'General purpose object to capture location-related data, the location can be specified in **any**
+    of the following ways: - `UNLocationCode` - `FacilitySMDGCode` (used to specify a location using a `fa'
+- name: PostArrivalNoticeNotificationsRequest
+  fields: 1
+  description: API message containing a list of Arrival Notice lightweight notifications.
+- name: PostArrivalNoticesError
+  fields: 1
+  description: Error API response to a `POST ArrivalNotices` or `POST ArrivalNoticeNotifications` request.
+- name: PostArrivalNoticesRequest
+  fields: 1
+  description: API message containing a list of Arrival Notices.
+- name: PostArrivalNoticesResponse
+  fields: 1
+  description: API response to a `POST ArrivalNotices` or `POST ArrivalNoticeNotifications` request
+- name: Reference
+  fields: 2
+  description: Reference used by the customer or carrier to identify or track the shipment.
+- name: ReferenceConsignmentItem
+  fields: 2
+  description: References for a consignment item, used by shippers or freight forwarders and shared in events or
+    printed on documents.
+- name: ReferenceShipper
+  fields: 2
+  description: References provided by the shipper or freight forwarder at the time of `Booking` or at the time of
+    providing `Shipping Instructions`. Carriers share it back when providing `Track & Trace` event update
+- name: ReleaseInformation
+  fields: 6
+  description: Compiles the information relevant to shipment release.
+- name: RequestedEquipment
+  fields: 13
+  description: If needed - it is **only** possible to specify a single Reefer setting. If multiple settings are
+    required for the same `equipmentSizeType` then multiple `requestedEquipment` should be specified (one f
+- name: RequestedEquipmentShipper
+  fields: 13
+  description: If needed - it is **only** possible to specify a single Reefer setting. If multiple settings are
+    required for the same `equipmentSizeType` then multiple `requestedEquipment` should be specified (one f
+- name: RequiredEquipment
+  fields: 3
+  description: 'Used for storing cargo in/on during transport. The equipment size/type is defined by the ISO 6346
+    code. The most common equipment size/type is 20''/40''/45'' DRY Freight Container, but several different '
+- name: ReturnInformation
+  fields: 3
+  description: Groups the information regarding empty-equipment return.
+- name: Schedule
+  fields: 8
+- name: Seal
+  fields: 4
+  description: Seal-related information associated with the equipment.
+- name: Seller
+  fields: 6
+  description: The seller is the last known entity by whom the goods are sold or agreed to be sold to the buyer.
+    If the goods are to be imported otherwise than in pursuance of a purchase, the details of the owner of
+- name: SellerHBL
+  fields: 6
+  description: The seller is the last known entity by whom the goods are sold or agreed to be sold to the buyer.
+    If the goods are to be imported otherwise than in pursuance of a purchase, the details of the owner of
+- name: ServiceContractOwner
+  fields: 6
+  description: The party signing the service contract with the carrier.
+- name: ServicePartner
+  fields: 6
+  description: The service code and voyage number as identified by the carriers that are partners in the service.
+- name: ServicePartnerSchedule
+  fields: 6
+  description: The service code and voyage number as identified by the carriers that are partners in the service.
+- name: ServiceSchedule
+  fields: 4
+- name: ShipmentCutOffTime
+  fields: 2
+  description: '`Cut off times` defined by the carrier'
+- name: ShipmentEvent
+  fields: 10
+- name: ShipmentLocation
+  fields: 2
+  description: Maps the relationship between `Shipment` and `Location`, e.g., the `Place of Receipt` and the `Place
+    of Delivery` for a specific shipment. This is a reusable object between `Booking` and `Transport Do
+- name: Shipper
+  fields: 7
+  description: The party by whom or in whose name or on whose behalf a contract of carriage of goods by sea has
+    been concluded with a carrier, or the party by whom or in whose name, or on whose behalf, the goods are
+- name: ShipperHBL
+  fields: 6
+  description: The `Shipper` on the `House Bill of Lading`.
+- name: ShippingInstructions
+  fields: 37
+  description: The `Shipping Instructions` as provided by the Shipper.
+- name: SurrenderRequestDetails
+  fields: 7
+  description: A concrete surrender request related to a transport document.
+- name: TareWeight
+  fields: 2
+  description: The weight of an empty container (gross container weight).
+- name: TaxLegalReference
+  fields: 3
+  description: Reference that uniquely identifies a party for tax and/or legal purposes according to local jurisdiction.
+- name: Timestamp
+  fields: 3
+- name: TntSubscriptionsEventListDataTo
+  fields: 12
+- name: TntSubscriptionsEventTo
+  fields: 1
+- name: TntSubscriptionsTo
+  fields: 5
+- name: TransactionParty
+  fields: 4
+  description: Refers to a company or a legal entity.
+- name: Transport
+  fields: 13
+  description: Transport details relevant to the arrival notice.
+- name: TransportCall
+  fields: 9
+- name: TransportCallLocation
+  fields: 4
+  description: 'General purpose object to capture location-related data, the location can be specified in **any**
+    of the following ways: - `Address` (used to specify the location via an Address) - `UNLocationCode` - '
+- name: TransportDocument
+  fields: 46
+  description: 'The document that governs the terms of carriage between shipper and carrier for maritime transportation.
+    Two distinct types of transport documents exist:'
+- name: TransportEvent
+  fields: 10
+- name: Transports
+  fields: 10
+- name: UTEquipment
+  fields: 2
+  description: To be used for SoC (Shipper owned Containers). If `isShipperOwned` is true then the equipment used
+    needs to be specified
+- name: UTEquipmentReference
+  fields: 2
+  description: To be used when referring to carrier owned containers (`isShipperOwned` is false). In this case it
+    is only necessary to provide `equipmentReference`
+- name: UpdateBooking
+  fields: 40
+- name: UpdateShippingInstructions
+  fields: 33
+  description: The `Shipping Instructions` to update.
+- name: UtilizedTransportEquipment
+  fields: 11
+  description: Specifies the container (equipment) information, possible ActiveReeferSettings, seals, references,
+    and other related details.
+- name: UtilizedTransportEquipmentHBL
+  fields: 5
+  description: Specifies the container (`Equipment`), `Seals` and `References`
+- name: UtilizedTransportEquipmentShipper
+  fields: 5
+  description: Specifies the container (`Equipment`), `Seals` and `References`
+- name: Vessel
+  fields: 2
+  description: Vessels related to this booking request.
+- name: VesselSchedule
+  fields: 3
+- name: VesselTransport
+  fields: 8
+  description: Transport mode Vessel.
+- name: VesselVoyage
+  fields: 11
+  description: Vessel and voyage details of a transport leg
+- name: Volume
+  fields: 2
+  description: Volume value and measurement unit
+- name: Weight
+  fields: 2
+  description: Weight value and measurement unit
+- name: _400Errors
+  fields: 2
+- name: _400standard
+  fields: 6
+- name: _401Errors
+  fields: 2
+- name: _401standard
+  fields: 6
+- name: _403Errors
+  fields: 2
+- name: _403standard
+  fields: 6
+- name: _404Errors
+  fields: 2
+- name: _404standard
+  fields: 6
+- name: _500Errors
+  fields: 2
+- name: _500standard
+  fields: 6
+- name: address
+  fields: 8
+  description: Address related information
+- name: documentReferences
+  fields: 2
+- name: location
+  fields: 7
+  description: Location of the facility. Can often be omitted when it is just repeating the contents of the UNLocationCode
+    field.
+- name: references
+  fields: 2
+- name: seals
+  fields: 3
+- name: subscription
+  fields: 15
+- name: vessel
+  fields: 6
+  description: describes a floating, sea going structure (mother vessels and feeder vessels) with either an internal
+    or external mode of propulsion designed for the transport of cargo and/or passengers. Ocean vessel
+relationships:
+- from: ArrivalNotice
+  to: PartyContactDetail
+  type: has_many
+  via: carrierContactInformation
+- from: ArrivalNotice
+  to: PickupInformation
+  type: has_one
+  via: pickupInformation
+- from: ArrivalNotice
+  to: ReturnInformation
+  type: has_one
+  via: returnInformation
+- from: ArrivalNotice
+  to: ReleaseInformation
+  type: has_one
+  via: releaseInformation
+- from: ArrivalNotice
+  to: CustomsClearance
+  type: has_one
+  via: customsClearance
+- from: ArrivalNotice
+  to: Reference
+  type: has_many
+  via: references
+- from: ArrivalNotice
+  to: Location
+  type: has_one
+  via: placeOfBLIssue
+- from: ArrivalNotice
+  to: DocumentParty
+  type: has_many
+  via: documentParties
+- from: ArrivalNotice
+  to: Transport
+  type: has_one
+  via: transport
+- from: ArrivalNotice
+  to: FreeTime
+  type: has_many
+  via: freeTimes
+- from: ArrivalNotice
+  to: Charge
+  type: has_many
+  via: charges
+- from: ArrivalNotice
+  to: PaymentRemittance
+  type: has_one
+  via: paymentRemittance
+- from: ArrivalNotice
+  to: UtilizedTransportEquipment
+  type: has_many
+  via: utilizedTransportEquipments
+- from: ArrivalNotice
+  to: ConsignmentItem
+  type: has_many
+  via: consignmentItems
+- from: ArrivalNotice
+  to: EmbeddedDocument
+  type: has_one
+  via: arrivalNoticeVisualization
+- from: ArrivalNoticeNotification
+  to: Location
+  type: has_one
+  via: portOfDischarge
+- from: ArrivalNoticeNotification
+  to: Location
+  type: has_one
+  via: placeOfDelivery
+- from: ArrivalNoticeNotification
+  to: ClassifiedDate
+  type: has_one
+  via: portOfDischargeArrivalDate
+- from: ArrivalNoticeNotification
+  to: ClassifiedDate
+  type: has_one
+  via: placeOfDeliveryArrivalDate
+- from: CargoItem
+  to: Weight
+  type: has_one
+  via: cargoGrossWeight
+- from: CargoItem
+  to: Volume
+  type: has_one
+  via: cargoGrossVolume
+- from: CargoItem
+  to: Weight
+  type: has_one
+  via: cargoNetWeight
+- from: CargoItem
+  to: Volume
+  type: has_one
+  via: cargoNetVolume
+- from: CargoItem
+  to: ExportLicense
+  type: has_one
+  via: exportLicense
+- from: CargoItem
+  to: ImportLicense
+  type: has_one
+  via: importLicense
+- from: CargoItem
+  to: OuterPackaging
+  type: has_one
+  via: outerPackaging
+- from: CargoItem
+  to: CustomsReference
+  type: has_many
+  via: customsReferences
+- from: CargoItem
+  to: NationalCommodityCode
+  type: has_many
+  via: nationalCommodityCodes
+- from: CargoItem
+  to: Charge
+  type: has_many
+  via: charges
+- from: Charge
+  to: Location
+  type: has_one
+  via: paymentLocation
+- from: ConsignmentItem
+  to: CargoItem
+  type: has_many
+  via: cargoItems
+- from: ConsignmentItem
+  to: ExportLicense
+  type: has_one
+  via: exportLicense
+- from: ConsignmentItem
+  to: ImportLicense
+  type: has_one
+  via: importLicense
+- from: ConsignmentItem
+  to: ReferenceConsignmentItem
+  type: has_many
+  via: references
+- from: ConsignmentItem
+  to: CustomsReference
+  type: has_many
+  via: customsReferences
+- from: ConsignmentItem
+  to: NationalCommodityCode
+  type: has_many
+  via: nationalCommodityCodes
+- from: CustomsClearance
+  to: Location
+  type: has_one
+  via: customsClearancePoint
+- from: CustomsClearance
+  to: ImmediateTransportationEntry
+  type: has_one
+  via: immediateTransportationEntry
+- from: DangerousGoods
+  to: InnerPackaging
+  type: has_many
+  via: innerPackagings
+- from: DangerousGoods
+  to: EmergencyContactDetails
+  type: has_one
+  via: emergencyContactDetails
+- from: DangerousGoods
+  to: Weight
+  type: has_one
+  via: grossWeight
+- from: DangerousGoods
+  to: Weight
+  type: has_one
+  via: netWeight
+- from: DangerousGoods
+  to: Weight
+  type: has_one
+  via: netExplosiveContent
+- from: DangerousGoods
+  to: Volume
+  type: has_one
+  via: netVolume
+- from: DangerousGoods
+  to: Limits
+  type: has_one
+  via: limits
+- from: DocumentParty
+  to: Address
+  type: has_one
+  via: address
+- from: DocumentParty
+  to: IdentifyingCode
+  type: has_many
+  via: identifyingCodes
+- from: DocumentParty
+  to: TaxLegalReference
+  type: has_many
+  via: taxLegalReferences
+- from: DocumentParty
+  to: PartyContactDetail
+  type: has_many
+  via: partyContactDetails
+- from: Equipment
+  to: Weight
+  type: has_one
+  via: tareWeight
+- from: FreeTime
+  to: ClassifiedDate
+  type: has_one
+  via: lastFreeDate
+- from: FreeTime
+  to: ClassifiedDateTime
+  type: has_one
+  via: lastFreeDateTime
+- from: GetArrivalNoticesError
+  to: FeedbackElement
+  type: has_many
+  via: feedbackElements
+- from: GetArrivalNoticesResponse
+  to: ArrivalNotice
+  type: has_many
+  via: arrivalNotices
+- from: GetArrivalNoticesResponse
+  to: FeedbackElement
+  type: has_many
+  via: feedbackElements
+- from: Leg
+  to: Location
+  type: has_one
+  via: loadLocation
+- from: Leg
+  to: Location
+  type: has_one
+  via: dischargeLocation
+- from: Leg
+  to: ClassifiedDate
+  type: has_one
+  via: departureDate
+- from: Leg
+  to: ClassifiedDate
+  type: has_one
+  via: arrivalDate
+- from: Leg
+  to: VesselVoyage
+  type: has_one
+  via: vesselVoyage
+- from: Location
+  to: Address
+  type: has_one
+  via: address
+- from: Location
+  to: Facility
+  type: has_one
+  via: facility
+- from: Location
+  to: GeoCoordinate
+  type: has_one
+  via: geoCoordinate
+- from: OuterPackaging
+  to: DangerousGoods
+  type: has_many
+  via: dangerousGoods
+- from: PickupInformation
+  to: Location
+  type: has_one
+  via: pickupLocation
+- from: PostArrivalNoticeNotificationsRequest
+  to: ArrivalNoticeNotification
+  type: has_many
+  via: arrivalNoticeNotifications
+- from: PostArrivalNoticesError
+  to: FeedbackElement
+  type: has_many
+  via: feedbackElements
+- from: PostArrivalNoticesRequest
+  to: ArrivalNotice
+  type: has_many
+  via: arrivalNotices
+- from: PostArrivalNoticesResponse
+  to: FeedbackElement
+  type: has_many
+  via: feedbackElements
+- from: ReleaseInformation
+  to: PartyContactDetail
+  type: has_many
+  via: carrierInformationForCargoRelease
+- from: ReturnInformation
+  to: Location
+  type: has_one
+  via: returnLocation
+- from: Transport
+  to: Location
+  type: has_one
+  via: placeOfReceipt
+- from: Transport
+  to: Location
+  type: has_one
+  via: portOfLoading
+- from: Transport
+  to: Location
+  type: has_one
+  via: portOfDischarge
+- from: Transport
+  to: Location
+  type: has_one
+  via: placeOfDelivery
+- from: Transport
+  to: ClassifiedDate
+  type: has_one
+  via: departureDate
+- from: Transport
+  to: ClassifiedDate
+  type: has_one
+  via: receivedForShipmentDate
+- from: Transport
+  to: ClassifiedDate
+  type: has_one
+  via: onBoardDate
+- from: Transport
+  to: ClassifiedDate
+  type: has_one
+  via: portOfDischargeArrivalDate
+- from: Transport
+  to: ClassifiedDate
+  type: has_one
+  via: placeOfDeliveryArrivalDate
+- from: Transport
+  to: ClassifiedDate
+  type: has_one
+  via: inlandArrivalDate
+- from: Transport
+  to: ClassifiedDateTime
+  type: has_one
+  via: generalOrderDateTime
+- from: Transport
+  to: Location
+  type: has_one
+  via: borderCrossingLocation
+- from: Transport
+  to: Leg
+  type: has_many
+  via: legs
+- from: UtilizedTransportEquipment
+  to: Equipment
+  type: has_one
+  via: equipment
+- from: UtilizedTransportEquipment
+  to: ActiveReeferSettings
+  type: has_one
+  via: activeReeferSettings
+- from: UtilizedTransportEquipment
+  to: Seal
+  type: has_many
+  via: seals
+- from: UtilizedTransportEquipment
+  to: Reference
+  type: has_many
+  via: references
+- from: UtilizedTransportEquipment
+  to: CustomsReference
+  type: has_many
+  via: customsReferences
+- from: UtilizedTransportEquipment
+  to: PickupInformation
+  type: has_one
+  via: pickupInformation
+- from: UtilizedTransportEquipment
+  to: ReturnInformation
+  type: has_one
+  via: returnInformation
+- from: UtilizedTransportEquipment
+  to: Charge
+  type: has_many
+  via: charges
+- from: BookingNotification
+  to: BookingNotificationData
+  type: has_one
+  via: data
+- from: BookingNotificationData
+  to: Feedback
+  type: has_many
+  via: feedbacks
+- from: BookingNotificationData
+  to: BookingFullNotification
+  type: has_one
+  via: booking
+- from: BookingNotificationData
+  to: AmendedBookingFullNotification
+  type: has_one
+  via: amendedBooking
+- from: ErrorResponse
+  to: DetailedError
+  type: has_many
+  via: errors
+- from: CreateBooking
+  to: OriginChargesPaymentTerm
+  type: has_one
+  via: originChargesPaymentTerm
+- from: CreateBooking
+  to: DestinationChargesPaymentTerm
+  type: has_one
+  via: destinationChargesPaymentTerm
+- from: CreateBooking
+  to: Vessel
+  type: has_one
+  via: vessel
+- from: CreateBooking
+  to: InvoicePayableAt
+  type: has_one
+  via: invoicePayableAt
+- from: CreateBooking
+  to: PlaceOfBLIssue
+  type: has_one
+  via: placeOfBLIssue
+- from: CreateBooking
+  to: ReferenceShipper
+  type: has_many
+  via: references
+- from: CreateBooking
+  to: CustomsReference
+  type: has_many
+  via: customsReferences
+- from: CreateBooking
+  to: DocumentPartiesReq
+  type: has_one
+  via: documentParties
+- from: CreateBooking
+  to: PartyContactDetail
+  type: has_many
+  via: partyContactDetails
+- from: CreateBooking
+  to: ShipmentLocation
+  type: has_many
+  via: shipmentLocations
+- from: CreateBooking
+  to: RequestedEquipmentShipper
+  type: has_many
+  via: requestedEquipments
+- from: UpdateBooking
+  to: OriginChargesPaymentTerm
+  type: has_one
+  via: originChargesPaymentTerm
+- from: UpdateBooking
+  to: DestinationChargesPaymentTerm
+  type: has_one
+  via: destinationChargesPaymentTerm
+- from: UpdateBooking
+  to: Vessel
+  type: has_one
+  via: vessel
+- from: UpdateBooking
+  to: InvoicePayableAt
+  type: has_one
+  via: invoicePayableAt
+- from: UpdateBooking
+  to: PlaceOfBLIssue
+  type: has_one
+  via: placeOfBLIssue
+- from: UpdateBooking
+  to: ReferenceShipper
+  type: has_many
+  via: references
+- from: UpdateBooking
+  to: CustomsReference
+  type: has_many
+  via: customsReferences
+- from: UpdateBooking
+  to: DocumentPartiesReq
+  type: has_one
+  via: documentParties
+- from: UpdateBooking
+  to: PartyContactDetail
+  type: has_many
+  via: partyContactDetails
+- from: UpdateBooking
+  to: ShipmentLocation
+  type: has_many
+  via: shipmentLocations
+- from: UpdateBooking
+  to: RequestedEquipmentShipper
+  type: has_many
+  via: requestedEquipments
+- from: DocumentPartiesReq
+  to: BookingAgent
+  type: has_one
+  via: bookingAgent
+- from: DocumentPartiesReq
+  to: Shipper
+  type: has_one
+  via: shipper
+- from: DocumentPartiesReq
+  to: Consignee
+  type: has_one
+  via: consignee
+- from: DocumentPartiesReq
+  to: ServiceContractOwner
+  type: has_one
+  via: serviceContractOwner
+- from: DocumentPartiesReq
+  to: CarrierBookingOffice
+  type: has_one
+  via: carrierBookingOffice
+- from: DocumentPartiesReq
+  to: OtherDocumentParty
+  type: has_many
+  via: other
+- from: Booking
+  to: OriginChargesPaymentTerm
+  type: has_one
+  via: originChargesPaymentTerm
+- from: Booking
+  to: DestinationChargesPaymentTerm
+  type: has_one
+  via: destinationChargesPaymentTerm
+- from: Booking
+  to: Vessel
+  type: has_one
+  via: vessel
+- from: Booking
+  to: InvoicePayableAt
+  type: has_one
+  via: invoicePayableAt
+- from: Booking
+  to: PlaceOfBLIssue
+  type: has_one
+  via: placeOfBLIssue
+- from: Booking
+  to: Reference
+  type: has_many
+  via: references
+- from: Booking
+  to: CustomsReference
+  type: has_many
+  via: customsReferences
+- from: Booking
+  to: DocumentParties
+  type: has_one
+  via: documentParties
+- from: Booking
+  to: PartyContactDetail
+  type: has_many
+  via: partyContactDetails
+- from: Booking
+  to: ShipmentLocation
+  type: has_many
+  via: shipmentLocations
+- from: Booking
+  to: RequestedEquipment
+  type: has_many
+  via: requestedEquipments
+- from: Booking
+  to: ConfirmedEquipment
+  type: has_many
+  via: confirmedEquipments
+- from: Booking
+  to: Transport
+  type: has_many
+  via: transportPlan
+- from: Booking
+  to: ShipmentCutOffTime
+  type: has_many
+  via: shipmentCutOffTimes
+- from: Booking
+  to: AdvanceManifestFiling
+  type: has_many
+  via: advanceManifestFilings
+- from: Booking
+  to: Charge
+  type: has_many
+  via: charges
+- from: Booking
+  to: Feedback
+  type: has_many
+  via: feedbacks
+- from: DocumentParties
+  to: BookingAgent
+  type: has_one
+  via: bookingAgent
+- from: DocumentParties
+  to: Shipper
+  type: has_one
+  via: shipper
+- from: DocumentParties
+  to: Consignee
+  type: has_one
+  via: consignee
+- from: DocumentParties
+  to: ServiceContractOwner
+  type: has_one
+  via: serviceContractOwner
+- from: DocumentParties
+  to: CarrierBookingOffice
+  type: has_one
+  via: carrierBookingOffice
+- from: DocumentParties
+  to: OtherDocumentParty
+  type: has_many
+  via: other
+- from: OtherDocumentParty
+  to: Party
+  type: has_one
+  via: party
+- from: BookingAgent
+  to: PartyAddress
+  type: has_one
+  via: address
+- from: BookingAgent
+  to: PartyContactDetail
+  type: has_many
+  via: partyContactDetails
+- from: BookingAgent
+  to: IdentifyingCode
+  type: has_many
+  via: identifyingCodes
+- from: BookingAgent
+  to: TaxLegalReference
+  type: has_many
+  via: taxLegalReferences
+- from: Shipper
+  to: PartyAddress
+  type: has_one
+  via: address
+- from: Shipper
+  to: PartyContactDetail
+  type: has_many
+  via: partyContactDetails
+- from: Shipper
+  to: IdentifyingCode
+  type: has_many
+  via: identifyingCodes
+- from: Shipper
+  to: TaxLegalReference
+  type: has_many
+  via: taxLegalReferences
+- from: Consignee
+  to: PartyAddress
+  type: has_one
+  via: address
+- from: Consignee
+  to: PartyContactDetail
+  type: has_many
+  via: partyContactDetails
+- from: Consignee
+  to: IdentifyingCode
+  type: has_many
+  via: identifyingCodes
+- from: Consignee
+  to: TaxLegalReference
+  type: has_many
+  via: taxLegalReferences
+- from: ServiceContractOwner
+  to: PartyAddress
+  type: has_one
+  via: address
+- from: ServiceContractOwner
+  to: PartyContactDetail
+  type: has_many
+  via: partyContactDetails
+- from: ServiceContractOwner
+  to: IdentifyingCode
+  type: has_many
+  via: identifyingCodes
+- from: ServiceContractOwner
+  to: TaxLegalReference
+  type: has_many
+  via: taxLegalReferences
+- from: CarrierBookingOffice
+  to: Address
+  type: has_one
+  via: address
+- from: CarrierBookingOffice
+  to: PartyContactDetail
+  type: has_many
+  via: partyContactDetails
+- from: Party
+  to: PartyAddress
+  type: has_one
+  via: address
+- from: Party
+  to: IdentifyingCode
+  type: has_many
+  via: identifyingCodes
+- from: Party
+  to: TaxLegalReference
+  type: has_many
+  via: taxLegalReferences
+- from: Party
+  to: PartyContactDetail
+  type: has_many
+  via: partyContactDetails
+- from: ShipmentLocation
+  to: Location
+  type: has_one
+  via: location
+- from: RequestedEquipment
+  to: ContainerPositioning
+  type: has_many
+  via: containerPositionings
+- from: RequestedEquipment
+  to: EmptyContainerPickup
+  type: has_one
+  via: emptyContainerPickup
+- from: RequestedEquipment
+  to: TareWeight
+  type: has_one
+  via: tareWeight
+- from: RequestedEquipment
+  to: CargoGrossWeightReq
+  type: has_one
+  via: cargoGrossWeight
+- from: RequestedEquipment
+  to: ActiveReeferSettings
+  type: has_one
+  via: activeReeferSettings
+- from: RequestedEquipment
+  to: Reference
+  type: has_many
+  via: references
+- from: RequestedEquipment
+  to: CustomsReference
+  type: has_many
+  via: customsReferences
+- from: RequestedEquipment
+  to: Commodity
+  type: has_many
+  via: commodities
+- from: RequestedEquipmentShipper
+  to: ContainerPositioning
+  type: has_many
+  via: containerPositionings
+- from: RequestedEquipmentShipper
+  to: EmptyContainerPickup
+  type: has_one
+  via: emptyContainerPickup
+- from: RequestedEquipmentShipper
+  to: TareWeight
+  type: has_one
+  via: tareWeight
+- from: RequestedEquipmentShipper
+  to: CargoGrossWeightReq
+  type: has_one
+  via: cargoGrossWeight
+- from: RequestedEquipmentShipper
+  to: ActiveReeferSettings
+  type: has_one
+  via: activeReeferSettings
+- from: RequestedEquipmentShipper
+  to: ReferenceShipper
+  type: has_many
+  via: references
+- from: RequestedEquipmentShipper
+  to: CustomsReference
+  type: has_many
+  via: customsReferences
+- from: RequestedEquipmentShipper
+  to: CommodityShipper
+  type: has_many
+  via: commodities
+- from: ContainerPositioning
+  to: ContainerPositioningLocation
+  type: has_one
+  via: location
+- from: ContainerPositioningEstimated
+  to: ContainerPositioningLocation
+  type: has_one
+  via: location
+- from: ContainerPositioningLocation
+  to: Address
+  type: has_one
+  via: address
+- from: ContainerPositioningLocation
+  to: Facility
+  type: has_one
+  via: facility
+- from: ContainerPositioningLocation
+  to: GeoCoordinate
+  type: has_one
+  via: geoCoordinate
+- from: EmptyContainerDepotReleaseLocation
+  to: Address
+  type: has_one
+  via: address
+- from: EmptyContainerDepotReleaseLocation
+  to: Facility
+  type: has_one
+  via: facility
+- from: EmptyContainerDepotReleaseLocation
+  to: GeoCoordinate
+  type: has_one
+  via: geoCoordinate
+- from: CommodityShipper
+  to: NationalCommodityCode
+  type: has_many
+  via: nationalCommodityCodes
+- from: CommodityShipper
+  to: CargoGrossWeight
+  type: has_one
+  via: cargoGrossWeight
+- from: CommodityShipper
+  to: CargoGrossVolume
+  type: has_one
+  via: cargoGrossVolume
+- from: CommodityShipper
+  to: CargoNetWeight
+  type: has_one
+  via: cargoNetWeight
+- from: CommodityShipper
+  to: CargoNetVolume
+  type: has_one
+  via: cargoNetVolume
+- from: CommodityShipper
+  to: ExportLicense
+  type: has_one
+  via: exportLicense
+- from: CommodityShipper
+  to: ImportLicense
+  type: has_one
+  via: importLicense
+- from: CommodityShipper
+  to: OuterPackaging
+  type: has_one
+  via: outerPackaging
+- from: CommodityShipper
+  to: ReferenceShipper
+  type: has_many
+  via: references
+- from: CommodityShipper
+  to: CustomsReference
+  type: has_many
+  via: customsReferences
+- from: Commodity
+  to: NationalCommodityCode
+  type: has_many
+  via: nationalCommodityCodes
+- from: Commodity
+  to: CargoGrossWeight
+  type: has_one
+  via: cargoGrossWeight
+- from: Commodity
+  to: CargoGrossVolume
+  type: has_one
+  via: cargoGrossVolume
+- from: Commodity
+  to: CargoNetWeight
+  type: has_one
+  via: cargoNetWeight
+- from: Commodity
+  to: CargoNetVolume
+  type: has_one
+  via: cargoNetVolume
+- from: Commodity
+  to: ExportLicense
+  type: has_one
+  via: exportLicense
+- from: Commodity
+  to: ImportLicense
+  type: has_one
+  via: importLicense
+- from: Commodity
+  to: OuterPackaging
+  type: has_one
+  via: outerPackaging
+- from: Commodity
+  to: Reference
+  type: has_many
+  via: references
+- from: Commodity
+  to: CustomsReference
+  type: has_many
+  via: customsReferences
+- from: ConfirmedEquipment
+  to: ContainerPositioningEstimated
+  type: has_many
+  via: containerPositionings
+- from: ConfirmedEquipment
+  to: EmptyContainerPickup
+  type: has_one
+  via: emptyContainerPickup
+- from: EmptyContainerPickup
+  to: EmptyContainerDepotReleaseLocation
+  type: has_one
+  via: depotReleaseLocation
+- from: LoadLocation
+  to: Address
+  type: has_one
+  via: address
+- from: LoadLocation
+  to: Facility
+  type: has_one
+  via: facility
+- from: DischargeLocation
+  to: Address
+  type: has_one
+  via: address
+- from: DischargeLocation
+  to: Facility
+  type: has_one
+  via: facility
+- from: IssuanceResponse
+  to: IssuanceError
+  type: has_many
+  via: errors
+- from: TransactionParty
+  to: IdentifyingCode
+  type: has_many
+  via: identifyingCodes
+- from: TransactionParty
+  to: TaxLegalReference
+  type: has_many
+  via: taxLegalReferences
+- from: EndorsementChainLink
+  to: TransactionParty
+  type: has_one
+  via: actor
+- from: EndorsementChainLink
+  to: TransactionParty
+  type: has_one
+  via: recipient
+- from: SurrenderRequestDetails
+  to: EndorsementChainLink
+  type: has_many
+  via: endorsementChain
+- from: CreateShippingInstructions
+  to: OriginChargesPaymentTerm
+  type: has_one
+  via: originChargesPaymentTerm
+- from: CreateShippingInstructions
+  to: DestinationChargesPaymentTerm
+  type: has_one
+  via: destinationChargesPaymentTerm
+- from: CreateShippingInstructions
+  to: PlaceOfIssue
+  type: has_one
+  via: placeOfIssue
+- from: CreateShippingInstructions
+  to: InvoicePayableAtShippingInstructions
+  type: has_one
+  via: invoicePayableAt
+- from: CreateShippingInstructions
+  to: PartyContactDetail
+  type: has_many
+  via: partyContactDetails
+- from: CreateShippingInstructions
+  to: DocumentPartiesShippingInstructions
+  type: has_one
+  via: documentParties
+- from: CreateShippingInstructions
+  to: ConsignmentItemShipper
+  type: has_many
+  via: consignmentItems
+- from: CreateShippingInstructions
+  to: UtilizedTransportEquipmentShipper
+  type: has_many
+  via: utilizedTransportEquipments
+- from: CreateShippingInstructions
+  to: ExportLicenseShipper
+  type: has_one
+  via: exportLicense
+- from: CreateShippingInstructions
+  to: ImportLicenseShipper
+  type: has_one
+  via: importLicense
+- from: CreateShippingInstructions
+  to: Reference
+  type: has_many
+  via: references
+- from: CreateShippingInstructions
+  to: CustomsReference
+  type: has_many
+  via: customsReferences
+- from: CreateShippingInstructions
+  to: AdvanceManifestFiling
+  type: has_many
+  via: advanceManifestFilings
+- from: CreateShippingInstructions
+  to: HouseBillOfLading
+  type: has_many
+  via: houseBillOfLadings
+- from: UpdateShippingInstructions
+  to: OriginChargesPaymentTerm
+  type: has_one
+  via: originChargesPaymentTerm
+- from: UpdateShippingInstructions
+  to: DestinationChargesPaymentTerm
+  type: has_one
+  via: destinationChargesPaymentTerm
+- from: UpdateShippingInstructions
+  to: PlaceOfIssue
+  type: has_one
+  via: placeOfIssue
+- from: UpdateShippingInstructions
+  to: InvoicePayableAtShippingInstructions
+  type: has_one
+  via: invoicePayableAt
+- from: UpdateShippingInstructions
+  to: PartyContactDetail
+  type: has_many
+  via: partyContactDetails
+- from: UpdateShippingInstructions
+  to: DocumentPartiesShippingInstructions
+  type: has_one
+  via: documentParties
+- from: UpdateShippingInstructions
+  to: ConsignmentItemShipper
+  type: has_many
+  via: consignmentItems
+- from: UpdateShippingInstructions
+  to: UtilizedTransportEquipmentShipper
+  type: has_many
+  via: utilizedTransportEquipments
+- from: UpdateShippingInstructions
+  to: ExportLicenseShipper
+  type: has_one
+  via: exportLicense
+- from: UpdateShippingInstructions
+  to: ImportLicenseShipper
+  type: has_one
+  via: importLicense
+- from: UpdateShippingInstructions
+  to: Reference
+  type: has_many
+  via: references
+- from: UpdateShippingInstructions
+  to: CustomsReference
+  type: has_many
+  via: customsReferences
+- from: UpdateShippingInstructions
+  to: AdvanceManifestFiling
+  type: has_many
+  via: advanceManifestFilings
+- from: UpdateShippingInstructions
+  to: HouseBillOfLading
+  type: has_many
+  via: houseBillOfLadings
+- from: ShippingInstructions
+  to: OriginChargesPaymentTerm
+  type: has_one
+  via: originChargesPaymentTerm
+- from: ShippingInstructions
+  to: DestinationChargesPaymentTerm
+  type: has_one
+  via: destinationChargesPaymentTerm
+- from: ShippingInstructions
+  to: PlaceOfIssue
+  type: has_one
+  via: placeOfIssue
+- from: ShippingInstructions
+  to: InvoicePayableAtShippingInstructions
+  type: has_one
+  via: invoicePayableAt
+- from: ShippingInstructions
+  to: PartyContactDetail
+  type: has_many
+  via: partyContactDetails
+- from: ShippingInstructions
+  to: DocumentPartiesShippingInstructions
+  type: has_one
+  via: documentParties
+- from: ShippingInstructions
+  to: ConsignmentItemShipper
+  type: has_many
+  via: consignmentItems
+- from: ShippingInstructions
+  to: UtilizedTransportEquipmentShipper
+  type: has_many
+  via: utilizedTransportEquipments
+- from: ShippingInstructions
+  to: ExportLicenseShipper
+  type: has_one
+  via: exportLicense
+- from: ShippingInstructions
+  to: ImportLicenseShipper
+  type: has_one
+  via: importLicense
+- from: ShippingInstructions
+  to: Reference
+  type: has_many
+  via: references
+- from: ShippingInstructions
+  to: CustomsReference
+  type: has_many
+  via: customsReferences
+- from: ShippingInstructions
+  to: AdvanceManifestFiling
+  type: has_many
+  via: advanceManifestFilings
+- from: ShippingInstructions
+  to: HouseBillOfLading
+  type: has_many
+  via: houseBillOfLadings
+- from: ShippingInstructions
+  to: Feedback
+  type: has_many
+  via: feedbacks
+- from: OtherDocumentPartyHBL
+  to: PartyHBL
+  type: has_one
+  via: party
+- from: ShipperHBL
+  to: Address
+  type: has_one
+  via: address
+- from: ShipperHBL
+  to: IdentifyingCode
+  type: has_many
+  via: identifyingCodes
+- from: ShipperHBL
+  to: TaxLegalReference
+  type: has_many
+  via: taxLegalReferences
+- from: ShipperHBL
+  to: PartyContactDetailHBL
+  type: has_many
+  via: partyContactDetails
+- from: ConsigneeShipper
+  to: PartyAddress
+  type: has_one
+  via: address
+- from: ConsigneeShipper
+  to: IdentifyingCode
+  type: has_many
+  via: identifyingCodes
+- from: ConsigneeShipper
+  to: TaxLegalReference
+  type: has_many
+  via: taxLegalReferences
+- from: ConsigneeShipper
+  to: PartyContactDetail
+  type: has_many
+  via: partyContactDetails
+- from: ConsigneeHBL
+  to: Address
+  type: has_one
+  via: address
+- from: ConsigneeHBL
+  to: IdentifyingCode
+  type: has_many
+  via: identifyingCodes
+- from: ConsigneeHBL
+  to: TaxLegalReference
+  type: has_many
+  via: taxLegalReferences
+- from: ConsigneeHBL
+  to: PartyContactDetailHBL
+  type: has_many
+  via: partyContactDetails
+- from: Endorsee
+  to: PartyAddress
+  type: has_one
+  via: address
+- from: Endorsee
+  to: IdentifyingCode
+  type: has_many
+  via: identifyingCodes
+- from: Endorsee
+  to: TaxLegalReference
+  type: has_many
+  via: taxLegalReferences
+- from: Endorsee
+  to: PartyContactDetail
+  type: has_many
+  via: partyContactDetails
+- from: EndorseeShipper
+  to: PartyAddress
+  type: has_one
+  via: address
+- from: EndorseeShipper
+  to: IdentifyingCode
+  type: has_many
+  via: identifyingCodes
+- from: EndorseeShipper
+  to: TaxLegalReference
+  type: has_many
+  via: taxLegalReferences
+- from: EndorseeShipper
+  to: PartyContactDetail
+  type: has_many
+  via: partyContactDetails
+- from: CarriersAgentAtDestination
+  to: Address
+  type: has_one
+  via: address
+- from: CarriersAgentAtDestination
+  to: PartyContactDetail
+  type: has_many
+  via: partyContactDetails
+- from: IssueToParty
+  to: IdentifyingCode
+  type: has_many
+  via: identifyingCodes
+- from: IssueToParty
+  to: TaxLegalReference
+  type: has_many
+  via: taxLegalReferences
+- from: NotifyParty
+  to: PartyAddress
+  type: has_one
+  via: address
+- from: NotifyParty
+  to: IdentifyingCode
+  type: has_many
+  via: identifyingCodes
+- from: NotifyParty
+  to: TaxLegalReference
+  type: has_many
+  via: taxLegalReferences
+- from: NotifyParty
+  to: PartyContactDetail
+  type: has_many
+  via: partyContactDetails
+- from: NotifyPartyHBL
+  to: Address
+  type: has_one
+  via: address
+- from: NotifyPartyHBL
+  to: IdentifyingCode
+  type: has_many
+  via: identifyingCodes
+- from: NotifyPartyHBL
+  to: TaxLegalReference
+  type: has_many
+  via: taxLegalReferences
+- from: NotifyPartyHBL
+  to: PartyContactDetailHBL
+  type: has_many
+  via: partyContactDetails
+- from: Seller
+  to: Address
+  type: has_one
+  via: address
+- from: Seller
+  to: IdentifyingCode
+  type: has_many
+  via: identifyingCodes
+- from: Seller
+  to: TaxLegalReference
+  type: has_many
+  via: taxLegalReferences
+- from: Seller
+  to: PartyContactDetailWithPattern
+  type: has_many
+  via: partyContactDetails
+- from: SellerHBL
+  to: Address
+  type: has_one
+  via: address
+- from: SellerHBL
+  to: IdentifyingCode
+  type: has_many
+  via: identifyingCodes
+- from: SellerHBL
+  to: TaxLegalReference
+  type: has_many
+  via: taxLegalReferences
+- from: SellerHBL
+  to: PartyContactDetailHBL
+  type: has_many
+  via: partyContactDetails
+- from: Buyer
+  to: Address
+  type: has_one
+  via: address
+- from: Buyer
+  to: IdentifyingCode
+  type: has_many
+  via: identifyingCodes
+- from: Buyer
+  to: TaxLegalReference
+  type: has_many
+  via: taxLegalReferences
+- from: Buyer
+  to: PartyContactDetailWithPattern
+  type: has_many
+  via: partyContactDetails
+- from: BuyerHBL
+  to: Address
+  type: has_one
+  via: address
+- from: BuyerHBL
+  to: IdentifyingCode
+  type: has_many
+  via: identifyingCodes
+- from: BuyerHBL
+  to: TaxLegalReference
+  type: has_many
+  via: taxLegalReferences
+- from: BuyerHBL
+  to: PartyContactDetailHBL
+  type: has_many
+  via: partyContactDetails
+- from: PartyHBL
+  to: Address
+  type: has_one
+  via: address
+- from: PartyHBL
+  to: IdentifyingCode
+  type: has_many
+  via: identifyingCodes
+- from: PartyHBL
+  to: TaxLegalReference
+  type: has_many
+  via: taxLegalReferences
+- from: PartyHBL
+  to: PartyContactDetailHBL
+  type: has_many
+  via: partyContactDetails
+- from: IssuingParty
+  to: PartyAddress
+  type: has_one
+  via: address
+- from: IssuingParty
+  to: IdentifyingCode
+  type: has_many
+  via: identifyingCodes
+- from: IssuingParty
+  to: TaxLegalReference
+  type: has_many
+  via: taxLegalReferences
+- from: IssuingParty
+  to: PartyContactDetail
+  type: has_many
+  via: partyContactDetails
+- from: ConsignmentItemShipper
+  to: NationalCommodityCode
+  type: has_many
+  via: nationalCommodityCodes
+- from: ConsignmentItemShipper
+  to: CargoItemShipper
+  type: has_many
+  via: cargoItems
+- from: ConsignmentItemShipper
+  to: ExportLicenseShipper
+  type: has_one
+  via: exportLicense
+- from: ConsignmentItemShipper
+  to: ImportLicenseShipper
+  type: has_one
+  via: importLicense
+- from: ConsignmentItemShipper
+  to: ReferenceConsignmentItem
+  type: has_many
+  via: references
+- from: ConsignmentItemShipper
+  to: CustomsReference
+  type: has_many
+  via: customsReferences
+- from: ConsignmentItemHBL
+  to: NationalCommodityCode
+  type: has_one
+  via: nationalCommodityCode
+- from: ConsignmentItemHBL
+  to: CargoItemHBL
+  type: has_many
+  via: cargoItems
+- from: ConsignmentItemHBL
+  to: CustomsReference
+  type: has_many
+  via: customsReferences
+- from: CargoItemShipper
+  to: CargoGrossWeight
+  type: has_one
+  via: cargoGrossWeight
+- from: CargoItemShipper
+  to: CargoGrossVolume
+  type: has_one
+  via: cargoGrossVolume
+- from: CargoItemShipper
+  to: CargoNetWeight
+  type: has_one
+  via: cargoNetWeight
+- from: CargoItemShipper
+  to: CargoNetVolume
+  type: has_one
+  via: cargoNetVolume
+- from: CargoItemShipper
+  to: ExportLicenseShipper
+  type: has_one
+  via: exportLicense
+- from: CargoItemShipper
+  to: ImportLicenseShipper
+  type: has_one
+  via: importLicense
+- from: CargoItemShipper
+  to: OuterPackagingShipper
+  type: has_one
+  via: outerPackaging
+- from: CargoItemShipper
+  to: NationalCommodityCode
+  type: has_many
+  via: nationalCommodityCodes
+- from: CargoItemShipper
+  to: CustomsReference
+  type: has_many
+  via: customsReferences
+- from: CargoItemHBL
+  to: CargoGrossWeight
+  type: has_one
+  via: cargoGrossWeight
+- from: CargoItemHBL
+  to: OuterPackagingHBL
+  type: has_one
+  via: outerPackaging
+- from: UtilizedTransportEquipmentShipper
+  to: Seal
+  type: has_many
+  via: seals
+- from: UtilizedTransportEquipmentShipper
+  to: Reference
+  type: has_many
+  via: references
+- from: UtilizedTransportEquipmentShipper
+  to: CustomsReference
+  type: has_many
+  via: customsReferences
+- from: UtilizedTransportEquipmentHBL
+  to: Seal
+  type: has_many
+  via: seals
+- from: UTEquipment
+  to: RequiredEquipment
+  type: has_one
+  via: equipment
+- from: RequiredEquipment
+  to: TareWeight
+  type: has_one
+  via: tareWeight
+- from: HouseBillOfLading
+  to: PlaceOfAcceptance
+  type: has_one
+  via: placeOfAcceptance
+- from: HouseBillOfLading
+  to: PlaceOfFinalDelivery
+  type: has_one
+  via: placeOfFinalDelivery
+- from: HouseBillOfLading
+  to: DocumentPartiesHouseBL
+  type: has_one
+  via: documentParties
+- from: HouseBillOfLading
+  to: ConsignmentItemHBL
+  type: has_many
+  via: consignmentItems
+- from: HouseBillOfLading
+  to: UtilizedTransportEquipmentHBL
+  type: has_many
+  via: utilizedTransportEquipments
+- from: TransportDocument
+  to: Transports
+  type: has_one
+  via: transports
+- from: TransportDocument
+  to: Charge
+  type: has_many
+  via: charges
+- from: TransportDocument
+  to: PlaceOfIssue
+  type: has_one
+  via: placeOfIssue
+- from: TransportDocument
+  to: InvoicePayableAt
+  type: has_one
+  via: invoicePayableAt
+- from: TransportDocument
+  to: PartyContactDetail
+  type: has_many
+  via: partyContactDetails
+- from: TransportDocument
+  to: DocumentParties
+  type: has_one
+  via: documentParties
+- from: TransportDocument
+  to: ConsignmentItem
+  type: has_many
+  via: consignmentItems
+- from: TransportDocument
+  to: UtilizedTransportEquipment
+  type: has_many
+  via: utilizedTransportEquipments
+- from: TransportDocument
+  to: ExportLicense
+  type: has_one
+  via: exportLicense
+- from: TransportDocument
+  to: ImportLicense
+  type: has_one
+  via: importLicense
+- from: TransportDocument
+  to: Reference
+  type: has_many
+  via: references
+- from: TransportDocument
+  to: CustomsReference
+  type: has_many
+  via: customsReferences
+- from: Transports
+  to: PlaceOfReceipt
+  type: has_one
+  via: placeOfReceipt
+- from: Transports
+  to: PortOfLoading
+  type: has_one
+  via: portOfLoading
+- from: Transports
+  to: PortOfDischarge
+  type: has_one
+  via: portOfDischarge
+- from: Transports
+  to: PlaceOfDelivery
+  type: has_one
+  via: placeOfDelivery
+- from: Transports
+  to: OnwardInlandRouting
+  type: has_one
+  via: onwardInlandRouting
+- from: Transports
+  to: VesselVoyage
+  type: has_many
+  via: vesselVoyages
+- from: PortOfLoading
+  to: City
+  type: has_one
+  via: city
+- from: PortOfDischarge
+  to: City
+  type: has_one
+  via: city
+- from: OnwardInlandRouting
+  to: Address
+  type: has_one
+  via: address
+- from: OnwardInlandRouting
+  to: Facility
+  type: has_one
+  via: facility
+- from: DocumentPartiesShippingInstructions
+  to: Shipper
+  type: has_one
+  via: shipper
+- from: DocumentPartiesShippingInstructions
+  to: ConsigneeShipper
+  type: has_one
+  via: consignee
+- from: DocumentPartiesShippingInstructions
+  to: EndorseeShipper
+  type: has_one
+  via: endorsee
+- from: DocumentPartiesShippingInstructions
+  to: IssueToParty
+  type: has_one
+  via: issueTo
+- from: DocumentPartiesShippingInstructions
+  to: Seller
+  type: has_one
+  via: seller
+- from: DocumentPartiesShippingInstructions
+  to: Buyer
+  type: has_one
+  via: buyer
+- from: DocumentPartiesShippingInstructions
+  to: NotifyParty
+  type: has_many
+  via: notifyParties
+- from: DocumentPartiesShippingInstructions
+  to: OtherDocumentParty
+  type: has_many
+  via: other
+- from: DocumentPartiesHouseBL
+  to: ShipperHBL
+  type: has_one
+  via: shipper
+- from: DocumentPartiesHouseBL
+  to: ConsigneeHBL
+  type: has_one
+  via: consignee
+- from: DocumentPartiesHouseBL
+  to: NotifyPartyHBL
+  type: has_one
+  via: notifyParty
+- from: DocumentPartiesHouseBL
+  to: SellerHBL
+  type: has_one
+  via: seller
+- from: DocumentPartiesHouseBL
+  to: BuyerHBL
+  type: has_one
+  via: buyer
+- from: DocumentPartiesHouseBL
+  to: OtherDocumentPartyHBL
+  type: has_many
+  via: other
+- from: EquipmentEvent
+  to: documentReferences
+  type: has_many
+  via: documentReferences
+- from: EquipmentEvent
+  to: location
+  type: has_one
+  via: eventLocation
+- from: EquipmentEvent
+  to: references
+  type: has_many
+  via: references
+- from: EquipmentEvent
+  to: seals
+  type: has_many
+  via: seals
+- from: EquipmentEvent
+  to: TransportCall
+  type: has_one
+  via: transportCall
+- from: EventServiceData
+  to: EquipmentEvent
+  type: has_one
+  via: equipmentEvent
+- from: EventServiceData
+  to: ShipmentEvent
+  type: has_one
+  via: shipmentEvent
+- from: EventServiceData
+  to: TransportEvent
+  type: has_one
+  via: transportEvent
+- from: ShipmentEvent
+  to: references
+  type: has_many
+  via: references
+- from: TransportEvent
+  to: documentReferences
+  type: has_many
+  via: documentReferences
+- from: TransportEvent
+  to: TransportCall
+  type: has_one
+  via: transportCall
+- from: _400standard
+  to: _400Errors
+  type: has_many
+  via: errors
+- from: _401standard
+  to: _401Errors
+  type: has_many
+  via: errors
+- from: _403standard
+  to: _403Errors
+  type: has_many
+  via: errors
+- from: _404standard
+  to: _404Errors
+  type: has_many
+  via: errors
+- from: _500standard
+  to: _500Errors
+  type: has_many
+  via: errors
+- from: location
+  to: address
+  type: has_one
+  via: address
+- from: subscription
+  to: TransportCall
+  type: belongs_to
+  via: transportCallID

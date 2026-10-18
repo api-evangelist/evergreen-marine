@@ -1,0 +1,64 @@
+name: Evergreen Marine Regulatory Posture
+generated: '2026-10-18'
+method: searched
+source:
+- https://www.evergreen-marine.com/emc/common/jsp/EMC_PrivacyPolicy.jsp?lang=en
+- https://www.evergreen-marine.com/emc/common/jsp/EMC_TermsOfUse.jsp?lang=en
+notes: >-
+  Read from Evergreen Marine Corp.'s own Privacy Policy (HTTP 200, 2026-10-18). The Terms of Use page
+  (HTTP 200) was checked and has no candidate language for any catalog signal. Nothing was found on
+  subprocessor lists, incident notification, Global Privacy Control, AI transparency, accessibility
+  conformance or transparency reports, so those signals are left out.
+signals:
+  data_subject_request:
+    url: https://www.evergreen-marine.com/emc/common/jsp/EMC_PrivacyPolicy.jsp?lang=en
+    section: Your Legal Rights
+    note: Lists access, rectification, erasure/restriction, portability, consent withdrawal and complaint rights, all "subject to Applicable Laws". Requests go through the contact details at the end of the policy. No self-service portal is named.
+    evidence:
+    - source: https://www.evergreen-marine.com/emc/common/jsp/EMC_PrivacyPolicy.jsp?lang=en
+      http_status: 200
+      fetched: '2026-10-18'
+      quote: "The right to request access to your Personal Data, together with information regarding the nature, processing and disclosure of those Personal Data;"
+    - source: https://www.evergreen-marine.com/emc/common/jsp/EMC_PrivacyPolicy.jsp?lang=en
+      http_status: 200
+      fetched: '2026-10-18'
+      quote: "The right to have certain Personal Data transferred to another Controller, in a structured, commonly used and machine-readable format, to the extent applicable;"
+    - source: https://www.evergreen-marine.com/emc/common/jsp/EMC_PrivacyPolicy.jsp?lang=en
+      http_status: 200
+      fetched: '2026-10-18'
+      quote: "To exercise one or more of the rights described in this Policy, or to ask a question about these rights, or any other provision of this Policy, or about our Processing of your Personal Data, please use the contact details provided in the end of this Privacy Policy below."
+  data_retention:
+    url: https://www.evergreen-marine.com/emc/common/jsp/EMC_PrivacyPolicy.jsp?lang=en
+    section: Data Retention Period
+    note: Retention is tied to minimum necessity unless law requires longer. The policy gives criteria but no fixed periods.
+    evidence:
+    - source: https://www.evergreen-marine.com/emc/common/jsp/EMC_PrivacyPolicy.jsp?lang=en
+      http_status: 200
+      fetched: '2026-10-18'
+      quote: "We take every reasonable step to ensure that your Personal Data are only Processed for the minimum period necessary for the purposes set out in this Policy, unless a longer retention period is required or permitted by law."
+  data_residency:
+    url: https://www.evergreen-marine.com/emc/common/jsp/EMC_PrivacyPolicy.jsp?lang=en
+    section: International Transfer of Personal Data
+    note: This is NOT a residency commitment. The policy says personal data may be moved internationally within Evergreen Line and to third parties, and that EEA/UK transfers to non-adequate countries rely on Standard Contractual Clauses.
+    evidence:
+    - source: https://www.evergreen-marine.com/emc/common/jsp/EMC_PrivacyPolicy.jsp?lang=en
+      http_status: 200
+      fetched: '2026-10-18'
+      quote: "For this reason, we may transfer your Personal Data to other countries that may have different laws and data protection compliance requirements to those that apply in the country you are located."
+    - source: https://www.evergreen-marine.com/emc/common/jsp/EMC_PrivacyPolicy.jsp?lang=en
+      http_status: 200
+      fetched: '2026-10-18'
+      quote: "Where no exemption or derogation applies, and we shall transfer your Personal Data from the EEA or the UK to recipients outside the EEA or the UK who are not in Adequate Jurisdictions on the basis of Standard Contractual Clauses."
+  age_assurance:
+    url: https://www.evergreen-marine.com/emc/common/jsp/EMC_PrivacyPolicy.jsp?lang=en
+    section: Children's Privacy
+    note: Age limit of 13, 16 or 18 depending on jurisdiction. The policy relies on self-representation and guardian consent. No age-verification mechanism is described.
+    evidence:
+    - source: https://www.evergreen-marine.com/emc/common/jsp/EMC_PrivacyPolicy.jsp?lang=en
+      http_status: 200
+      fetched: '2026-10-18'
+      quote: "Our Sites, Apps and other services are not intended for use by children who is under the age of 13, 16 or 18 depending on the Applicable Laws."
+    - source: https://www.evergreen-marine.com/emc/common/jsp/EMC_PrivacyPolicy.jsp?lang=en
+      http_status: 200
+      fetched: '2026-10-18'
+      quote: "If you are a minor, you represent and warrant that you are using our Services with the consent of your guardian."

@@ -1,0 +1,187 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/evergreen-marine/main/json-schema/evergreen-marine-surrender-request-details-schema.json",
+  "title": "Surrender Request Details",
+  "description": "A concrete surrender request related to a transport document.\n\nThe platform guarantees *all* of the following:\n\n  1) The surrender request was submitted by the sole possessor of the eBL.\n  2) Depending on the eBL type:\n   * For non-negotiable (\"straight\") eBLs, the surrender request was submitted by either the original shipper OR the consignee.\n   * For negotiable eBLs with a named titleholder, the surrender request was submitted by the named titleholder.\n   * For negotiable eBLs without a named titleholder / blank eBLs, possession is sufficient for the entity surrendering the eBL.\n  3) The carrier holds possession of the eBL with this surrender request  until it responds to this surrender request.\n",
+  "x-generated": "2026-10-18",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/evergreen-marine-ebl-surrender-openapi.yml#/components/schemas/SurrenderRequestDetails",
+  "type": "object",
+  "properties": {
+    "surrenderRequestReference": {
+      "type": "string",
+      "maxLength": 100,
+      "pattern": "^\\S(?:.*\\S)?$",
+      "description": "A server defined reference for a concrete surrender request. Surrender request references MUST NOT be reused.\n"
+    },
+    "transportDocumentReference": {
+      "type": "string",
+      "pattern": "^\\S(?:.*\\S)?$",
+      "maxLength": 20,
+      "description": "A unique number allocated by the shipping line to the transport document and the main number used for the tracking of the status of the shipment.\n"
+    },
+    "transportDocumentSubReference": {
+      "type": "string",
+      "pattern": "^\\S(?:.*\\S)?$",
+      "maxLength": 100,
+      "description": "Additional reference that can be optionally used alongside the `transportDocumentReference` in order to distinguish between versions of the same `Transport Document`.\n"
+    },
+    "surrenderRequestCode": {
+      "type": "string",
+      "description": "Surrender Request codes:\n- `SREQ` (Requested to surrender for Delivery)\n- `AREQ` (Requested to surrender for Amendment)\n\nThe surrender request code determines the type of surrender request. Any parallel negotiation between the consignee and the carrier related to any of these type surrender are handled outside this API. Examples could be the shipment release related to a surrender for delivery or the actual contents of the amendment in a surrender related to an amendment.\n\nNote that \"Switch to paper\" is considered an amendment in how it is modelled via the DCSA eBL data standard.\n",
+      "enum": [
+        "SREQ",
+        "AREQ"
+      ]
+    },
+    "reasonCode": {
+      "type": "string",
+      "maxLength": 4,
+      "description": "A code defined by DCSA indicating the reason for requesting a surrender for amendment. Possible values are:\n-\t`SWTP` (Switch to paper)\n"
+    },
+    "comments": {
+      "type": "string",
+      "pattern": "^\\S(?:.*\\S)?$",
+      "maxLength": 255,
+      "description": "Optional free text comment associated with the surrender request transaction."
+    },
+    "endorsementChain": {
+      "type": "array",
+      "description": "A list of one or more endorsement related actions that were performed on or after the issuance of the eBL. It is equivalent to the \"back side\" of the physical bill of lading. The type of actions recorded in the endorsement chain as defined by the DCSA standard are listed below:\n\n - **Issue:** The act of issuing an eBL i.e. making the eBL available to the receiver.\n - **Endorse:** The act of transferring the rights and obligations associated with the eBL to a specific named party, allowing them to claim or deal with the goods. The user in control of the eBL may endorse the eBL in their turn to another named party. Only applicable to To-Order eBL (`isToOrder=true`).\n - **Sign:** A general-purpose signature that can be used by any party to mark their possession of the eBL. Similar to how any possessor in the physical world can put a physical signature on the paper bill of lading. The endorsement chain as defined by DCSA does not record any transfer of possession of the eBL, unless a signature is added to it.\n - **Request surrender for amendment:** The presentation (by transfer) of the eBL to the Issuer, or another user appointed by the Issuer, by a user entitled to do so for the purpose of amending the eBL.\n - **Request surrender for delivery:** The presentation (by transfer) of the eBL to the Issuer, or another user appointed by the Issuer, by a user entitled to do so for the purpose of claiming delivery of the goods.\n\n **Note:** DCSA member carriers have agreed that the name `endorsementChain` is still the correct name for this list of actions.\n",
+      "items": {
+        "$ref": "#/$defs/EndorsementChainLink"
+      }
+    }
+  },
+  "required": [
+    "surrenderRequestReference",
+    "transportDocumentReference",
+    "surrenderRequestCode"
+  ],
+  "$defs": {
+    "EndorsementChainLink": {
+      "type": "object",
+      "title": "Endorsement Chain Link",
+      "properties": {
+        "actionDateTime": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Date time when the action occurred."
+        },
+        "actionCode": {
+          "type": "string",
+          "maxLength": 50,
+          "description": "The action performed by the party. This should be one of:\n- `ISSUE` (The actor issued the document to the recipient)\n- `ENDORSE` (The actor endorsed the document to the recipient)\n- `SIGN` (The actor signed or performed an \"assignment\" to the recipient)\n- `SURRENDER_FOR_DELIVERY` (The actor requested this surrender request for delivery to the recipient)\n- `SURRENDER_FOR_AMENDMENT` (The actor requested this surrender request for amendment to the recipient)\nNot all actions are applicable to all surrender requests.\n"
+        },
+        "actor": {
+          "$ref": "#/$defs/TransactionParty"
+        },
+        "recipient": {
+          "$ref": "#/$defs/TransactionParty"
+        }
+      },
+      "description": "Entry in the endorsement chain.\n",
+      "required": [
+        "actionDateTime",
+        "actionCode",
+        "actor",
+        "recipient"
+      ]
+    },
+    "IdentifyingCode": {
+      "type": "object",
+      "title": "Identifying Code",
+      "properties": {
+        "codeListProvider": {
+          "type": "string",
+          "maxLength": 100,
+          "description": "A list of codes identifying a party. Possible values are:\n- `WAVE` (Wave)\n- `CARX` (CargoX)\n- `ESSD` (EssDOCS)\n- `IDT` (ICE Digital Trade)\n- `BOLE` (Bolero)\n- `EDOX` (EdoxOnline)\n- `IQAX` (IQAX)\n- `SECR` (Secro)\n- `TRGO` (TradeGO)\n- `ETEU` (eTEU)\n- `TRAC` (Enigio trace:original)\n- `BRIT` (BRITC eBL)\n- `GSBN` (Global Shipping Business Network)\n- `WISE` (WiseTech)\n- `GLEIF` (Global Legal Entity Identifier Foundation)\n- `W3C` (World Wide Web Consortium)\n- `DNB` (Dun and Bradstreet)\n- `FMC` (Federal Maritime Commission)\n- `DCSA` (Digital Container Shipping Association)\n- `ZZZ` (Mutually defined)\n"
+        },
+        "partyCode": {
+          "type": "string",
+          "description": "Code to identify the party as provided by the `codeListProvider`\n",
+          "maxLength": 150
+        },
+        "codeListName": {
+          "type": "string",
+          "maxLength": 100,
+          "description": "The name of the code list, code generation mechanism or code authority for the `partyCode`. Example values could be:\n- `DID` (Decentralized Identifier) for `codeListProvider` `W3C`\n- `LEI` (Legal Entity Identifier) for `codeListProvider` `GLEIF`\n- `DUNS` (Data Universal Numbering System) for `codeListProvider` `DNB`\n"
+        }
+      },
+      "required": [
+        "codeListProvider",
+        "partyCode"
+      ]
+    },
+    "TaxLegalReference": {
+      "type": "object",
+      "title": "Tax & Legal Reference",
+      "description": "Reference that uniquely identifies a party for tax and/or legal purposes in accordance with the relevant jurisdiction.\n\nA small list of **potential** examples:\n\n| Type  | Country | Description |\n|-------|:-------:|-------------|\n|EORI|NL|Economic Operators Registration and Identification|\n|PAN|IN|Goods and Services Tax Identification Number in India|\n|GSTIN|IN|Goods and Services Tax Identification Number in India|\n|IEC|IN|Importer-Exported Code in India|\n|RUC|EC|Registro Único del Contribuyente in Ecuador|\n|RUC|PE|Registro Único del Contribuyente in Peru|\n|NIF|MG|Numéro d'Identification Fiscal in Madagascar|\n|NIF|DZ|Numéro d'Identification Fiscal in Algeria|\n",
+      "properties": {
+        "type": {
+          "type": "string",
+          "pattern": "^\\S(?:.*\\S)?$",
+          "maxLength": 50,
+          "description": "The reference type code as defined by the relevant tax and/or legal authority.\n"
+        },
+        "countryCode": {
+          "type": "string",
+          "pattern": "^[A-Z]{2}$",
+          "minLength": 2,
+          "maxLength": 2,
+          "description": "The 2 characters for the country code using [ISO 3166-1 alpha-2](https://www.iso.org/obp/ui/#iso:pub:PUB500001:en)\n"
+        },
+        "value": {
+          "type": "string",
+          "pattern": "^\\S(?:.*\\S)?$",
+          "maxLength": 35,
+          "description": "The value of the `taxLegalReference`\n"
+        }
+      },
+      "required": [
+        "type",
+        "countryCode",
+        "value"
+      ]
+    },
+    "TransactionParty": {
+      "type": "object",
+      "title": "Transaction Party",
+      "description": "Refers to a company or a legal entity.",
+      "properties": {
+        "eblPlatform": {
+          "type": "string",
+          "pattern": "^\\S+$",
+          "maxLength": 4,
+          "description": "The eBL platform of the transaction party. The value **MUST** be one of:\n- `WAVE` (Wave)\n- `CARX` (CargoX)\n- `ESSD` (EssDOCS)\n- `IDT` (ICE Digital Trade)\n- `BOLE` (Bolero)\n- `EDOX` (EdoxOnline)\n- `IQAX` (IQAX)\n- `SECR` (Secro)\n- `TRGO` (TradeGO)\n- `ETEU` (eTEU)\n- `TRAC` (Enigio trace:original)\n- `BRIT` (BRITC eBL)\n"
+        },
+        "partyName": {
+          "type": "string",
+          "pattern": "^\\S(?:.*\\S)?$",
+          "maxLength": 70,
+          "description": "Name of the party.\n"
+        },
+        "identifyingCodes": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "$ref": "#/$defs/IdentifyingCode"
+          }
+        },
+        "taxLegalReferences": {
+          "description": "A list of `Tax References` for a `Party`\n",
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/TaxLegalReference"
+          }
+        }
+      },
+      "required": [
+        "partyName",
+        "eblPlatform",
+        "identifyingCodes"
+      ]
+    }
+  }
+}

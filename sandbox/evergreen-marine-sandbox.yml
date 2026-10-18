@@ -1,0 +1,10 @@
+generated: '2026-10-18'
+method: searched
+source: https://www.shipmentlink.com/_ec/APIPORTAL_FAQ
+description: Testing environment provided after registration
+docs: https://www.shipmentlink.com/_ec/APIPORTAL_FAQ
+testing_process: |
+  Step 3 - Testing: Once we have received your authentication document, you will be contacted by email when a testing environment has been created.
+  
+  Step 4 - Go Live: Once your testing environment is verified, you will have the full capabilities of the API service available to you.
+notes: Testing environment creation is part of the registration process. No public sandbox or self-service testing available.

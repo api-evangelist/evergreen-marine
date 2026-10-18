@@ -1,23 +1,896 @@
 aid: evergreen-marine
-name: Evergreen Marine
-description: 'Evergreen Marine is a company surfaced via the API Evangelist harvest backlog (source: kin-score-markets)
-  and added to the network as a stub for full-pipeline profiling.'
+
+name: Evergreen Marine Corp.
+
+description: 'Evergreen Marine Corp. (Taiwan) Ltd. (TWSE: 2603) is a worldwide container shipping company founded by Dr. Yung-Fa Chang in 1968;
+  since 2007 its group carriers have operated under the Evergreen Line brand. Through its ShipmentLink e-commerce platform it offers online cargo
+  tracking, vessel schedules, booking, e-B/L, VGM submission, EDI services and an API Developer Portal with a catalogue of APIs such as shipment
+  Track & Trace, available to customers after an application and registration process.'
+
 url: https://raw.githubusercontent.com/api-evangelist/evergreen-marine/refs/heads/main/apis.yml
+
 x-type: company
+
 x-source: harvest:kin-score-markets
-x-tier: stub
-x-tier-reason: harvest
+
+x-tier: profiled
+x-tier-reason: enrichment pass 2026-10-18 (modular-v1; was harvest)
+
 specificationVersion: '0.20'
+
 created: '2026-10-18'
+
 modified: '2026-10-18'
+
 tags:
 - Company
-apis: []
+- Container Shipping
+- Logistics
+- Maritime
+- Shipping
+- Supply Chain
+- Track and Trace
+- Taiwan
+
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
 - FN: APIs.json
   email: info@apis.io
+
+image: https://www.evergreen-marine.com/emc/common/images/logo/emc_logo.svg
+
 common:
+- type: AgenticAccess
+  url: agentic-access/evergreen-marine-agentic-access.yml
+- type: Plans
+  url: plans/evergreen-marine-plans-pricing.yml
+- type: Spectral
+  url: rules/evergreen-marine-rules.yml
+- type: JSONLD
+  url: json-ld/evergreen-marine-context.jsonld
+- type: Vocabulary
+  url: vocabulary/evergreen-marine-vocabulary.yml
+- type: AgentSkill
+  url: skills/_index.yml
+- type: DataModel
+  url: data-model/evergreen-marine-data-model.yml
+- type: Conventions
+  url: conventions/evergreen-marine-conventions.yml
+- type: Sandbox
+  url: sandbox/evergreen-marine-sandbox.yml
+- type: Authentication
+  url: authentication/evergreen-marine-authentication.yml
+- type: Deprecation
+  url: lifecycle/evergreen-marine-lifecycle.yml
+- type: Lifecycle
+  url: lifecycle/evergreen-marine-lifecycle.yml
+- type: ErrorCatalog
+  url: errors/evergreen-marine-problem-types.yml
+- type: Conformance
+  url: conformance/evergreen-marine-conformance.yml
+- type: Overlay
+  url: overlays/evergreen-marine-arrival-notice-overlay.yaml
+- type: Hosts
+  url: hosts/evergreen-marine-hosts.yml
+- type: DomainSecurity
+  url: security/evergreen-marine-domain-security.yml
 - type: Website
-  url: https://evergreen-marine.com
+  url: https://www.evergreen-marine.com/
+- type: DeveloperPortal
+  url: https://www.shipmentlink.com/_ec/APIPORTAL_Home
+- type: Documentation
+  url: https://www.shipmentlink.com/_ec/APIPORTAL_APIServiceCategory
+- type: FAQ
+  url: https://www.shipmentlink.com/_ec/APIPORTAL_FAQ
+- type: Login
+  url: https://www.shipmentlink.com/tam1/jsp/TAM1_Login.jsp?lang=en
+- type: Support
+  url: https://www.evergreen-marine.com/emc/aboutevergreen/jsp/EMC_ContactUs.jsp?lang=en
+- type: News
+  url: https://www.evergreen-marine.com/emc/latestnews/jsp/EMC_NoticesAndNews.jsp?lang=en
+- type: About
+  url: https://www.evergreen-marine.com/emc/aboutevergreen/jsp/EMC_CorporateProfile.jsp?lang=en
+- type: Sustainability
+  url: https://csr.evergreen-marine.com/?en
+- type: TermsOfService
+  url: https://www.evergreen-marine.com/emc/common/jsp/EMC_TermsOfUse.jsp?lang=en
+- type: PrivacyPolicy
+  url: https://www.evergreen-marine.com/emc/common/jsp/EMC_PrivacyPolicy.jsp?lang=en
+- type: YouTube
+  url: https://www.youtube.com/channel/UC0CfeZUHFm7w5A6c4rGhU4Q
+
+apis:
+- aid: evergreen-marine:evergreen-marine-an-publisher-endpoints-api
+  name: Evergreen Marine Corp. AN Publisher Endpoints API
+  description: Endpoints implemented by the adopters who publish arrival notices
+  humanURL: https://www.shipmentlink.com/_ec/APIPORTAL_SpecTrackAndTrace
+  tags:
+  - AN Publisher Endpoints
+  properties:
+  - type: OpenAPI
+    url: openapi/evergreen-marine-an-publisher-endpoints-api-openapi.yml
+  - type: Documentation
+    url: https://www.shipmentlink.com/_ec/APIPORTAL_SpecTrackAndTrace
+  - type: Documentation
+    url: https://www.shipmentlink.com/_ec/APIPORTAL_SpecBK
+  - type: JSONSchema
+    url: json-schema/evergreen-marine-booking-schema.json
+  - type: JSONSchema
+    url: json-schema/evergreen-marine-update-booking-schema.json
+  - type: JSONSchema
+    url: json-schema/evergreen-marine-create-booking-schema.json
+  - type: JSONSchema
+    url: json-schema/evergreen-marine-booking-notification-schema.json
+  - type: JSONSchema
+    url: json-schema/evergreen-marine-cancel-booking-request-schema.json
+  - type: JSONSchema
+    url: json-schema/evergreen-marine-create-booking-response-schema.json
+  - type: Documentation
+    url: https://www.shipmentlink.com/_ec/APIPORTAL_SpecSI
+  - type: JSONSchema
+    url: json-schema/evergreen-marine-update-shipping-instructions-schema.json
+  - type: JSONSchema
+    url: json-schema/evergreen-marine-create-shipping-instructions-schema.json
+  - type: JSONSchema
+    url: json-schema/evergreen-marine-create-shipping-instructions-response-schema.json
+  - type: Documentation
+    url: https://www.shipmentlink.com/_ec/APIPORTAL_SpecTD
+  - type: JSONSchema
+    url: json-schema/evergreen-marine-transport-document-schema.json
+  - type: JSONSchema
+    url: json-schema/evergreen-marine-approve-transport-document-schema.json
+  - type: Documentation
+    url: https://www.shipmentlink.com/_ec/APIPORTAL_SpecISS
+  - type: JSONSchema
+    url: json-schema/evergreen-marine-issuance-response-schema.json
+  - type: Documentation
+    url: https://www.shipmentlink.com/_ec/APIPORTAL_SpecSUR
+  - type: JSONSchema
+    url: json-schema/evergreen-marine-surrender-request-details-schema.json
+  - type: Documentation
+    url: https://www.shipmentlink.com/_ec/APIPORTAL_SpecArrivalNotice
+  - type: JSONSchema
+    url: json-schema/evergreen-marine-post-arrival-notices-response-schema.json
+  - type: JSONSchema
+    url: json-schema/evergreen-marine-get-arrival-notices-response-schema.json
+  - type: JSONSchema
+    url: json-schema/evergreen-marine-post-arrival-notice-notifications-request-schema.json
+  - type: JSONSchema
+    url: json-schema/evergreen-marine-post-arrival-notices-request-schema.json
+  - type: Documentation
+    url: https://www.shipmentlink.com/_ec/APIPORTAL_SpecCommercialSchedules
+- aid: evergreen-marine:evergreen-marine-an-subscriber-endpoints-api
+  name: Evergreen Marine Corp. AN Subscriber Endpoints API
+  description: Endpoints implemented by the adopters who receive arrival notices
+  humanURL: https://www.shipmentlink.com/_ec/APIPORTAL_SpecTrackAndTrace
+  tags:
+  - AN Subscriber Endpoints
+  properties:
+  - type: OpenAPI
+    url: openapi/evergreen-marine-an-subscriber-endpoints-api-openapi.yml
+  - type: Documentation
+    url: https://www.shipmentlink.com/_ec/APIPORTAL_SpecTrackAndTrace
+  - type: Documentation
+    url: https://www.shipmentlink.com/_ec/APIPORTAL_SpecBK
+  - type: JSONSchema
+    url: json-schema/evergreen-marine-booking-schema.json
+  - type: JSONSchema
+    url: json-schema/evergreen-marine-update-booking-schema.json
+  - type: JSONSchema
+    url: json-schema/evergreen-marine-create-booking-schema.json
+  - type: JSONSchema
+    url: json-schema/evergreen-marine-booking-notification-schema.json
+  - type: JSONSchema
+    url: json-schema/evergreen-marine-cancel-booking-request-schema.json
+  - type: JSONSchema
+    url: json-schema/evergreen-marine-create-booking-response-schema.json
+  - type: Documentation
+    url: https://www.shipmentlink.com/_ec/APIPORTAL_SpecSI
+  - type: JSONSchema
+    url: json-schema/evergreen-marine-update-shipping-instructions-schema.json
+  - type: JSONSchema
+    url: json-schema/evergreen-marine-create-shipping-instructions-schema.json
+  - type: JSONSchema
+    url: json-schema/evergreen-marine-create-shipping-instructions-response-schema.json
+  - type: Documentation
+    url: https://www.shipmentlink.com/_ec/APIPORTAL_SpecTD
+  - type: JSONSchema
+    url: json-schema/evergreen-marine-transport-document-schema.json
+  - type: JSONSchema
+    url: json-schema/evergreen-marine-approve-transport-document-schema.json
+  - type: Documentation
+    url: https://www.shipmentlink.com/_ec/APIPORTAL_SpecISS
+  - type: JSONSchema
+    url: json-schema/evergreen-marine-issuance-response-schema.json
+  - type: Documentation
+    url: https://www.shipmentlink.com/_ec/APIPORTAL_SpecSUR
+  - type: JSONSchema
+    url: json-schema/evergreen-marine-surrender-request-details-schema.json
+  - type: Documentation
+    url: https://www.shipmentlink.com/_ec/APIPORTAL_SpecArrivalNotice
+  - type: JSONSchema
+    url: json-schema/evergreen-marine-post-arrival-notices-response-schema.json
+  - type: JSONSchema
+    url: json-schema/evergreen-marine-get-arrival-notices-response-schema.json
+  - type: JSONSchema
+    url: json-schema/evergreen-marine-post-arrival-notice-notifications-request-schema.json
+  - type: JSONSchema
+    url: json-schema/evergreen-marine-post-arrival-notices-request-schema.json
+  - type: Documentation
+    url: https://www.shipmentlink.com/_ec/APIPORTAL_SpecCommercialSchedules
+- aid: evergreen-marine:evergreen-marine-booking-api
+  name: Evergreen Marine Corp. Booking API
+  description: Booking endPoints to be implemented by **providers** of the Booking API
+  humanURL: https://www.shipmentlink.com/_ec/APIPORTAL_SpecTrackAndTrace
+  tags:
+  - Booking
+  properties:
+  - type: OpenAPI
+    url: openapi/evergreen-marine-booking-api-openapi.yml
+  - type: Documentation
+    url: https://www.shipmentlink.com/_ec/APIPORTAL_SpecTrackAndTrace
+  - type: Documentation
+    url: https://www.shipmentlink.com/_ec/APIPORTAL_SpecBK
+  - type: JSONSchema
+    url: json-schema/evergreen-marine-booking-schema.json
+  - type: JSONSchema
+    url: json-schema/evergreen-marine-update-booking-schema.json
+  - type: JSONSchema
+    url: json-schema/evergreen-marine-create-booking-schema.json
+  - type: JSONSchema
+    url: json-schema/evergreen-marine-booking-notification-schema.json
+  - type: JSONSchema
+    url: json-schema/evergreen-marine-cancel-booking-request-schema.json
+  - type: JSONSchema
+    url: json-schema/evergreen-marine-create-booking-response-schema.json
+  - type: Documentation
+    url: https://www.shipmentlink.com/_ec/APIPORTAL_SpecSI
+  - type: JSONSchema
+    url: json-schema/evergreen-marine-update-shipping-instructions-schema.json
+  - type: JSONSchema
+    url: json-schema/evergreen-marine-create-shipping-instructions-schema.json
+  - type: JSONSchema
+    url: json-schema/evergreen-marine-create-shipping-instructions-response-schema.json
+  - type: Documentation
+    url: https://www.shipmentlink.com/_ec/APIPORTAL_SpecTD
+  - type: JSONSchema
+    url: json-schema/evergreen-marine-transport-document-schema.json
+  - type: JSONSchema
+    url: json-schema/evergreen-marine-approve-transport-document-schema.json
+  - type: Documentation
+    url: https://www.shipmentlink.com/_ec/APIPORTAL_SpecISS
+  - type: JSONSchema
+    url: json-schema/evergreen-marine-issuance-response-schema.json
+  - type: Documentation
+    url: https://www.shipmentlink.com/_ec/APIPORTAL_SpecSUR
+  - type: JSONSchema
+    url: json-schema/evergreen-marine-surrender-request-details-schema.json
+  - type: Documentation
+    url: https://www.shipmentlink.com/_ec/APIPORTAL_SpecArrivalNotice
+  - type: JSONSchema
+    url: json-schema/evergreen-marine-post-arrival-notices-response-schema.json
+  - type: JSONSchema
+    url: json-schema/evergreen-marine-get-arrival-notices-response-schema.json
+  - type: JSONSchema
+    url: json-schema/evergreen-marine-post-arrival-notice-notifications-request-schema.json
+  - type: JSONSchema
+    url: json-schema/evergreen-marine-post-arrival-notices-request-schema.json
+  - type: Documentation
+    url: https://www.shipmentlink.com/_ec/APIPORTAL_SpecCommercialSchedules
+- aid: evergreen-marine:evergreen-marine-events-api
+  name: Evergreen Marine Corp. Events API
+  description: Event Service Controller
+  humanURL: https://www.shipmentlink.com/_ec/APIPORTAL_SpecTrackAndTrace
+  tags:
+  - Events
+  properties:
+  - type: OpenAPI
+    url: openapi/evergreen-marine-events-api-openapi.yml
+  - type: Documentation
+    url: https://www.shipmentlink.com/_ec/APIPORTAL_SpecTrackAndTrace
+  - type: Documentation
+    url: https://www.shipmentlink.com/_ec/APIPORTAL_SpecBK
+  - type: JSONSchema
+    url: json-schema/evergreen-marine-booking-schema.json
+  - type: JSONSchema
+    url: json-schema/evergreen-marine-update-booking-schema.json
+  - type: JSONSchema
+    url: json-schema/evergreen-marine-create-booking-schema.json
+  - type: JSONSchema
+    url: json-schema/evergreen-marine-booking-notification-schema.json
+  - type: JSONSchema
+    url: json-schema/evergreen-marine-cancel-booking-request-schema.json
+  - type: JSONSchema
+    url: json-schema/evergreen-marine-create-booking-response-schema.json
+  - type: Documentation
+    url: https://www.shipmentlink.com/_ec/APIPORTAL_SpecSI
+  - type: JSONSchema
+    url: json-schema/evergreen-marine-update-shipping-instructions-schema.json
+  - type: JSONSchema
+    url: json-schema/evergreen-marine-create-shipping-instructions-schema.json
+  - type: JSONSchema
+    url: json-schema/evergreen-marine-create-shipping-instructions-response-schema.json
+  - type: Documentation
+    url: https://www.shipmentlink.com/_ec/APIPORTAL_SpecTD
+  - type: JSONSchema
+    url: json-schema/evergreen-marine-transport-document-schema.json
+  - type: JSONSchema
+    url: json-schema/evergreen-marine-approve-transport-document-schema.json
+  - type: Documentation
+    url: https://www.shipmentlink.com/_ec/APIPORTAL_SpecISS
+  - type: JSONSchema
+    url: json-schema/evergreen-marine-issuance-response-schema.json
+  - type: Documentation
+    url: https://www.shipmentlink.com/_ec/APIPORTAL_SpecSUR
+  - type: JSONSchema
+    url: json-schema/evergreen-marine-surrender-request-details-schema.json
+  - type: Documentation
+    url: https://www.shipmentlink.com/_ec/APIPORTAL_SpecArrivalNotice
+  - type: JSONSchema
+    url: json-schema/evergreen-marine-post-arrival-notices-response-schema.json
+  - type: JSONSchema
+    url: json-schema/evergreen-marine-get-arrival-notices-response-schema.json
+  - type: JSONSchema
+    url: json-schema/evergreen-marine-post-arrival-notice-notifications-request-schema.json
+  - type: JSONSchema
+    url: json-schema/evergreen-marine-post-arrival-notices-request-schema.json
+  - type: Documentation
+    url: https://www.shipmentlink.com/_ec/APIPORTAL_SpecCommercialSchedules
+- aid: evergreen-marine:evergreen-marine-issuance-response-api
+  name: Evergreen Marine Corp. Issuance Response API
+  description: Issuance Response **implemented** by carrier
+  humanURL: https://www.shipmentlink.com/_ec/APIPORTAL_SpecTrackAndTrace
+  tags:
+  - Issuance Response
+  properties:
+  - type: OpenAPI
+    url: openapi/evergreen-marine-issuance-response-api-openapi.yml
+  - type: Documentation
+    url: https://www.shipmentlink.com/_ec/APIPORTAL_SpecTrackAndTrace
+  - type: Documentation
+    url: https://www.shipmentlink.com/_ec/APIPORTAL_SpecBK
+  - type: JSONSchema
+    url: json-schema/evergreen-marine-booking-schema.json
+  - type: JSONSchema
+    url: json-schema/evergreen-marine-update-booking-schema.json
+  - type: JSONSchema
+    url: json-schema/evergreen-marine-create-booking-schema.json
+  - type: JSONSchema
+    url: json-schema/evergreen-marine-booking-notification-schema.json
+  - type: JSONSchema
+    url: json-schema/evergreen-marine-cancel-booking-request-schema.json
+  - type: JSONSchema
+    url: json-schema/evergreen-marine-create-booking-response-schema.json
+  - type: Documentation
+    url: https://www.shipmentlink.com/_ec/APIPORTAL_SpecSI
+  - type: JSONSchema
+    url: json-schema/evergreen-marine-update-shipping-instructions-schema.json
+  - type: JSONSchema
+    url: json-schema/evergreen-marine-create-shipping-instructions-schema.json
+  - type: JSONSchema
+    url: json-schema/evergreen-marine-create-shipping-instructions-response-schema.json
+  - type: Documentation
+    url: https://www.shipmentlink.com/_ec/APIPORTAL_SpecTD
+  - type: JSONSchema
+    url: json-schema/evergreen-marine-transport-document-schema.json
+  - type: JSONSchema
+    url: json-schema/evergreen-marine-approve-transport-document-schema.json
+  - type: Documentation
+    url: https://www.shipmentlink.com/_ec/APIPORTAL_SpecISS
+  - type: JSONSchema
+    url: json-schema/evergreen-marine-issuance-response-schema.json
+  - type: Documentation
+    url: https://www.shipmentlink.com/_ec/APIPORTAL_SpecSUR
+  - type: JSONSchema
+    url: json-schema/evergreen-marine-surrender-request-details-schema.json
+  - type: Documentation
+    url: https://www.shipmentlink.com/_ec/APIPORTAL_SpecArrivalNotice
+  - type: JSONSchema
+    url: json-schema/evergreen-marine-post-arrival-notices-response-schema.json
+  - type: JSONSchema
+    url: json-schema/evergreen-marine-get-arrival-notices-response-schema.json
+  - type: JSONSchema
+    url: json-schema/evergreen-marine-post-arrival-notice-notifications-request-schema.json
+  - type: JSONSchema
+    url: json-schema/evergreen-marine-post-arrival-notices-request-schema.json
+  - type: Documentation
+    url: https://www.shipmentlink.com/_ec/APIPORTAL_SpecCommercialSchedules
+- aid: evergreen-marine:evergreen-marine-notifications-api
+  name: Evergreen Marine Corp. Notifications API
+  description: Notifications to be implemented by the **consumers** of the Booking API
+  humanURL: https://www.shipmentlink.com/_ec/APIPORTAL_SpecTrackAndTrace
+  tags:
+  - Notifications
+  properties:
+  - type: OpenAPI
+    url: openapi/evergreen-marine-notifications-api-openapi.yml
+  - type: Documentation
+    url: https://www.shipmentlink.com/_ec/APIPORTAL_SpecTrackAndTrace
+  - type: Documentation
+    url: https://www.shipmentlink.com/_ec/APIPORTAL_SpecBK
+  - type: JSONSchema
+    url: json-schema/evergreen-marine-booking-schema.json
+  - type: JSONSchema
+    url: json-schema/evergreen-marine-update-booking-schema.json
+  - type: JSONSchema
+    url: json-schema/evergreen-marine-create-booking-schema.json
+  - type: JSONSchema
+    url: json-schema/evergreen-marine-booking-notification-schema.json
+  - type: JSONSchema
+    url: json-schema/evergreen-marine-cancel-booking-request-schema.json
+  - type: JSONSchema
+    url: json-schema/evergreen-marine-create-booking-response-schema.json
+  - type: Documentation
+    url: https://www.shipmentlink.com/_ec/APIPORTAL_SpecSI
+  - type: JSONSchema
+    url: json-schema/evergreen-marine-update-shipping-instructions-schema.json
+  - type: JSONSchema
+    url: json-schema/evergreen-marine-create-shipping-instructions-schema.json
+  - type: JSONSchema
+    url: json-schema/evergreen-marine-create-shipping-instructions-response-schema.json
+  - type: Documentation
+    url: https://www.shipmentlink.com/_ec/APIPORTAL_SpecTD
+  - type: JSONSchema
+    url: json-schema/evergreen-marine-transport-document-schema.json
+  - type: JSONSchema
+    url: json-schema/evergreen-marine-approve-transport-document-schema.json
+  - type: Documentation
+    url: https://www.shipmentlink.com/_ec/APIPORTAL_SpecISS
+  - type: JSONSchema
+    url: json-schema/evergreen-marine-issuance-response-schema.json
+  - type: Documentation
+    url: https://www.shipmentlink.com/_ec/APIPORTAL_SpecSUR
+  - type: JSONSchema
+    url: json-schema/evergreen-marine-surrender-request-details-schema.json
+  - type: Documentation
+    url: https://www.shipmentlink.com/_ec/APIPORTAL_SpecArrivalNotice
+  - type: JSONSchema
+    url: json-schema/evergreen-marine-post-arrival-notices-response-schema.json
+  - type: JSONSchema
+    url: json-schema/evergreen-marine-get-arrival-notices-response-schema.json
+  - type: JSONSchema
+    url: json-schema/evergreen-marine-post-arrival-notice-notifications-request-schema.json
+  - type: JSONSchema
+    url: json-schema/evergreen-marine-post-arrival-notices-request-schema.json
+  - type: Documentation
+    url: https://www.shipmentlink.com/_ec/APIPORTAL_SpecCommercialSchedules
+- aid: evergreen-marine:evergreen-marine-point-to-point-api
+  name: Evergreen Marine Corp. Point To Point API
+  description: ''
+  humanURL: https://www.shipmentlink.com/_ec/APIPORTAL_SpecTrackAndTrace
+  tags:
+  - Point To Point
+  properties:
+  - type: OpenAPI
+    url: openapi/evergreen-marine-point-to-point-api-openapi.yml
+  - type: Documentation
+    url: https://www.shipmentlink.com/_ec/APIPORTAL_SpecTrackAndTrace
+  - type: Documentation
+    url: https://www.shipmentlink.com/_ec/APIPORTAL_SpecBK
+  - type: JSONSchema
+    url: json-schema/evergreen-marine-booking-schema.json
+  - type: JSONSchema
+    url: json-schema/evergreen-marine-update-booking-schema.json
+  - type: JSONSchema
+    url: json-schema/evergreen-marine-create-booking-schema.json
+  - type: JSONSchema
+    url: json-schema/evergreen-marine-booking-notification-schema.json
+  - type: JSONSchema
+    url: json-schema/evergreen-marine-cancel-booking-request-schema.json
+  - type: JSONSchema
+    url: json-schema/evergreen-marine-create-booking-response-schema.json
+  - type: Documentation
+    url: https://www.shipmentlink.com/_ec/APIPORTAL_SpecSI
+  - type: JSONSchema
+    url: json-schema/evergreen-marine-update-shipping-instructions-schema.json
+  - type: JSONSchema
+    url: json-schema/evergreen-marine-create-shipping-instructions-schema.json
+  - type: JSONSchema
+    url: json-schema/evergreen-marine-create-shipping-instructions-response-schema.json
+  - type: Documentation
+    url: https://www.shipmentlink.com/_ec/APIPORTAL_SpecTD
+  - type: JSONSchema
+    url: json-schema/evergreen-marine-transport-document-schema.json
+  - type: JSONSchema
+    url: json-schema/evergreen-marine-approve-transport-document-schema.json
+  - type: Documentation
+    url: https://www.shipmentlink.com/_ec/APIPORTAL_SpecISS
+  - type: JSONSchema
+    url: json-schema/evergreen-marine-issuance-response-schema.json
+  - type: Documentation
+    url: https://www.shipmentlink.com/_ec/APIPORTAL_SpecSUR
+  - type: JSONSchema
+    url: json-schema/evergreen-marine-surrender-request-details-schema.json
+  - type: Documentation
+    url: https://www.shipmentlink.com/_ec/APIPORTAL_SpecArrivalNotice
+  - type: JSONSchema
+    url: json-schema/evergreen-marine-post-arrival-notices-response-schema.json
+  - type: JSONSchema
+    url: json-schema/evergreen-marine-get-arrival-notices-response-schema.json
+  - type: JSONSchema
+    url: json-schema/evergreen-marine-post-arrival-notice-notifications-request-schema.json
+  - type: JSONSchema
+    url: json-schema/evergreen-marine-post-arrival-notices-request-schema.json
+  - type: Documentation
+    url: https://www.shipmentlink.com/_ec/APIPORTAL_SpecCommercialSchedules
+- aid: evergreen-marine:evergreen-marine-port-schedule-api
+  name: Evergreen Marine Corp. Port Schedule API
+  description: ''
+  humanURL: https://www.shipmentlink.com/_ec/APIPORTAL_SpecTrackAndTrace
+  tags:
+  - Port Schedule
+  properties:
+  - type: OpenAPI
+    url: openapi/evergreen-marine-port-schedule-api-openapi.yml
+  - type: Documentation
+    url: https://www.shipmentlink.com/_ec/APIPORTAL_SpecTrackAndTrace
+  - type: Documentation
+    url: https://www.shipmentlink.com/_ec/APIPORTAL_SpecBK
+  - type: JSONSchema
+    url: json-schema/evergreen-marine-booking-schema.json
+  - type: JSONSchema
+    url: json-schema/evergreen-marine-update-booking-schema.json
+  - type: JSONSchema
+    url: json-schema/evergreen-marine-create-booking-schema.json
+  - type: JSONSchema
+    url: json-schema/evergreen-marine-booking-notification-schema.json
+  - type: JSONSchema
+    url: json-schema/evergreen-marine-cancel-booking-request-schema.json
+  - type: JSONSchema
+    url: json-schema/evergreen-marine-create-booking-response-schema.json
+  - type: Documentation
+    url: https://www.shipmentlink.com/_ec/APIPORTAL_SpecSI
+  - type: JSONSchema
+    url: json-schema/evergreen-marine-update-shipping-instructions-schema.json
+  - type: JSONSchema
+    url: json-schema/evergreen-marine-create-shipping-instructions-schema.json
+  - type: JSONSchema
+    url: json-schema/evergreen-marine-create-shipping-instructions-response-schema.json
+  - type: Documentation
+    url: https://www.shipmentlink.com/_ec/APIPORTAL_SpecTD
+  - type: JSONSchema
+    url: json-schema/evergreen-marine-transport-document-schema.json
+  - type: JSONSchema
+    url: json-schema/evergreen-marine-approve-transport-document-schema.json
+  - type: Documentation
+    url: https://www.shipmentlink.com/_ec/APIPORTAL_SpecISS
+  - type: JSONSchema
+    url: json-schema/evergreen-marine-issuance-response-schema.json
+  - type: Documentation
+    url: https://www.shipmentlink.com/_ec/APIPORTAL_SpecSUR
+  - type: JSONSchema
+    url: json-schema/evergreen-marine-surrender-request-details-schema.json
+  - type: Documentation
+    url: https://www.shipmentlink.com/_ec/APIPORTAL_SpecArrivalNotice
+  - type: JSONSchema
+    url: json-schema/evergreen-marine-post-arrival-notices-response-schema.json
+  - type: JSONSchema
+    url: json-schema/evergreen-marine-get-arrival-notices-response-schema.json
+  - type: JSONSchema
+    url: json-schema/evergreen-marine-post-arrival-notice-notifications-request-schema.json
+  - type: JSONSchema
+    url: json-schema/evergreen-marine-post-arrival-notices-request-schema.json
+  - type: Documentation
+    url: https://www.shipmentlink.com/_ec/APIPORTAL_SpecCommercialSchedules
+- aid: evergreen-marine:evergreen-marine-shipping-instructions-api
+  name: Evergreen Marine Corp. Shipping Instructions API
+  description: >-
+    The Shipping Instructions endPoints to be implemented by **providers** of the Bill of Lading API
+  humanURL: https://www.shipmentlink.com/_ec/APIPORTAL_SpecTrackAndTrace
+  tags:
+  - Shipping Instructions
+  properties:
+  - type: OpenAPI
+    url: openapi/evergreen-marine-shipping-instructions-api-openapi.yml
+  - type: Documentation
+    url: https://www.shipmentlink.com/_ec/APIPORTAL_SpecTrackAndTrace
+  - type: Documentation
+    url: https://www.shipmentlink.com/_ec/APIPORTAL_SpecBK
+  - type: JSONSchema
+    url: json-schema/evergreen-marine-booking-schema.json
+  - type: JSONSchema
+    url: json-schema/evergreen-marine-update-booking-schema.json
+  - type: JSONSchema
+    url: json-schema/evergreen-marine-create-booking-schema.json
+  - type: JSONSchema
+    url: json-schema/evergreen-marine-booking-notification-schema.json
+  - type: JSONSchema
+    url: json-schema/evergreen-marine-cancel-booking-request-schema.json
+  - type: JSONSchema
+    url: json-schema/evergreen-marine-create-booking-response-schema.json
+  - type: Documentation
+    url: https://www.shipmentlink.com/_ec/APIPORTAL_SpecSI
+  - type: JSONSchema
+    url: json-schema/evergreen-marine-update-shipping-instructions-schema.json
+  - type: JSONSchema
+    url: json-schema/evergreen-marine-create-shipping-instructions-schema.json
+  - type: JSONSchema
+    url: json-schema/evergreen-marine-create-shipping-instructions-response-schema.json
+  - type: Documentation
+    url: https://www.shipmentlink.com/_ec/APIPORTAL_SpecTD
+  - type: JSONSchema
+    url: json-schema/evergreen-marine-transport-document-schema.json
+  - type: JSONSchema
+    url: json-schema/evergreen-marine-approve-transport-document-schema.json
+  - type: Documentation
+    url: https://www.shipmentlink.com/_ec/APIPORTAL_SpecISS
+  - type: JSONSchema
+    url: json-schema/evergreen-marine-issuance-response-schema.json
+  - type: Documentation
+    url: https://www.shipmentlink.com/_ec/APIPORTAL_SpecSUR
+  - type: JSONSchema
+    url: json-schema/evergreen-marine-surrender-request-details-schema.json
+  - type: Documentation
+    url: https://www.shipmentlink.com/_ec/APIPORTAL_SpecArrivalNotice
+  - type: JSONSchema
+    url: json-schema/evergreen-marine-post-arrival-notices-response-schema.json
+  - type: JSONSchema
+    url: json-schema/evergreen-marine-get-arrival-notices-response-schema.json
+  - type: JSONSchema
+    url: json-schema/evergreen-marine-post-arrival-notice-notifications-request-schema.json
+  - type: JSONSchema
+    url: json-schema/evergreen-marine-post-arrival-notices-request-schema.json
+  - type: Documentation
+    url: https://www.shipmentlink.com/_ec/APIPORTAL_SpecCommercialSchedules
+- aid: evergreen-marine:evergreen-marine-subscriptions-api
+  name: Evergreen Marine Corp. Subscriptions API
+  description: Subscriptions Service Controller
+  humanURL: https://www.shipmentlink.com/_ec/APIPORTAL_SpecTrackAndTrace
+  tags:
+  - Subscriptions
+  properties:
+  - type: OpenAPI
+    url: openapi/evergreen-marine-subscriptions-api-openapi.yml
+  - type: Documentation
+    url: https://www.shipmentlink.com/_ec/APIPORTAL_SpecTrackAndTrace
+  - type: Documentation
+    url: https://www.shipmentlink.com/_ec/APIPORTAL_SpecBK
+  - type: JSONSchema
+    url: json-schema/evergreen-marine-booking-schema.json
+  - type: JSONSchema
+    url: json-schema/evergreen-marine-update-booking-schema.json
+  - type: JSONSchema
+    url: json-schema/evergreen-marine-create-booking-schema.json
+  - type: JSONSchema
+    url: json-schema/evergreen-marine-booking-notification-schema.json
+  - type: JSONSchema
+    url: json-schema/evergreen-marine-cancel-booking-request-schema.json
+  - type: JSONSchema
+    url: json-schema/evergreen-marine-create-booking-response-schema.json
+  - type: Documentation
+    url: https://www.shipmentlink.com/_ec/APIPORTAL_SpecSI
+  - type: JSONSchema
+    url: json-schema/evergreen-marine-update-shipping-instructions-schema.json
+  - type: JSONSchema
+    url: json-schema/evergreen-marine-create-shipping-instructions-schema.json
+  - type: JSONSchema
+    url: json-schema/evergreen-marine-create-shipping-instructions-response-schema.json
+  - type: Documentation
+    url: https://www.shipmentlink.com/_ec/APIPORTAL_SpecTD
+  - type: JSONSchema
+    url: json-schema/evergreen-marine-transport-document-schema.json
+  - type: JSONSchema
+    url: json-schema/evergreen-marine-approve-transport-document-schema.json
+  - type: Documentation
+    url: https://www.shipmentlink.com/_ec/APIPORTAL_SpecISS
+  - type: JSONSchema
+    url: json-schema/evergreen-marine-issuance-response-schema.json
+  - type: Documentation
+    url: https://www.shipmentlink.com/_ec/APIPORTAL_SpecSUR
+  - type: JSONSchema
+    url: json-schema/evergreen-marine-surrender-request-details-schema.json
+  - type: Documentation
+    url: https://www.shipmentlink.com/_ec/APIPORTAL_SpecArrivalNotice
+  - type: JSONSchema
+    url: json-schema/evergreen-marine-post-arrival-notices-response-schema.json
+  - type: JSONSchema
+    url: json-schema/evergreen-marine-get-arrival-notices-response-schema.json
+  - type: JSONSchema
+    url: json-schema/evergreen-marine-post-arrival-notice-notifications-request-schema.json
+  - type: JSONSchema
+    url: json-schema/evergreen-marine-post-arrival-notices-request-schema.json
+  - type: Documentation
+    url: https://www.shipmentlink.com/_ec/APIPORTAL_SpecCommercialSchedules
+- aid: evergreen-marine:evergreen-marine-surrender-requests-api
+  name: Evergreen Marine Corp. Surrender Requests API
+  description: The Surrender Requests **implemented** by carrier
+  humanURL: https://www.shipmentlink.com/_ec/APIPORTAL_SpecTrackAndTrace
+  tags:
+  - Surrender Requests
+  properties:
+  - type: OpenAPI
+    url: openapi/evergreen-marine-surrender-requests-api-openapi.yml
+  - type: Documentation
+    url: https://www.shipmentlink.com/_ec/APIPORTAL_SpecTrackAndTrace
+  - type: Documentation
+    url: https://www.shipmentlink.com/_ec/APIPORTAL_SpecBK
+  - type: JSONSchema
+    url: json-schema/evergreen-marine-booking-schema.json
+  - type: JSONSchema
+    url: json-schema/evergreen-marine-update-booking-schema.json
+  - type: JSONSchema
+    url: json-schema/evergreen-marine-create-booking-schema.json
+  - type: JSONSchema
+    url: json-schema/evergreen-marine-booking-notification-schema.json
+  - type: JSONSchema
+    url: json-schema/evergreen-marine-cancel-booking-request-schema.json
+  - type: JSONSchema
+    url: json-schema/evergreen-marine-create-booking-response-schema.json
+  - type: Documentation
+    url: https://www.shipmentlink.com/_ec/APIPORTAL_SpecSI
+  - type: JSONSchema
+    url: json-schema/evergreen-marine-update-shipping-instructions-schema.json
+  - type: JSONSchema
+    url: json-schema/evergreen-marine-create-shipping-instructions-schema.json
+  - type: JSONSchema
+    url: json-schema/evergreen-marine-create-shipping-instructions-response-schema.json
+  - type: Documentation
+    url: https://www.shipmentlink.com/_ec/APIPORTAL_SpecTD
+  - type: JSONSchema
+    url: json-schema/evergreen-marine-transport-document-schema.json
+  - type: JSONSchema
+    url: json-schema/evergreen-marine-approve-transport-document-schema.json
+  - type: Documentation
+    url: https://www.shipmentlink.com/_ec/APIPORTAL_SpecISS
+  - type: JSONSchema
+    url: json-schema/evergreen-marine-issuance-response-schema.json
+  - type: Documentation
+    url: https://www.shipmentlink.com/_ec/APIPORTAL_SpecSUR
+  - type: JSONSchema
+    url: json-schema/evergreen-marine-surrender-request-details-schema.json
+  - type: Documentation
+    url: https://www.shipmentlink.com/_ec/APIPORTAL_SpecArrivalNotice
+  - type: JSONSchema
+    url: json-schema/evergreen-marine-post-arrival-notices-response-schema.json
+  - type: JSONSchema
+    url: json-schema/evergreen-marine-get-arrival-notices-response-schema.json
+  - type: JSONSchema
+    url: json-schema/evergreen-marine-post-arrival-notice-notifications-request-schema.json
+  - type: JSONSchema
+    url: json-schema/evergreen-marine-post-arrival-notices-request-schema.json
+  - type: Documentation
+    url: https://www.shipmentlink.com/_ec/APIPORTAL_SpecCommercialSchedules
+- aid: evergreen-marine:evergreen-marine-transport-document-api
+  name: Evergreen Marine Corp. Transport Document API
+  description: >-
+    The Transport Document endPoints to be implemented by **providers** of the Bill of Lading API
+  humanURL: https://www.shipmentlink.com/_ec/APIPORTAL_SpecTrackAndTrace
+  tags:
+  - Transport Document
+  properties:
+  - type: OpenAPI
+    url: openapi/evergreen-marine-transport-document-api-openapi.yml
+  - type: Documentation
+    url: https://www.shipmentlink.com/_ec/APIPORTAL_SpecTrackAndTrace
+  - type: Documentation
+    url: https://www.shipmentlink.com/_ec/APIPORTAL_SpecBK
+  - type: JSONSchema
+    url: json-schema/evergreen-marine-booking-schema.json
+  - type: JSONSchema
+    url: json-schema/evergreen-marine-update-booking-schema.json
+  - type: JSONSchema
+    url: json-schema/evergreen-marine-create-booking-schema.json
+  - type: JSONSchema
+    url: json-schema/evergreen-marine-booking-notification-schema.json
+  - type: JSONSchema
+    url: json-schema/evergreen-marine-cancel-booking-request-schema.json
+  - type: JSONSchema
+    url: json-schema/evergreen-marine-create-booking-response-schema.json
+  - type: Documentation
+    url: https://www.shipmentlink.com/_ec/APIPORTAL_SpecSI
+  - type: JSONSchema
+    url: json-schema/evergreen-marine-update-shipping-instructions-schema.json
+  - type: JSONSchema
+    url: json-schema/evergreen-marine-create-shipping-instructions-schema.json
+  - type: JSONSchema
+    url: json-schema/evergreen-marine-create-shipping-instructions-response-schema.json
+  - type: Documentation
+    url: https://www.shipmentlink.com/_ec/APIPORTAL_SpecTD
+  - type: JSONSchema
+    url: json-schema/evergreen-marine-transport-document-schema.json
+  - type: JSONSchema
+    url: json-schema/evergreen-marine-approve-transport-document-schema.json
+  - type: Documentation
+    url: https://www.shipmentlink.com/_ec/APIPORTAL_SpecISS
+  - type: JSONSchema
+    url: json-schema/evergreen-marine-issuance-response-schema.json
+  - type: Documentation
+    url: https://www.shipmentlink.com/_ec/APIPORTAL_SpecSUR
+  - type: JSONSchema
+    url: json-schema/evergreen-marine-surrender-request-details-schema.json
+  - type: Documentation
+    url: https://www.shipmentlink.com/_ec/APIPORTAL_SpecArrivalNotice
+  - type: JSONSchema
+    url: json-schema/evergreen-marine-post-arrival-notices-response-schema.json
+  - type: JSONSchema
+    url: json-schema/evergreen-marine-get-arrival-notices-response-schema.json
+  - type: JSONSchema
+    url: json-schema/evergreen-marine-post-arrival-notice-notifications-request-schema.json
+  - type: JSONSchema
+    url: json-schema/evergreen-marine-post-arrival-notices-request-schema.json
+  - type: Documentation
+    url: https://www.shipmentlink.com/_ec/APIPORTAL_SpecCommercialSchedules
+- aid: evergreen-marine:evergreen-marine-vessel-schedule-api
+  name: Evergreen Marine Corp. Vessel Schedule API
+  description: ''
+  humanURL: https://www.shipmentlink.com/_ec/APIPORTAL_SpecTrackAndTrace
+  tags:
+  - Vessel Schedule
+  properties:
+  - type: OpenAPI
+    url: openapi/evergreen-marine-vessel-schedule-api-openapi.yml
+  - type: Documentation
+    url: https://www.shipmentlink.com/_ec/APIPORTAL_SpecTrackAndTrace
+  - type: Documentation
+    url: https://www.shipmentlink.com/_ec/APIPORTAL_SpecBK
+  - type: JSONSchema
+    url: json-schema/evergreen-marine-booking-schema.json
+  - type: JSONSchema
+    url: json-schema/evergreen-marine-update-booking-schema.json
+  - type: JSONSchema
+    url: json-schema/evergreen-marine-create-booking-schema.json
+  - type: JSONSchema
+    url: json-schema/evergreen-marine-booking-notification-schema.json
+  - type: JSONSchema
+    url: json-schema/evergreen-marine-cancel-booking-request-schema.json
+  - type: JSONSchema
+    url: json-schema/evergreen-marine-create-booking-response-schema.json
+  - type: Documentation
+    url: https://www.shipmentlink.com/_ec/APIPORTAL_SpecSI
+  - type: JSONSchema
+    url: json-schema/evergreen-marine-update-shipping-instructions-schema.json
+  - type: JSONSchema
+    url: json-schema/evergreen-marine-create-shipping-instructions-schema.json
+  - type: JSONSchema
+    url: json-schema/evergreen-marine-create-shipping-instructions-response-schema.json
+  - type: Documentation
+    url: https://www.shipmentlink.com/_ec/APIPORTAL_SpecTD
+  - type: JSONSchema
+    url: json-schema/evergreen-marine-transport-document-schema.json
+  - type: JSONSchema
+    url: json-schema/evergreen-marine-approve-transport-document-schema.json
+  - type: Documentation
+    url: https://www.shipmentlink.com/_ec/APIPORTAL_SpecISS
+  - type: JSONSchema
+    url: json-schema/evergreen-marine-issuance-response-schema.json
+  - type: Documentation
+    url: https://www.shipmentlink.com/_ec/APIPORTAL_SpecSUR
+  - type: JSONSchema
+    url: json-schema/evergreen-marine-surrender-request-details-schema.json
+  - type: Documentation
+    url: https://www.shipmentlink.com/_ec/APIPORTAL_SpecArrivalNotice
+  - type: JSONSchema
+    url: json-schema/evergreen-marine-post-arrival-notices-response-schema.json
+  - type: JSONSchema
+    url: json-schema/evergreen-marine-get-arrival-notices-response-schema.json
+  - type: JSONSchema
+    url: json-schema/evergreen-marine-post-arrival-notice-notifications-request-schema.json
+  - type: JSONSchema
+    url: json-schema/evergreen-marine-post-arrival-notices-request-schema.json
+  - type: Documentation
+    url: https://www.shipmentlink.com/_ec/APIPORTAL_SpecCommercialSchedules
+x-coverage:
+  state: covered
+  reason: identity-verified
+  detail: Bare evergreen-marine.com did not answer (connection failed); www.evergreen-marine.com returned 200 titled "EVERGREEN MARINE CORP."
+    and links the ShipmentLink API Developer Portal. APIPORTAL_ContactUs and APIPORTAL_Register returned 404 to a direct GET and were not recorded.
+  evidence:
+  - url: https://evergreen-marine.com
+    status: 0
+  - url: https://www.evergreen-marine.com/
+    status: 200
+  - url: https://www.shipmentlink.com/_ec/APIPORTAL_Home
+    status: 200
+  - url: https://www.shipmentlink.com/_ec/APIPORTAL_APIServiceCategory
+    status: 200
+  - url: https://www.shipmentlink.com/_ec/APIPORTAL_FAQ
+    status: 200
+  - url: https://www.shipmentlink.com/_ec/APIPORTAL_Register
+    status: 404
+x-enrichment:
+  date: '2026-10-18'
+  status: enriched
+  artifacts_added: 82
+  pass: modular-v1
+  engine: identity=anthropic,contract=anthropic,surfaces=anthropic,docs=deepseek,regulatory=anthropic

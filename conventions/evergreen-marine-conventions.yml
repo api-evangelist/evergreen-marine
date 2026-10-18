@@ -1,0 +1,36 @@
+generated: '2026-10-18'
+method: derived
+source: OpenAPI specifications
+pagination:
+  style: cursor-based
+  parameters:
+  - name: cursor
+    description: A server generated value to specify a specific point in a collection result, used for pagination
+    in: query
+  - name: limit
+    description: Maximum number of items to return
+    in: query
+    required: true
+  response_headers:
+  - name: Prev-Page
+    description: Previous page cursor
+  - name: First-Page
+    description: First page cursor
+  - name: Last-Page
+    description: Last page cursor
+  - name: Next-Page
+    description: Next page cursor
+idempotency:
+  coverage: none
+  notes: No idempotency mechanism documented
+reversibility:
+  coverage: na
+  notes: Shipping APIs are primarily read/query operations with some creation operations
+request_id:
+  header: Not documented
+error_envelope:
+  format: http-problem
+  notes: Standard HTTP status codes with problem details
+versioning:
+  header: API-Version
+  notes: API-Version header MAY be added to the request (optional); if added it MUST only contain MAJOR version

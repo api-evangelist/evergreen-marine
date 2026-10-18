@@ -1,0 +1,641 @@
+openapi: 3.2.0
+info:
+  title: Evergreen Marine Port Schedule API
+  version: 1.0.0
+  description: 'Operations tagged Port Schedule across 2 of this provider''s published API definitions: evergreen-marine-commercial-schedules-openapi.json, evergreen-marine-commercial-schedules-openapi.yml. Each path carries the servers of the definition it was published in.'
+tags:
+- name: Port Schedule
+  description: ' '
+paths:
+  /server/sol/mvs1api/commSch/v1/port:
+    get:
+      tags:
+      - Port Schedule
+      summary: Port Schedule
+      description: 'Provides, for a required specific port and starting date, the set of all vessels arriving and departing from the port with the corresponding estimated timestamps.
+
+
+        The port must be identified by its UN Location Code.
+
+
+        The required query parameters are `UNLocationCode` and `date`.
+
+
+        If the requested port (identified with `UNLocationCode`) has multiple terminals (identified with `facilitySMDGCode`), the response will include a sorted list that provides all the arrivals and departures of the vessels for each terminal of the port (`UNLocationCode`).
+
+
+        The `GET /server/sol/mvs1api/commSch/v1/port` endpoint can be implemented independently of having implemented the `GET /server/sol/route/commercial/v1/point-to-point-routes` and `GET /server/sol/mvs1api/commSch/v1/vessel` endpoints.'
+      operationId: get-v1-port-schedules
+      parameters:
+      - name: UNLocationCode
+        in: query
+        description: The UN Location code specifying where the place is located. Specifying this filter will only return the set of all vessels arriving and departing from the port and its terminals.
+        required: true
+        style: form
+        explode: true
+        schema:
+          maxLength: 5
+          minLength: 5
+          pattern: ^[A-Z]{2}[A-Z2-9]{3}$
+          type: string
+          example: NLAMS
+      - name: date
+        in: query
+        description: The date since when the estimated arrival and departures of vessels in a given port is required.
+        required: true
+        style: form
+        explode: true
+        schema:
+          pattern: ^[0-9]{4}-[0-9]{2}-[0-9]{2}$
+          type: string
+          format: date
+          example: '2023-07-01'
+      - name: API-Version
+        in: header
+        description: 'An API-Version header **MAY** be added to the request (optional); if added it **MUST** only contain **MAJOR** version. API-Version header **MUST** be aligned with the URI version.
+
+          '
+        required: false
+        style: simple
+        explode: false
+        schema:
+          type: string
+          example: '1'
+      - name: limit
+        in: query
+        description: Specifies the maximum number of `Port Schedule` objects to return.
+        required: false
+        style: form
+        explode: true
+        schema:
+          minimum: 1
+          type: integer
+          format: int32
+          example: 100
+          default: 100
+      - name: cursor
+        in: query
+        description: A server generated value to specify a specific point in a collection result, used for pagination.
+        required: false
+        style: form
+        explode: true
+        schema:
+          maxLength: 1024
+          type: string
+          example: fE9mZnNldHw9MTAmbGltaXQ9MTA
+      responses:
+        '200':
+          description: OK
+          headers:
+            API-Version:
+              description: 'SemVer used to indicate the version of the contract (API version) returned.
+
+                '
+              style: simple
+              explode: false
+              schema:
+                type: string
+                example: 1.0.0
+            Next-Page-Cursor:
+              description: 'The Next-Page-Cursor header contains a cursor value that points to the next page of results in a paginated API response.
+
+                When an initial `GET` endpoint request includes the query parameter `limit=...` the API provider limits the number of items in the root array of the response to the specified limit. If the response would contain more items than the specified limit, the API provider includes only the first set of limit items and appends the following response header:
+
+                `Next-Page-Cursor=fE9mZnNldHw9MTAmbGltaXQ9MTA`, a string that acts as a reference for the next page of results. The cursor value is used in subsequent requests to retrieve the next page by passing it as a query parameter: `?cursor=fE9mZnNldHw9MTAmbGltaXQ9MTA`.
+
+
+                To retrieve the next page, the API consumer sends a `GET` request to the endpoint URL with only `?cursor=fE9mZnNldHw9MTAmbGltaXQ9MTA` as query parameter. The limit of items per page and any other query parameters may not be altered, therefore it may also not be specified when requesting subsequent pages. The API provider must ignore any query parameters passed along with a cursor, and should return a `400` error if any other query parameter is passed along with the `cursor`.
+
+                '
+              style: simple
+              explode: false
+              schema:
+                maxLength: 1024
+                type: string
+                example: fE9mZnNldHw9MTAmbGltaXQ9MTA
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  title: Port Schedule
+                  required:
+                  - location
+                  type: object
+                  properties:
+                    location:
+                      title: Port Schedule Location
+                      type: object
+                      properties:
+                        locationName:
+                          maxLength: 100
+                          pattern: ^\S(?:.*\S)?$
+                          type: string
+                          description: An optional name for the location.
+                          example: Port of Amsterdam
+                        UNLocationCode:
+                          maxLength: 5
+                          minLength: 5
+                          pattern: ^[A-Z]{2}[A-Z2-9]{3}$
+                          type: string
+                          description: 'The UN Location code specifying where the place is located. The pattern used must be
+
+                            - 2 characters for the country code using [ISO 3166-1 alpha-2](https://www.iso.org/obp/ui/#iso:pub:PUB500001:en) - 3 characters to code a location within that country. Letters A-Z and numbers from 2-9 can be used
+
+                            More info can be found here: [UN/LOCODE](https://unece.org/trade/cefact/UNLOCODE-Download)
+
+                            '
+                          example: NLAMS
+                        facilitySMDGCode:
+                          maxLength: 6
+                          type: string
+                          description: 'The code used for identifying the specific facility. This code does not include the UN Location Code.
+
+                            The codeList used by SMDG is the [SMDG Terminal Code List](https://smdg.org/documents/smdg-code-lists/)'
+                          example: ACT
+                      description: 'General purpose object to capture location-related data, the location can be specified in **any** of the following ways: - `UNLocationCode` - `FacilitySMDGCode` (used to specify a location using a `facilitySMDGCode`)
+
+                        It is expected that if a location is specified in multiple ways (both as a `UNLocationCode` and as a `facilitySMDGCode`) that both ways point to the same location.
+
+                        '
+                    vesselSchedules:
+                      type: array
+                      items:
+                        title: Schedule
+                        required:
+                        - isDummyVessel
+                        - servicePartners
+                        - timestamps
+                        type: object
+                        properties:
+                          universalServiceReference:
+                            maxLength: 8
+                            minLength: 8
+                            pattern: ^SR\d{5}[A-Z]$
+                            type: string
+                            description: 'A global unique service reference, as per DCSA standard, agreed by VSA partners for the service. The service reference must match the regular expression pattern: `SR\d{5}[A-Z]`. The letters `SR` followed by `5` digits, followed by a checksum-character as a capital letter from `A to Z`.
+
+                              '
+                            example: SR12345A
+                          servicePartners:
+                            minItems: 1
+                            type: array
+                            items:
+                              title: Service Partner Schedule
+                              required:
+                              - carrierExportVoyageNumber
+                              - carrierImportVoyageNumber
+                              - carrierServiceCode
+                              - carrierServiceName
+                              type: object
+                              properties:
+                                carrierCode:
+                                  maxLength: 4
+                                  pattern: ^\S+$
+                                  type: string
+                                  description: The carrier code based on either the SMDG or SCAC code lists.
+                                  example: MAEU
+                                carrierCodeListProvider:
+                                  type: string
+                                  description: Identifies the code list provider used for the  `carrierCode`.
+                                  example: NMFTA
+                                  enum:
+                                  - SMDG
+                                  - NMFTA
+                                carrierServiceName:
+                                  maxLength: 50
+                                  pattern: ^\S(?:.*\S)?$
+                                  type: string
+                                  description: The name of the service.
+                                  example: Great Lion Service
+                                carrierServiceCode:
+                                  maxLength: 11
+                                  pattern: ^\S(?:.*\S)?$
+                                  type: string
+                                  description: The carrier-specific code of the service for which the schedule details are published.
+                                  example: FE1
+                                carrierImportVoyageNumber:
+                                  maxLength: 50
+                                  pattern: ^\S(?:.*\S)?$
+                                  type: string
+                                  description: The identifier of an import voyage. The carrier-specific identifier of the import Voyage.
+                                  example: 2103S
+                                carrierExportVoyageNumber:
+                                  maxLength: 50
+                                  pattern: ^\S(?:.*\S)?$
+                                  type: string
+                                  description: The identifier of an export voyage. The carrier-specific identifier of the export Voyage.
+                                  example: 2103N
+                              description: The service code and voyage number as identified by the carriers that are partners in the service.
+                          vessel:
+                            title: Vessel
+                            type: object
+                            properties:
+                              vesselIMONumber:
+                                maxLength: 8
+                                minLength: 7
+                                pattern: ^\d{7,8}$
+                                type: string
+                                description: The unique reference for a registered Vessel. The reference is the International Maritime Organisation (IMO) number, also sometimes known as the Lloyd&apos;s register code, which does not change during the lifetime of the vessel.
+                                example: '9321483'
+                              MMSINumber:
+                                maxLength: 9
+                                minLength: 9
+                                pattern: ^\d{9}$
+                                type: string
+                                description: Maritime Mobile Service Identities (MMSIs) are nine-digit numbers used by maritime digital selective calling (DSC), automatic identification systems (AIS) and certain other equipment to uniquely identify a ship or a coast radio station.
+                                example: '278111222'
+                              name:
+                                maxLength: 50
+                                pattern: ^\S(?:.*\S)?$
+                                type: string
+                                description: The name of the Vessel given by the Vessel Operator and registered with IMO.
+                                example: King of the Seas
+                              flag:
+                                maxLength: 2
+                                minLength: 2
+                                pattern: ^[A-Z]{2}$
+                                type: string
+                                description: The flag of the nation whose laws the vessel is registered under. This is the [ISO 3166](https://www.iso.org/obp/ui/#iso:pub:PUB500001:en) two-letter country code.
+                                example: DE
+                              callSign:
+                                maxLength: 10
+                                pattern: ^\S(?:.*\S)?$
+                                type: string
+                                description: A unique alphanumeric identity that belongs to the vessel and is assigned by the International Telecommunication Union (ITU). It consists of a three letter alphanumeric prefix that indicates nationality, followed by one to four characters to identify the individual vessel. For instance, vessels registered under Denmark are assigned the prefix ranges 5PA-5QZ, OUAOZZ, and XPA-XPZ. The Call Sign changes whenever a vessel changes its flag.
+                                example: NCVV
+                              operatorCarrierCode:
+                                maxLength: 10
+                                type: string
+                                description: The carrier who is in charge of the vessel operation based on either the SMDG or SCAC code lists.
+                                example: MAEU
+                              operatorCarrierCodeListProvider:
+                                type: string
+                                description: Identifies the code list provider used for the operator and partner carriercodes.
+                                example: NMFTA
+                                enum:
+                                - SMDG
+                                - NMFTA
+                          isDummyVessel:
+                            type: boolean
+                            description: This property can be set to `true` when no vessel has been assigned, indicating that the `vesselIMONumber` does not exist.
+                          universalImportVoyageReference:
+                            maxLength: 5
+                            minLength: 5
+                            pattern: ^\d{2}[0-9A-Z]{2}[NEWSR]$
+                            type: string
+                            description: 'A global unique voyage reference for the import Voyage, as per DCSA standard, agreed by VSA partners for the voyage.The voyage reference must match the regular expression pattern: `\d{2}[0-9A-Z]{2}[NEWSR]`
+
+
+                              - `2 digits` for the year
+
+                              - `2 alphanumeric characters` for the sequence number of the voyage
+
+                              - `1 character` for the direction/haul (`N`orth, `E`ast, `W`est, `S`outh or `R`oundtrip).
+
+                              '
+                            example: 2103N
+                          universalExportVoyageReference:
+                            maxLength: 5
+                            minLength: 5
+                            pattern: ^\d{2}[0-9A-Z]{2}[NEWSR]$
+                            type: string
+                            description: 'A global unique voyage reference for the export Voyage, as per DCSA standard, agreed by VSA partners for the voyage.The voyage reference must match the regular expression pattern: `\d{2}[0-9A-Z]{2}[NEWSR]`
+
+
+                              - `2 digits` for the year
+
+                              - `2 alphanumeric characters` for the sequence number of the voyage
+
+                              - `1 character` for the direction/haul (`N`orth, `E`ast, `W`est, `S`outh or `R`oundtrip).
+
+                              '
+                            example: 2103N
+                          timestamps:
+                            minItems: 1
+                            type: array
+                            items:
+                              title: Timestamp
+                              required:
+                              - eventClassifierCode
+                              - eventDateTime
+                              - eventTypeCode
+                              type: object
+                              properties:
+                                eventTypeCode:
+                                  type: string
+                                  description: 'Identifier for type of transportEvent.
+
+
+                                    - `ARRI` (Arrived)
+
+                                    - `DEPA` (Departed)
+
+                                    '
+                                  example: ARRI
+                                  enum:
+                                  - ARRI
+                                  - DEPA
+                                eventClassifierCode:
+                                  type: string
+                                  description: 'Code for the event classifier. Values can vary depending on eventType.
+
+
+                                    Possible values are:
+
+                                    - `ACT` (Actual)
+
+                                    - `EST` (Estimated)
+
+                                    - `PLN` (Planned)
+
+                                    '
+                                  example: PLN
+                                  enum:
+                                  - PLN
+                                  - EST
+                                  - ACT
+                                eventDateTime:
+                                  type: string
+                                  description: The local date and time, when the event takes place, in [ISO 8601](https://www.iso.org/iso-8601-date-and-time-format.html) format specifying the offset.
+                                  format: date-time
+                                  example: '2025-01-14T09:21:00+01:00'
+                          cutOffTimes:
+                            type: array
+                            description: A list of cut-offs times provided by the carrier when available. A cut-off time indicates the latest date and time by which a task must be completed. For example, the latest date and time by which a container must be delivered to a terminal to be loaded on a vessel, or where certain documentation must be provided by the Shipper.
+                            items:
+                              title: Cut-Off Time
+                              required:
+                              - cutOffDateTime
+                              - cutOffDateTimeCode
+                              type: object
+                              properties:
+                                cutOffDateTimeCode:
+                                  maxLength: 3
+                                  type: string
+                                  description: 'Code for the cut-off time. Possible values are: - `DCO` (Documentation cut-off) - `VCO` (VGM cut-off) - `FCO` (FCL delivery cut-off) - `LCO` (LCL delivery cut-off) **Condition:** only when the `Receipt Type at Origin` is `CFS` - `PCO` (Port cut-off) - `ECP` (Empty container pick-up date and time) - `EFC` (Earliest full-container delivery date) - `RCO` (Reefer cut-off) - `DGC` (Dangerous Goods cut-off) - `OBC` (OOG/BB cut-off) - `TCO` (Transhipment cut-off) - `STA` (Standard booking acceptance) - `SPA` (Special booking acceptance) - `CUA` (Customs Acceptance) - `AFC` (Advanced filling cut-off)
+
+                                    More details can be found on [GitHub](https://github.com/dcsaorg/DCSA-OpenAPI/blob/master/reference-data/CutOffDateTimeCodeList-CS_v1.0.0.csv)
+
+                                    '
+                                  example: DCO
+                                cutOffDateTime:
+                                  type: string
+                                  description: Estimated cut-off time expressed in local time with offset following [ISO 8601](https://www.iso.org/iso-8601-date-and-time-format.html) format.
+                                  format: date-time
+                                  example: '2019-11-12T07:41:00-08:30'
+                              description: Cut Off Times.
+        '400':
+          description: Bad Request
+          headers:
+            API-Version:
+              description: 'SemVer used to indicate the version of the contract (API version) returned.
+
+                '
+              style: simple
+              explode: false
+              schema:
+                type: string
+                example: 1.0.0
+          content:
+            application/json:
+              schema:
+                title: Error Response
+                required:
+                - errorDateTime
+                - errors
+                - httpMethod
+                - requestUri
+                - statusCode
+                - statusCodeText
+                type: object
+                properties:
+                  httpMethod:
+                    type: string
+                    description: The HTTP method used to make the request e.g. `GET`, `POST`, etc
+                    example: POST
+                    enum:
+                    - GET
+                    - HEAD
+                    - POST
+                    - PUT
+                    - DELETE
+                    - OPTION
+                    - PATCH
+                  requestUri:
+                    type: string
+                    description: The URI that was requested.
+                    example: /v1/events
+                  statusCode:
+                    type: integer
+                    description: The HTTP status code returned.
+                    format: int32
+                    example: 400
+                  statusCodeText:
+                    maxLength: 50
+                    type: string
+                    description: A standard short description corresponding to the HTTP status code.
+                    example: Bad Request
+                  statusCodeMessage:
+                    maxLength: 200
+                    type: string
+                    description: A long description corresponding to the HTTP status code with additional information.
+                    example: The supplied data could not be accepted
+                  providerCorrelationReference:
+                    maxLength: 100
+                    type: string
+                    description: A unique identifier to the HTTP request within the scope of the API provider.
+                    example: 4426d965-0dd8-4005-8c63-dc68b01c4962
+                  errorDateTime:
+                    type: string
+                    description: The DateTime corresponding to the error occurring. Must be formatted using [ISO 8601](https://www.iso.org/iso-8601-date-and-time-format.html) format.
+                    format: date-time
+                    example: '2019-11-12T07:41:00Z'
+                  errors:
+                    minItems: 1
+                    type: array
+                    description: An array of errors providing more detail about the root cause.
+                    items:
+                      title: Detailed Error
+                      required:
+                      - errorCodeMessage
+                      - errorCodeText
+                      type: object
+                      properties:
+                        errorCode:
+                          maximum: 9999
+                          minimum: 7000
+                          type: integer
+                          description: "The detailed error code returned.\n- `7000-7999` Technical error codes - `8000-8999` Functional error codes - `9000-9999` API provider-specific error codes            \n[Error codes as specified by DCSA](https://developer.dcsa.org/standard-error-codes).\n"
+                          format: int32
+                          example: 7003
+                        property:
+                          maxLength: 100
+                          type: string
+                          description: The name of the property causing the error.
+                          example: facilityCode
+                        value:
+                          maxLength: 500
+                          type: string
+                          description: The value of the property causing the error serialised as a string exactly as in the original request.
+                          example: SG SIN WHS
+                        jsonPath:
+                          maxLength: 500
+                          type: string
+                          description: A path to the property causing the error, formatted according to [JSONpath](https://github.com/json-path/JsonPath).
+                          example: $.location.facilityCode
+                        errorCodeText:
+                          maxLength: 100
+                          type: string
+                          description: A standard short description corresponding to the `errorCode`.
+                          example: invalidData
+                        errorCodeMessage:
+                          maxLength: 5000
+                          type: string
+                          description: A long description corresponding to the `errorCode` with additional information.
+                          example: Spaces not allowed in facility code
+                      description: A detailed description of what has caused the error.
+              examples:
+                Example 1:
+                  value:
+                    httpMethod: GET
+                    requestUri: https://ews.switch-hub.com/server/sol/mvs1api/commSch/v1/port
+                    statusCode: 400
+                    statusCodeText: Bad Request
+                    providerCorrelationReference: 4426d965-0dd8-4005-8c63-dc68b01c4962
+                    errorDateTime: '2019-11-12T07:41:00+08:30'
+                    errors:
+                    - errorCode: 7005
+                      property: port
+                      value: SG
+                      errorCodeText: invalidQuery
+                      errorCodeMessage: Port does not exist
+        '500':
+          description: Internal Server Error
+          headers:
+            API-Version:
+              description: 'SemVer used to indicate the version of the contract (API version) returned.
+
+                '
+              style: simple
+              explode: false
+              schema:
+                type: string
+                example: 1.0.0
+          content:
+            application/json:
+              schema:
+                title: Error Response
+                required:
+                - errorDateTime
+                - errors
+                - httpMethod
+                - requestUri
+                - statusCode
+                - statusCodeText
+                type: object
+                properties:
+                  httpMethod:
+                    type: string
+                    description: The HTTP method used to make the request e.g. `GET`, `POST`, etc
+                    example: POST
+                    enum:
+                    - GET
+                    - HEAD
+                    - POST
+                    - PUT
+                    - DELETE
+                    - OPTION
+                    - PATCH
+                  requestUri:
+                    type: string
+                    description: The URI that was requested.
+                    example: /v1/events
+                  statusCode:
+                    type: integer
+                    description: The HTTP status code returned.
+                    format: int32
+                    example: 400
+                  statusCodeText:
+                    maxLength: 50
+                    type: string
+                    description: A standard short description corresponding to the HTTP status code.
+                    example: Bad Request
+                  statusCodeMessage:
+                    maxLength: 200
+                    type: string
+                    description: A long description corresponding to the HTTP status code with additional information.
+                    example: The supplied data could not be accepted
+                  providerCorrelationReference:
+                    maxLength: 100
+                    type: string
+                    description: A unique identifier to the HTTP request within the scope of the API provider.
+                    example: 4426d965-0dd8-4005-8c63-dc68b01c4962
+                  errorDateTime:
+                    type: string
+                    description: The DateTime corresponding to the error occurring. Must be formatted using [ISO 8601](https://www.iso.org/iso-8601-date-and-time-format.html) format.
+                    format: date-time
+                    example: '2019-11-12T07:41:00Z'
+                  errors:
+                    minItems: 1
+                    type: array
+                    description: An array of errors providing more detail about the root cause.
+                    items:
+                      title: Detailed Error
+                      required:
+                      - errorCodeMessage
+                      - errorCodeText
+                      type: object
+                      properties:
+                        errorCode:
+                          maximum: 9999
+                          minimum: 7000
+                          type: integer
+                          description: "The detailed error code returned.\n- `7000-7999` Technical error codes - `8000-8999` Functional error codes - `9000-9999` API provider-specific error codes            \n[Error codes as specified by DCSA](https://developer.dcsa.org/standard-error-codes).\n"
+                          format: int32
+                          example: 7003
+                        property:
+                          maxLength: 100
+                          type: string
+                          description: The name of the property causing the error.
+                          example: facilityCode
+                        value:
+                          maxLength: 500
+                          type: string
+                          description: The value of the property causing the error serialised as a string exactly as in the original request.
+                          example: SG SIN WHS
+                        jsonPath:
+                          maxLength: 500
+                          type: string
+                          description: A path to the property causing the error, formatted according to [JSONpath](https://github.com/json-path/JsonPath).
+                          example: $.location.facilityCode
+                        errorCodeText:
+                          maxLength: 100
+                          type: string
+                          description: A standard short description corresponding to the `errorCode`.
+                          example: invalidData
+                        errorCodeMessage:
+                          maxLength: 5000
+                          type: string
+                          description: A long description corresponding to the `errorCode` with additional information.
+                          example: Spaces not allowed in facility code
+                      description: A detailed description of what has caused the error.
+              examples:
+                Example 1:
+                  value:
+                    httpMethod: GET
+                    requestUri: https://ews.switch-hub.com/server/sol/mvs1api/commSch/v1/port
+                    statusCode: 500
+                    statusCodeText: Internal Server Error
+                    statusCodeMessage: Cannot process request.
+                    providerCorrelationReference: 4426d965-0dd8-4005-8c63-dc68b01c4962
+                    errorDateTime: '2019-11-12T07:41:00+08:30'
+                    errors:
+                    - errorCode: 7007
+                      property: UNLocationCode
+                      value: NA
+                      errorCodeText: invalidQuery
+                      errorCodeMessage: UNLocationCode does not exist
+x-refined-from:
+- evergreen-marine-commercial-schedules-openapi.json
+- evergreen-marine-commercial-schedules-openapi.yml

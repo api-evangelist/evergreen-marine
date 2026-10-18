@@ -1,0 +1,28 @@
+generated: '2026-10-18'
+method: derived
+source: OpenAPI specifications and documentation
+versioning:
+  scheme: header-based
+  header: API-Version
+  policy: API-Version header MAY be added to the request (optional); if added it MUST only contain MAJOR version. API-Version header MUST be aligned with the URI version
+  current_versions:
+  - api: Track & Trace
+    version: '2.2'
+  - api: Booking
+    version: 2.0.0
+  - api: Shipping Instruction
+    version: 2.0.0
+  - api: Transport Document
+    version: 2.0.0
+  - api: eBL Issuance
+    version: 1.0.0
+  - api: eBL Surrender
+    version: 1.0.0
+  - api: Arrival Notice
+    version: 2.0.0
+  - api: Commercial Schedules
+    version: 2.0.0
+deprecation:
+  policy: Not documented
+status_page: Not found
+notes: APIs follow DCSA (Digital Container Shipping Association) standards

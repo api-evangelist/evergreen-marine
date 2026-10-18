@@ -1,0 +1,6 @@
+generated: '2026-10-18'
+method: none
+source: https://www.shipmentlink.com/_ec/APIPORTAL_FAQ
+docs: https://www.shipmentlink.com/_ec/APIPORTAL_FAQ
+scopes: []
+notes: No OAuth scopes documented in FAQ or OpenAPI specifications. Authentication uses JWT tokens obtained with Client ID/secret.

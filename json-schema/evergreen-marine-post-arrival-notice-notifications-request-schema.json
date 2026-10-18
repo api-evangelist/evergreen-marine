@@ -1,0 +1,248 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/evergreen-marine/main/json-schema/evergreen-marine-post-arrival-notice-notifications-request-schema.json",
+  "title": "PostArrivalNoticeNotificationsRequest",
+  "description": "API message containing a list of Arrival Notice lightweight notifications.",
+  "x-generated": "2026-10-18",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/evergreen-marine-arrival-notice-openapi.yml#/components/schemas/PostArrivalNoticeNotificationsRequest",
+  "type": "object",
+  "properties": {
+    "arrivalNoticeNotifications": {
+      "type": "array",
+      "description": "List of Arrival Notice lightweight notifications.",
+      "items": {
+        "$ref": "#/$defs/ArrivalNoticeNotification"
+      }
+    }
+  },
+  "$defs": {
+    "Address": {
+      "type": "object",
+      "properties": {
+        "street": {
+          "maxLength": 70,
+          "type": "string",
+          "description": "The name of the street."
+        },
+        "streetNumber": {
+          "maxLength": 50,
+          "type": "string",
+          "description": "The number of the street."
+        },
+        "floor": {
+          "maxLength": 50,
+          "type": "string",
+          "description": "The floor of the street number."
+        },
+        "postCode": {
+          "maxLength": 10,
+          "type": "string",
+          "description": "The post code of the address."
+        },
+        "POBox": {
+          "maxLength": 20,
+          "type": "string",
+          "description": "A numbered box at a post office where a person or business can have mail or parcels delivered."
+        },
+        "city": {
+          "maxLength": 35,
+          "type": "string",
+          "description": "The name of the city."
+        },
+        "stateRegion": {
+          "maxLength": 65,
+          "type": "string",
+          "description": "The name of the state/region."
+        },
+        "countryCode": {
+          "maxLength": 2,
+          "type": "string",
+          "description": "The 2 characters for the country code using [ISO 3166-1 alpha-2](https://www.iso.org/obp/ui/#iso:pub:PUB500001:en)"
+        },
+        "addressLines": {
+          "maxItems": 5,
+          "type": "array",
+          "description": "Unstructured address lines, used as a fallback when structured address fields are unavailable.",
+          "items": {
+            "maxLength": 250,
+            "type": "string",
+            "description": "One line of an unstructured `Address`."
+          }
+        }
+      },
+      "description": "An object for storing address-related information."
+    },
+    "ArrivalNoticeNotification": {
+      "required": [
+        "issueDateTime",
+        "transportDocumentReference"
+      ],
+      "type": "object",
+      "properties": {
+        "issueDateTime": {
+          "maxLength": 30,
+          "type": "string",
+          "description": "The date and time when the Arrival Notice was issued.",
+          "format": "date-time"
+        },
+        "typeLabel": {
+          "maxLength": 1000,
+          "type": "string",
+          "description": "Free-format identifier used to specify a certain type of arrival notice,\nfor example \"English, consignee, USD\" or \"No charges, French\".\n\nEach publisher can choose their own criteria by which they categorize arrival notices,\nas well as the format of this property. However, for each arrival notice publisher\nthe format must be consistent and predictable, in order to allow receivers\nto programmatically determine whether each received arrival notice overrides\nan earlier version of the arrival notice \"of the same type\" for the same transport document.\n\nAn arrival notice (including all its versions) is uniquely identified by the combination\nof the `transportDocumentReference` and this `typeLabel`. Each version of an arrival notice\nis uniquely identified by the combination of the `transportDocumentReference`, this `typeLabel`\nand the `issueDateTime`.\n\nAmong the versions of arrival notices of the same type issued for the same transport document,\na version with a newer `issueDateTime` overrides a version with an older `issueDateTime`,\nregardless of the `versionLabel` (which is a high-level label with business semantics\nand may or may not change between timestamped versions).\n"
+        },
+        "versionLabel": {
+          "maxLength": 1000,
+          "type": "string",
+          "description": "Free text used to indicate a certain version of an arrival notice of a certain type,\nfor example \"Warning\", \"Updated\", \"Second\", \"Third\" etc.\n\nThis is a high-level label with business semantics that does not influence the technical versioning\nof arrival notices of the same `typeLabel` issued for the same `transportDocumentReference`,\nwhich relies on the `issueDateTime` instead.\n"
+        },
+        "transportDocumentReference": {
+          "maxLength": 20,
+          "type": "string",
+          "description": "The reference of the transport document for which this arrival notice was created\n"
+        },
+        "equipmentReferences": {
+          "type": "array",
+          "description": "References of the equipments for which this arrival notice was created\n",
+          "items": {
+            "maxLength": 11,
+            "type": "string",
+            "description": "The unique identifier for the equipment, which should follow the BIC ISO Container Identification Number where possible.\n\nAccording to ISO 6346, a container identification code consists of a 4-letter prefix and a 7-digit number\n(composed of a 3-letter owner code, a category identifier, a serial number, and a check-digit).\n\nIf a container does not comply with ISO 6346, it is suggested to follow\n[Recommendation #2: Containers with non-ISO identification](https://smdg.org/documents/smdg-recommendations)\nfrom SMDG.\n"
+          }
+        },
+        "portOfDischarge": {
+          "description": "The location where the cargo is discharged from the last sea-going vessel\n",
+          "allOf": [
+            {
+              "$ref": "#/$defs/Location"
+            }
+          ]
+        },
+        "placeOfDelivery": {
+          "description": "The location where the cargo is handed over by the shipping line to the consignee or its agent and where the\nresponsibility of the shipping line ceases\n",
+          "allOf": [
+            {
+              "$ref": "#/$defs/Location"
+            }
+          ]
+        },
+        "portOfDischargeArrivalDate": {
+          "description": "The date of arrival of the vessel at the Port of Discharge.",
+          "allOf": [
+            {
+              "$ref": "#/$defs/ClassifiedDate"
+            }
+          ]
+        },
+        "placeOfDeliveryArrivalDate": {
+          "description": "The date of arrival of the shipment at Place of Delivery.",
+          "allOf": [
+            {
+              "$ref": "#/$defs/ClassifiedDate"
+            }
+          ]
+        }
+      },
+      "description": "Lightweight notification that can be sent when a new or updated Arrival Notice is available\n"
+    },
+    "ClassifiedDate": {
+      "type": "object",
+      "properties": {
+        "value": {
+          "type": "string",
+          "description": "String representation of a date in yyyy-MM-dd format.\nUnless otherwise specified, it is a local date in the time zone of the implicitly associated event location.\n",
+          "format": "date"
+        },
+        "classifier": {
+          "maxLength": 10,
+          "type": "string",
+          "description": "Classifier denoting whether an event is planned, estimated or actual\n- `PLN` - Planned\n- `EST` - Estimated\n- `ACT` - Actual"
+        }
+      },
+      "description": "Date classified as planned, estimated or actual"
+    },
+    "Facility": {
+      "type": "object",
+      "properties": {
+        "facilityName": {
+          "maxLength": 100,
+          "type": "string",
+          "description": "The name of the facility."
+        },
+        "facilityCode": {
+          "maxLength": 6,
+          "type": "string",
+          "description": "Code identifying a specific facility, as defined by the `facilityCodeListProvider`.\n"
+        },
+        "facilityCodeListProvider": {
+          "maxLength": 10,
+          "type": "string",
+          "description": "Code list provider (each with its relevant code list) defining the `facilityCode`:\n- `SMDG` (using [SMDG Terminal Code List](https://smdg.org/documents/smdg-code-lists/smdg-terminal-code-list/))\n- `BIC` (using [BIC Facility Codes](https://www.bic-code.org/facility-codes/))\n"
+        }
+      },
+      "description": "Facility identified by a code as defined by a code list provider.\n"
+    },
+    "GeoCoordinate": {
+      "type": "object",
+      "properties": {
+        "latitude": {
+          "maxLength": 20,
+          "type": "string",
+          "description": "Latitude expressed as decimal degrees using the ISO 6709 data interchange numeric format."
+        },
+        "longitude": {
+          "maxLength": 20,
+          "type": "string",
+          "description": "Longitude expressed as decimal degrees using the ISO 6709 data interchange numeric format."
+        }
+      },
+      "description": "An object used to express a location using its geographic coordinates."
+    },
+    "Location": {
+      "type": "object",
+      "properties": {
+        "locationName": {
+          "maxLength": 100,
+          "type": "string",
+          "description": "The name of the location."
+        },
+        "facilityTypeCode": {
+          "maxLength": 10,
+          "type": "string",
+          "description": "Code identifying a specific type of facility\n\n- `BORD` - Border\n- `CLOC` - Customer location\n- `COFS` - Container freight station\n- `OFFD` - Off-dock storage\n- `DEPO` - Depot\n- `INTE` - Inland terminal\n- `POTE` - Port terminal\n- `RAMP` - Ramp\n- `WAYP` - Waypoint"
+        },
+        "address": {
+          "description": "Location address",
+          "allOf": [
+            {
+              "$ref": "#/$defs/Address"
+            }
+          ]
+        },
+        "UNLocationCode": {
+          "maxLength": 5,
+          "type": "string",
+          "description": "The UN Location code specifying where the place is located. The pattern used must be\n\n- 2 characters for the country code using [ISO 3166-1 alpha-2](https://www.iso.org/obp/ui/#iso:pub:PUB500001:en)\n- 3 characters to code a location within that country. Letters A-Z and numbers from 2-9 can be used\n\nMore info can be found here: [UN/LOCODE](https://unece.org/trade/cefact/UNLOCODE-Download)\n"
+        },
+        "facility": {
+          "description": "Facility identified by a code as defined by a code list provider.\n",
+          "allOf": [
+            {
+              "$ref": "#/$defs/Facility"
+            }
+          ]
+        },
+        "geoCoordinate": {
+          "description": "An object used to express a location using its geographic coordinates.",
+          "allOf": [
+            {
+              "$ref": "#/$defs/GeoCoordinate"
+            }
+          ]
+        }
+      },
+      "description": "Location information"
+    }
+  }
+}

@@ -1,0 +1,27 @@
+generated: '2026-10-18'
+method: searched
+source: https://www.shipmentlink.com/_ec/APIPORTAL_FAQ
+docs: https://www.shipmentlink.com/_ec/APIPORTAL_FAQ
+schemes:
+- type: oauth2
+  name: JWT Authentication
+  description: JWT token obtained using Client ID and secret provided after registration
+  flow: clientCredentials
+  tokenUrl: Provided after registration (JWT Service)
+  scopes: []
+  notes: |
+    After registration, customers receive a confirmation letter with Client ID & secret to get token (JWT) for the pull/push API service.
+    Using Client ID & secret with request body (header/payload) to ask our JWT Service.
+    Evergreen returns a token with JWT format (https://jwt.io).
+    Using JWT token embedded in client application to call API service.
+    Evergreen decrypts token and verifies payload to ensure API request is from right party and valid.
+  evidence: |
+    FAQ Question 3: "How do I get JWT for API Service?"
+    Answer: "After your registration, you may receive a confirmation letter with Client ID & secret get token (JWT) for the pull/push API service. By using Client ID & secret with your request body (header/payload) to ask our JWT Service. After check, Evergreen will return you a token with JWT format ( https://jwt.io ). Using JWT token embed in your client application to call API service. Evergreen will decrypt token and verify payload, to make sure API request is from right party and valid."
+- type: apiKey
+  name: API-Version Header
+  description: API-Version header MUST be added to requests
+  in: header
+  keyName: API-Version
+  notes: API-Version header MAY be added to the request (optional); if added it MUST only contain MAJOR version. API-Version header MUST be aligned with the URI version.
+  evidence: Found in OpenAPI specifications

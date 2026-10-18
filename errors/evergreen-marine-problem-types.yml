@@ -1,0 +1,27 @@
+generated: '2026-10-18'
+method: searched
+source: https://www.shipmentlink.com/_ec/APIPORTAL_FAQ
+format: http-problem
+problems:
+- status: 400
+  title: Bad Request
+  description: Returned when the request payload schema-validation fails
+  evidence: From OpenAPI specifications
+- status: 401
+  title: Unauthorized
+  description: The supplied authorization credentials for the request are invalid
+  evidence: From OpenAPI specifications
+- status: 403
+  title: Forbidden
+  description: The authenticated user is not permitted to execute this request
+  evidence: From OpenAPI specifications
+- status: 405
+  title: Method Not Allowed
+  description: URL input may be incorrect
+  remediation: Please make sure the URL input is correct
+  evidence: FAQ Question 5 about 405 error
+- status: 500
+  title: Internal Server Error
+  description: Server has encountered an unexpected condition or configuration problem
+  remediation: May be due to incorrect parameter input
+  evidence: FAQ Question 6 about 500 error

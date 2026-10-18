@@ -1,0 +1,43 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/evergreen-marine/main/json-schema/evergreen-marine-post-arrival-notices-response-schema.json",
+  "title": "PostArrivalNoticesResponse",
+  "description": "API response to a `POST ArrivalNotices` or `POST ArrivalNoticeNotifications` request\n",
+  "x-generated": "2026-10-18",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/evergreen-marine-arrival-notice-openapi.yml#/components/schemas/PostArrivalNoticesResponse",
+  "type": "object",
+  "properties": {
+    "feedbackElements": {
+      "type": "array",
+      "description": "Optional list of feedback elements indicating how the request was processed.\n\nThere can be zero, one or more feedback elements per arrival notice (notification) in the request.\nThe order of `feedbackElements` is not related to the order of arrival notice (notification) objects in the request.\nInstead, the relevant request object is indicated by the `propertyPath` of each `FeedbackElement`.\n",
+      "items": {
+        "$ref": "#/$defs/FeedbackElement"
+      }
+    }
+  },
+  "$defs": {
+    "FeedbackElement": {
+      "type": "object",
+      "properties": {
+        "severity": {
+          "maxLength": 50,
+          "type": "string",
+          "description": "Code denoting the severity of a `FeedbackElement`\n\n- `ERROR` - Error that fully or partially prevents the correct processing of the request\n- `WARN` - Warning about the request being processed in a potentially unexpected way\n- `INFO` - Informational message about how the request is processed"
+        },
+        "message": {
+          "maxLength": 5000,
+          "type": "string",
+          "description": "Human readable feedback message that can be programmatically relayed\nto a user of the arrival notice publishing organization\n"
+        },
+        "propertyPath": {
+          "maxLength": 1000,
+          "type": "string",
+          "description": "[JSONPath](https://github.com/json-path/JsonPath) within the request message of the specific property\nabout which the feedback is provided (if applicable)\n"
+        }
+      },
+      "description": "An individual piece of feedback (potentially out of several) providing information on how an API request is processed\n"
+    }
+  }
+}

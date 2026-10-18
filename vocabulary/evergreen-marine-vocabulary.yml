@@ -1,0 +1,433 @@
+generated: '2026-10-18'
+method: derived
+generator: derive-vocabulary.py
+source:
+- openapi/evergreen-marine-arrival-notice-openapi.yml
+- openapi/evergreen-marine-booking-openapi.yml
+- openapi/evergreen-marine-commercial-schedules-openapi.yml
+- openapi/evergreen-marine-ebl-issuance-openapi.yml
+- openapi/evergreen-marine-ebl-surrender-openapi.yml
+vocabulary:
+  name: Evergreen Marine Corp. Domain Vocabulary
+  description: 'Terms declared by Evergreen Marine Corp.''s own API contract: its resource groups, objects and enumerations, with the contract''s
+    definitions. Derived, not authored.'
+  version: '2026-10-18'
+  terms:
+  - term: AN Publisher Endpoints
+    definition: Endpoints implemented by the adopters who publish arrival notices
+    tags:
+    - Resource Group
+    source: openapi/evergreen-marine-arrival-notice-openapi.yml
+  - term: AN Subscriber Endpoints
+    definition: Endpoints implemented by the adopters who receive arrival notices
+    tags:
+    - Resource Group
+    source: openapi/evergreen-marine-arrival-notice-openapi.yml
+  - term: Booking
+    definition: Booking endPoints to be implemented by **providers** of the Booking API
+    tags:
+    - Resource Group
+    source: openapi/evergreen-marine-booking-openapi.yml
+  - term: Notifications
+    definition: Notifications to be implemented by the **consumers** of the Booking API
+    tags:
+    - Resource Group
+    source: openapi/evergreen-marine-booking-openapi.yml
+  - term: Point To Point
+    definition: ''
+    tags:
+    - Resource Group
+    source: openapi/evergreen-marine-commercial-schedules-openapi.yml
+  - term: Port Schedule
+    definition: ''
+    tags:
+    - Resource Group
+    source: openapi/evergreen-marine-commercial-schedules-openapi.yml
+  - term: Vessel Schedule
+    definition: ''
+    tags:
+    - Resource Group
+    source: openapi/evergreen-marine-commercial-schedules-openapi.yml
+  - term: Issuance Response
+    definition: Issuance Response **implemented** by carrier
+    tags:
+    - Resource Group
+    source: openapi/evergreen-marine-ebl-issuance-openapi.yml
+  - term: Surrender Requests
+    definition: The Surrender Requests **implemented** by carrier
+    tags:
+    - Resource Group
+    source: openapi/evergreen-marine-ebl-surrender-openapi.yml
+  - term: Shipping Instructions
+    definition: The Shipping Instructions endPoints to be implemented by **providers** of the Bill of Lading API
+    tags:
+    - Resource Group
+    source: openapi/evergreen-marine-shipping-instructions-openapi.yml
+  - term: Events
+    definition: Event Service Controller
+    tags:
+    - Resource Group
+    source: openapi/evergreen-marine-track-and-trace-openapi.yml
+  - term: Subscriptions
+    definition: Subscriptions Service Controller
+    tags:
+    - Resource Group
+    source: openapi/evergreen-marine-track-and-trace-openapi.yml
+  - term: Transport Document
+    definition: The Transport Document endPoints to be implemented by **providers** of the Bill of Lading API
+    tags:
+    - Resource Group
+    source: openapi/evergreen-marine-transport-document-openapi.yml
+  - term: ActiveReeferSettings
+    definition: The specifications for a Reefer equipment. Only applicable when `isNonOperatingReefer` is false.
+    tags:
+    - Object
+    source: openapi/evergreen-marine-arrival-notice-openapi.yml#/components/schemas/ActiveReeferSettings
+  - term: Address
+    definition: An object for storing address-related information.
+    tags:
+    - Object
+    source: openapi/evergreen-marine-arrival-notice-openapi.yml#/components/schemas/Address
+  - term: ArrivalNotice
+    definition: Full content of an Arrival Notice document.
+    tags:
+    - Object
+    source: openapi/evergreen-marine-arrival-notice-openapi.yml#/components/schemas/ArrivalNotice
+  - term: ArrivalNoticeNotification
+    definition: Lightweight notification that can be sent when a new or updated Arrival Notice is available
+    tags:
+    - Object
+    source: openapi/evergreen-marine-arrival-notice-openapi.yml#/components/schemas/ArrivalNoticeNotification
+  - term: CargoItem
+    definition: A cargoItem is the smallest unit used in stuffing. It cannot be split across containers.
+    tags:
+    - Object
+    source: openapi/evergreen-marine-arrival-notice-openapi.yml#/components/schemas/CargoItem
+  - term: Charge
+    definition: Addresses the monetary value of freight and other service charges for a shipment.
+    tags:
+    - Object
+    source: openapi/evergreen-marine-arrival-notice-openapi.yml#/components/schemas/Charge
+  - term: ClassifiedDate
+    definition: Date classified as planned, estimated or actual
+    tags:
+    - Object
+    source: openapi/evergreen-marine-arrival-notice-openapi.yml#/components/schemas/ClassifiedDate
+  - term: ClassifiedDateTime
+    definition: Date and time classified as planned, estimated or actual
+    tags:
+    - Object
+    source: openapi/evergreen-marine-arrival-notice-openapi.yml#/components/schemas/ClassifiedDateTime
+  - term: ConsignmentItem
+    definition: Defines a list of `CargoItems` belonging together and the associated `Booking`. A `ConsignmentItem` can be split across multiple
+      containers by referencing multiple `CargoItems`.
+    tags:
+    - Object
+    source: openapi/evergreen-marine-arrival-notice-openapi.yml#/components/schemas/ConsignmentItem
+  - term: CustomsClearance
+    definition: Customs clearance information
+    tags:
+    - Object
+    source: openapi/evergreen-marine-arrival-notice-openapi.yml#/components/schemas/CustomsClearance
+  - term: CustomsReference
+    definition: 'Reference associated with customs and/or excise purposes required by relevant authorities for the import, export, or transit
+      of goods. Examples include: - UCR (Unique Consignment Reference) - ACID (Advance Cargo Info Declaration in Egypt) - ITN (Internal Transaction
+      Number in the US)'
+    tags:
+    - Object
+    source: openapi/evergreen-marine-arrival-notice-openapi.yml#/components/schemas/CustomsReference
+  - term: DangerousGoods
+    definition: Specification for Dangerous Goods. Provide one of UNNumber or NANumber. Based on IMDG Code Amendment 41-22.
+    tags:
+    - Object
+    source: openapi/evergreen-marine-arrival-notice-openapi.yml#/components/schemas/DangerousGoods
+  - term: DocumentParty
+    definition: Document party
+    tags:
+    - Object
+    source: openapi/evergreen-marine-arrival-notice-openapi.yml#/components/schemas/DocumentParty
+  - term: EmbeddedDocument
+    definition: Name, Base64-encoded content and content type of an embedded document
+    tags:
+    - Object
+    source: openapi/evergreen-marine-arrival-notice-openapi.yml#/components/schemas/EmbeddedDocument
+  - term: EmergencyContactDetails
+    definition: 24 hr emergency contact details
+    tags:
+    - Object
+    source: openapi/evergreen-marine-arrival-notice-openapi.yml#/components/schemas/EmergencyContactDetails
+  - term: Equipment
+    definition: Used for storing cargo during transport. Equipment size/type is defined by the ISO 6346 code. Common sizes include 20'/40'/45'
+      containers.
+    tags:
+    - Object
+    source: openapi/evergreen-marine-arrival-notice-openapi.yml#/components/schemas/Equipment
+  - term: ExportLicense
+    definition: '`Export License` requirements.'
+    tags:
+    - Object
+    source: openapi/evergreen-marine-arrival-notice-openapi.yml#/components/schemas/ExportLicense
+  - term: Facility
+    definition: Facility identified by a code as defined by a code list provider.
+    tags:
+    - Object
+    source: openapi/evergreen-marine-arrival-notice-openapi.yml#/components/schemas/Facility
+  - term: FeedbackElement
+    definition: An individual piece of feedback (potentially out of several) providing information on how an API request is processed
+    tags:
+    - Object
+    source: openapi/evergreen-marine-arrival-notice-openapi.yml#/components/schemas/FeedbackElement
+  - term: FreeTime
+    definition: Free time condition applicable to this shipment at destination.
+    tags:
+    - Object
+    source: openapi/evergreen-marine-arrival-notice-openapi.yml#/components/schemas/FreeTime
+  - term: GeoCoordinate
+    definition: An object used to express a location using its geographic coordinates.
+    tags:
+    - Object
+    source: openapi/evergreen-marine-arrival-notice-openapi.yml#/components/schemas/GeoCoordinate
+  - term: GetArrivalNoticesError
+    definition: Error API response to a `GET ArrivalNotices` request
+    tags:
+    - Object
+    source: openapi/evergreen-marine-arrival-notice-openapi.yml#/components/schemas/GetArrivalNoticesError
+  - term: GetArrivalNoticesResponse
+    definition: API response to a `GET ArrivalNotices` request
+    tags:
+    - Object
+    source: openapi/evergreen-marine-arrival-notice-openapi.yml#/components/schemas/GetArrivalNoticesResponse
+  - term: IdentifyingCode
+    definition: Code-based identifier for a party. Includes the provider, code, and list name.
+    tags:
+    - Object
+    source: openapi/evergreen-marine-arrival-notice-openapi.yml#/components/schemas/IdentifyingCode
+  - term: ImmediateTransportationEntry
+    definition: An Immediate Transportation (IT) entry is a U.S. Customs and Border Protection (CBP) mechanism that allows imported cargo to be
+      moved from the first port of arrival in the U.S. to another port or bonded facility without being physically cleared by CBP at the first
+      port.
+    tags:
+    - Object
+    source: openapi/evergreen-marine-arrival-notice-openapi.yml#/components/schemas/ImmediateTransportationEntry
+  - term: ImportLicense
+    definition: '`Import License` requirements.'
+    tags:
+    - Object
+    source: openapi/evergreen-marine-arrival-notice-openapi.yml#/components/schemas/ImportLicense
+  - term: InnerPackaging
+    definition: Object for inner packaging specification.
+    tags:
+    - Object
+    source: openapi/evergreen-marine-arrival-notice-openapi.yml#/components/schemas/InnerPackaging
+  - term: Leg
+    definition: Details of one specific leg of the transport plan
+    tags:
+    - Object
+    source: openapi/evergreen-marine-arrival-notice-openapi.yml#/components/schemas/Leg
+  - term: Limits
+    definition: Limits for the `Dangerous Goods`. The same `Temperature Unit` must apply to all attributes in this structure.
+    tags:
+    - Object
+    source: openapi/evergreen-marine-arrival-notice-openapi.yml#/components/schemas/Limits
+  - term: Location
+    definition: Location information
+    tags:
+    - Object
+    source: openapi/evergreen-marine-arrival-notice-openapi.yml#/components/schemas/Location
+  - term: NationalCommodityCode
+    definition: 'The national commodity classification code linked to a country with a value. Examples: NCM (Brazil), HTS (US), TARIC (EU).'
+    tags:
+    - Object
+    source: openapi/evergreen-marine-arrival-notice-openapi.yml#/components/schemas/NationalCommodityCode
+  - term: OuterPackaging
+    definition: Outer packaging or overpack specification, such as palletized or crated groupings of packages.
+    tags:
+    - Object
+    source: openapi/evergreen-marine-arrival-notice-openapi.yml#/components/schemas/OuterPackaging
+  - term: PartyContactDetail
+    definition: The contact details of the person to contact. Provide either phone and/or email along with the name; both may be provided.
+    tags:
+    - Object
+    source: openapi/evergreen-marine-arrival-notice-openapi.yml#/components/schemas/PartyContactDetail
+  - term: PaymentRemittance
+    definition: Bank account information provided by the carrier for customers to make payments of the outstanding charges
+    tags:
+    - Object
+    source: openapi/evergreen-marine-arrival-notice-openapi.yml#/components/schemas/PaymentRemittance
+  - term: PickupInformation
+    definition: Consolidates the information required to pick up the container.
+    tags:
+    - Object
+    source: openapi/evergreen-marine-arrival-notice-openapi.yml#/components/schemas/PickupInformation
+  - term: PostArrivalNoticeNotificationsRequest
+    definition: API message containing a list of Arrival Notice lightweight notifications.
+    tags:
+    - Object
+    source: openapi/evergreen-marine-arrival-notice-openapi.yml#/components/schemas/PostArrivalNoticeNotificationsRequest
+  - term: PostArrivalNoticesError
+    definition: Error API response to a `POST ArrivalNotices` or `POST ArrivalNoticeNotifications` request. If some of the arrival notice (notification)
+      objects in the request were successfully processed, a regular `PostArrivalNoticesResponse` is expected to be used instead, with `feedbackElements`
+      indicating which objects were not processed and why.
+    tags:
+    - Object
+    source: openapi/evergreen-marine-arrival-notice-openapi.yml#/components/schemas/PostArrivalNoticesError
+  - term: PostArrivalNoticesRequest
+    definition: API message containing a list of Arrival Notices.
+    tags:
+    - Object
+    source: openapi/evergreen-marine-arrival-notice-openapi.yml#/components/schemas/PostArrivalNoticesRequest
+  - term: PostArrivalNoticesResponse
+    definition: API response to a `POST ArrivalNotices` or `POST ArrivalNoticeNotifications` request
+    tags:
+    - Object
+    source: openapi/evergreen-marine-arrival-notice-openapi.yml#/components/schemas/PostArrivalNoticesResponse
+  - term: Reference
+    definition: Reference used by the customer or carrier to identify or track the shipment.
+    tags:
+    - Object
+    source: openapi/evergreen-marine-arrival-notice-openapi.yml#/components/schemas/Reference
+  - term: ReferenceConsignmentItem
+    definition: References for a consignment item, used by shippers or freight forwarders and shared in events or printed on documents.
+    tags:
+    - Object
+    source: openapi/evergreen-marine-arrival-notice-openapi.yml#/components/schemas/ReferenceConsignmentItem
+  - term: ReleaseInformation
+    definition: Compiles the information relevant to shipment release.
+    tags:
+    - Object
+    source: openapi/evergreen-marine-arrival-notice-openapi.yml#/components/schemas/ReleaseInformation
+  - term: ReturnInformation
+    definition: Groups the information regarding empty-equipment return.
+    tags:
+    - Object
+    source: openapi/evergreen-marine-arrival-notice-openapi.yml#/components/schemas/ReturnInformation
+  - term: Seal
+    definition: Seal-related information associated with the equipment.
+    tags:
+    - Object
+    source: openapi/evergreen-marine-arrival-notice-openapi.yml#/components/schemas/Seal
+  - term: TaxLegalReference
+    definition: Reference that uniquely identifies a party for tax and/or legal purposes according to local jurisdiction.
+    tags:
+    - Object
+    source: openapi/evergreen-marine-arrival-notice-openapi.yml#/components/schemas/TaxLegalReference
+  - term: Transport
+    definition: Transport details relevant to the arrival notice.
+    tags:
+    - Object
+    source: openapi/evergreen-marine-arrival-notice-openapi.yml#/components/schemas/Transport
+  - term: UtilizedTransportEquipment
+    definition: Specifies the container (equipment) information, possible ActiveReeferSettings, seals, references, and other related details.
+    tags:
+    - Object
+    source: openapi/evergreen-marine-arrival-notice-openapi.yml#/components/schemas/UtilizedTransportEquipment
+  - term: VesselVoyage
+    definition: Vessel and voyage details of a transport leg
+    tags:
+    - Object
+    source: openapi/evergreen-marine-arrival-notice-openapi.yml#/components/schemas/VesselVoyage
+  - term: Volume
+    definition: Volume value and measurement unit
+    tags:
+    - Object
+    source: openapi/evergreen-marine-arrival-notice-openapi.yml#/components/schemas/Volume
+  - term: Weight
+    definition: Weight value and measurement unit
+    tags:
+    - Object
+    source: openapi/evergreen-marine-arrival-notice-openapi.yml#/components/schemas/Weight
+  - term: Create Booking Response
+    definition: '**Only** the `carrierBookingRequestReference` is returned.'
+    tags:
+    - Object
+    source: openapi/evergreen-marine-booking-openapi.yml#/components/schemas/CreateBookingResponse
+  - term: Cancel Booking Request
+    definition: 'Object declared by the contract with fields: reason.'
+    tags:
+    - Object
+    source: openapi/evergreen-marine-booking-openapi.yml#/components/schemas/CancelBookingRequest
+  - term: Booking Notification
+    definition: '`CloudEvent` specific properties for the `Notification`.'
+    tags:
+    - Object
+    source: openapi/evergreen-marine-booking-openapi.yml#/components/schemas/BookingNotification
+  - term: Data
+    definition: '`Booking` specific properties for the `Notification`'
+    tags:
+    - Object
+    source: openapi/evergreen-marine-booking-openapi.yml#/components/schemas/BookingNotificationData
+  - term: Booking
+    definition: This property contains the booking in case the subscriber is subscribing to the `Full State Transfer` of the Booking. In case
+      the subscriber does not subscribe to the `Full State Transfer` of the Booking then the content in this property can be ignored.
+    tags:
+    - Object
+    source: openapi/evergreen-marine-booking-openapi.yml#/components/schemas/BookingFullNotification
+  - term: Amended Booking
+    definition: 'This property contains the amended booking in case: - an amendment is currently active - the subscriber is subscribing to the
+      `Full State Transfer` of the Booking In case the subscriber does not subscribe to the `Full State Transfer` of the Booking or no amendment
+      is active - then the content in this property can be ignored.'
+    tags:
+    - Object
+    source: openapi/evergreen-marine-booking-openapi.yml#/components/schemas/AmendedBookingFullNotification
+  - term: Feedback
+    definition: 'Feedback that can be provided includes, but is not limited to: - unsupported properties - changed values - removed properties
+      - general information'
+    tags:
+    - Object
+    source: openapi/evergreen-marine-booking-openapi.yml#/components/schemas/Feedback
+  - term: Error Response
+    definition: Unexpected error
+    tags:
+    - Object
+    source: openapi/evergreen-marine-booking-openapi.yml#/components/schemas/ErrorResponse
+  - term: Detailed Error
+    definition: A detailed description of what has caused the error.
+    tags:
+    - Object
+    source: openapi/evergreen-marine-booking-openapi.yml#/components/schemas/DetailedError
+  - term: Create Booking
+    definition: 'Object declared by the contract with fields: receiptTypeAtOrigin, deliveryTypeAtDestination, cargoMovementTypeAtOrigin, cargoMovementTypeAtDestination,
+      serviceContractReference, freightPaymentTermCode, originChargesPaymentTerm, destinationChargesPaymentTerm, contractQuotationReference, vessel,
+      carrierServiceName, carrierServiceCode. (26 more)'
+    tags:
+    - Object
+    source: openapi/evergreen-marine-booking-openapi.yml#/components/schemas/CreateBooking
+  - term: Update Booking
+    definition: 'Object declared by the contract with fields: carrierBookingRequestReference, carrierBookingReference, receiptTypeAtOrigin, deliveryTypeAtDestination,
+      cargoMovementTypeAtOrigin, cargoMovementTypeAtDestination, serviceContractReference, freightPaymentTermCode, originChargesPaymentTerm, destinationChargesPaymentTerm,
+      contractQuotationReference, vessel. (28 more)'
+    tags:
+    - Object
+    source: openapi/evergreen-marine-booking-openapi.yml#/components/schemas/UpdateBooking
+  - term: Document Parties
+    definition: All `Parties` with associated roles.
+    tags:
+    - Object
+    source: openapi/evergreen-marine-booking-openapi.yml#/components/schemas/DocumentPartiesReq
+  - term: Invoice Payable At
+    definition: Location where payment of ocean freight and charges for the main transport will take place by the customer. The location must
+      be provided as a `UN Location Code`
+    tags:
+    - Object
+    source: openapi/evergreen-marine-booking-openapi.yml#/components/schemas/InvoicePayableAt
+  - term: Place of B/L Issue
+    definition: An object to capture where the original Transport Document (`Bill of Lading`) will be issued. The location can be specified as
+      one of `UN Location Code` or `CountryCode`, but not both.
+    tags:
+    - Object
+    source: openapi/evergreen-marine-booking-openapi.yml#/components/schemas/PlaceOfBLIssue
+  - term: Document Parties
+    definition: All `Parties` with associated roles.
+    tags:
+    - Object
+    source: openapi/evergreen-marine-booking-openapi.yml#/components/schemas/DocumentParties
+  - term: Party Address
+    definition: An object for storing address related information
+    tags:
+    - Object
+    source: openapi/evergreen-marine-booking-openapi.yml#/components/schemas/PartyAddress
+  - term: Other Document Party
+    definition: A list of document parties that can be optionally provided at booking stage
+    tags:
+    - Object
+    source: openapi/evergreen-marine-booking-openapi.yml#/components/schemas/OtherDocumentParty

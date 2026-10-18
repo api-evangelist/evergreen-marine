@@ -1,0 +1,124 @@
+generated: '2026-10-18'
+method: derived
+status: candidate
+source: 'Derived from the openapi/ set (8 DCSA-based specs captured from the ShipmentLink API Developer Portal).
+  No official MCP server found: web search 2026-10-18 for an Evergreen/ShipmentLink MCP server returned only unrelated
+  third-party servers; pre-flight contract discovery on www.shipmentlink.com, www.evergreen-marine.com, csr.evergreen-marine.com,
+  api.shipmentlink.com and api.evergreen-marine.com graded mcp absent.'
+name: Evergreen Marine MCP (candidate)
+deployment:
+  mode: none
+  auth: unknown
+  verified: derived
+  note: Nobody ships an Evergreen MCP server. These are candidate tools derived from consumer-callable OpenAPI operations;
+    no endpoint exists.
+auth:
+  documented: JWT bearer from Client ID & secret issued at registration
+  source: https://www.shipmentlink.com/_ec/APIPORTAL_FAQ
+tool_count: 16
+tools:
+- name: eventGetUsingGET
+  operationId: eventGetUsingGET
+  method: GET
+  path: /tnt/v2/events
+  spec: openapi/evergreen-marine-track-and-trace-openapi.yml
+  description: Find events.
+- name: subscriptionsGetUsingGET
+  operationId: subscriptionsGetUsingGET
+  method: GET
+  path: /tnt/v2/event-subscriptions
+  spec: openapi/evergreen-marine-track-and-trace-openapi.yml
+  description: Receive a list of your active subscriptions
+- name: subscriptionsGetIDUsingGET
+  operationId: subscriptionsGetIDUsingGET
+  method: GET
+  path: /tnt/v2/event-subscriptions/{subscriptionID}
+  spec: openapi/evergreen-marine-track-and-trace-openapi.yml
+  description: Find a subscription by subscription ID
+- name: get_bookings
+  operationId: get-bookings
+  method: GET
+  path: /dcsa/bookings/{bookingReference}
+  spec: openapi/evergreen-marine-booking-openapi.yml
+  description: Gets the Booking
+- name: create_bookings
+  operationId: create-bookings
+  method: POST
+  path: /dcsa/bookings
+  spec: openapi/evergreen-marine-booking-openapi.yml
+  description: Creates a new Booking
+- name: update_bookings
+  operationId: update-bookings
+  method: PUT
+  path: /dcsa/bookings/{bookingReference}
+  spec: openapi/evergreen-marine-booking-openapi.yml
+  description: Updates the Booking
+- name: cancel_booking
+  operationId: cancel-booking
+  method: PATCH
+  path: /dcsa/bookings/{bookingReference}
+  spec: openapi/evergreen-marine-booking-openapi.yml
+  description: Cancels the Booking or cancels an Amendment
+- name: create_shipping_instructions
+  operationId: create-shipping-instructions
+  method: POST
+  path: /v3/shipping-instructions
+  spec: openapi/evergreen-marine-shipping-instructions-openapi.yml
+  description: Creates a Shipping Instructions
+- name: update_shipping_instructions
+  operationId: update-shipping-instructions
+  method: PUT
+  path: /v3/shipping-instructions/{documentReference}
+  spec: openapi/evergreen-marine-shipping-instructions-openapi.yml
+  description: Updates the Shipping Instructions
+- name: get_transport_document
+  operationId: get-transport-document
+  method: GET
+  path: /v3/transport-documents/{transportDocumentReference}
+  spec: openapi/evergreen-marine-transport-document-openapi.yml
+  description: Gets the Transport Document
+- name: approve_transport_document
+  operationId: approve-transport-document
+  method: PATCH
+  path: /v3/transport-documents/{transportDocumentReference}
+  spec: openapi/evergreen-marine-transport-document-openapi.yml
+  description: Approve a Transport Document
+- name: create_surrender_request
+  operationId: create-surrender-request
+  method: POST
+  path: /v3/ebl-surrender-requests
+  spec: openapi/evergreen-marine-ebl-surrender-openapi.yml
+  description: Creates a Surrender Request
+- name: get_arrival_notices
+  operationId: get-arrival-notices
+  method: GET
+  path: /arrival-notices
+  spec: openapi/evergreen-marine-arrival-notice-openapi.yml
+  description: Retrieves a list of arrival notices
+- name: get_v1_point_to_point
+  operationId: get-v1-point-to-point
+  method: GET
+  path: /server/sol/route/commercial/v1/point-to-point-routes
+  spec: openapi/evergreen-marine-commercial-schedules-openapi.yml
+  description: Point to Point Routing
+- name: get_v1_port_schedules
+  operationId: get-v1-port-schedules
+  method: GET
+  path: /server/sol/mvs1api/commSch/v1/port
+  spec: openapi/evergreen-marine-commercial-schedules-openapi.yml
+  description: Port Schedule
+- name: get_v1_vessel_schedule
+  operationId: get-v1-vessel-schedule
+  method: GET
+  path: /server/sol/mvs1api/commSch/v1/vessel
+  spec: openapi/evergreen-marine-commercial-schedules-openapi.yml
+  description: Vessel Schedule
+excluded:
+- operationId: post-arrival-notices
+  reason: Callback/notification endpoint implemented by the receiving party, not a consumer action
+- operationId: post-arrival-notice-notifications
+  reason: Callback/notification endpoint implemented by the receiving party, not a consumer action
+- operationId: booking-notifications
+  reason: Callback/notification endpoint implemented by the receiving party, not a consumer action
+- operationId: create-ebl-issuance-response
+  reason: Callback/notification endpoint implemented by the receiving party, not a consumer action

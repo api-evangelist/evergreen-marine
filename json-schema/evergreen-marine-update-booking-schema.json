@@ -1,0 +1,2147 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/evergreen-marine/main/json-schema/evergreen-marine-update-booking-schema.json",
+  "title": "Update Booking",
+  "x-generated": "2026-10-18",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/evergreen-marine-booking-openapi.yml#/components/schemas/UpdateBooking",
+  "required": [
+    "cargoMovementTypeAtDestination",
+    "cargoMovementTypeAtOrigin",
+    "deliveryTypeAtDestination",
+    "documentParties",
+    "isEquipmentSubstitutionAllowed",
+    "receiptTypeAtOrigin",
+    "requestedEquipments",
+    "shipmentLocations"
+  ],
+  "type": "object",
+  "properties": {
+    "carrierBookingRequestReference": {
+      "maxLength": 100,
+      "pattern": "^\\S(?:.*\\S)?$",
+      "type": "string",
+      "description": "A reference to the booking during the booking request phase.\n\n**Condition:** `carrierBookingRequestReference` and/or `carrierBookingReference` must be provided\n"
+    },
+    "carrierBookingReference": {
+      "maxLength": 35,
+      "pattern": "^\\S(?:.*\\S)?$",
+      "type": "string",
+      "description": "The `carrierBookingReference` if know. Often this will not be known until the booking has been confirmed. Is available during a booking amendment.\n\n**Condition:** `carrierBookingRequestReference` and/or `carrierBookingReference` must be provided\n"
+    },
+    "receiptTypeAtOrigin": {
+      "maxLength": 3,
+      "type": "string",
+      "description": "Indicates the type of service offered at `Origin`. The options are:\n- `CY` (Container yard (incl. rail ramp))\n- `SD` (Store Door)\n- `CFS` (Container Freight Station)\n",
+      "enum": [
+        "CY",
+        "SD",
+        "CFS"
+      ]
+    },
+    "deliveryTypeAtDestination": {
+      "maxLength": 3,
+      "type": "string",
+      "description": "Indicates the type of service offered at `Destination`. The options are:\n- `CY` (Container yard (incl. rail ramp))\n- `SD` (Store Door)\n- `CFS` (Container Freight Station)\n",
+      "enum": [
+        "CY",
+        "SD",
+        "CFS"
+      ]
+    },
+    "cargoMovementTypeAtOrigin": {
+      "maxLength": 3,
+      "type": "string",
+      "description": "Refers to the shipment term at the **loading** of the cargo into the container. Possible values are:\n- `FCL` (Full Container Load)\n- `LCL` (Less than Container Load)\n"
+    },
+    "cargoMovementTypeAtDestination": {
+      "maxLength": 3,
+      "type": "string",
+      "description": "Refers to the shipment term at the **unloading** of the cargo out of the container. Possible values are:\n- `FCL` (Full Container Load)\n- `LCL` (Less than Container Load)\n"
+    },
+    "serviceContractReference": {
+      "maxLength": 30,
+      "type": "string",
+      "description": "Reference number for agreement between shipper and carrier, which optionally includes a certain minimum quantity commitment (usually referred as ��MQC��) of cargo that the shipper commits to over a fixed period, and the carrier commits to a certain rate or rate schedule.\n\n**Condition:** One of `serviceContractReference` or `contractQuotationReference` must be provided, but not both.\n"
+    },
+    "freightPaymentTermCode": {
+      "type": "string",
+      "description": "An indicator of whether freight and ancillary fees for the main transport are prepaid (`PRE`) or collect (`COL`). When prepaid the charges are the responsibility of the shipper or the Invoice payer on behalf of the shipper (if provided). When collect, the charges are the responsibility of the consignee or the Invoice payer on behalf of the consignee (if provided).\n- `PRE` (Prepaid)\n- `COL` (Collect)\n",
+      "enum": [
+        "PRE",
+        "COL"
+      ]
+    },
+    "originChargesPaymentTerm": {
+      "$ref": "#/$defs/OriginChargesPaymentTerm"
+    },
+    "destinationChargesPaymentTerm": {
+      "$ref": "#/$defs/DestinationChargesPaymentTerm"
+    },
+    "contractQuotationReference": {
+      "maxLength": 35,
+      "pattern": "^\\S(?:.*\\S)?$",
+      "type": "string",
+      "description": "Information provided by the shipper to identify whether pricing for the shipment has been agreed via a contract or a quotation reference.\n\n**Condition:** One of `contractQuotationReference` or `serviceContractReference` must be provided, but not both.\n"
+    },
+    "vessel": {
+      "$ref": "#/$defs/Vessel"
+    },
+    "carrierServiceName": {
+      "maxLength": 50,
+      "pattern": "^\\S(?:.*\\S)?$",
+      "type": "string",
+      "description": "The name of a service as specified by the carrier.\n\n**Condition:** Mandatory if `carrierExportVoyageNumber` is provided and Vessel details or `carrierServiceCode` are blank\n"
+    },
+    "carrierServiceCode": {
+      "maxLength": 11,
+      "pattern": "^\\S(?:.*\\S)?$",
+      "type": "string",
+      "description": "The carrier specific code of the service for which the schedule details are published.\n\n**Condition:** Mandatory if `carrierExportVoyageNumber` is provided and Vessel details or `carrierServiceName` are blank\n"
+    },
+    "universalServiceReference": {
+      "maxLength": 8,
+      "minLength": 8,
+      "pattern": "^SR\\d{5}[A-Z]$",
+      "type": "string",
+      "description": "A global unique service reference, as per DCSA standard, agreed by VSA partners for the service. The service reference must match the regular expression pattern: `SR\\d{5}[A-Z]`. The letters `SR` followed by `5 digits`, followed by a checksum-character as a capital letter from `A to Z`.\n"
+    },
+    "carrierExportVoyageNumber": {
+      "maxLength": 50,
+      "pattern": "^\\S(?:.*\\S)?$",
+      "type": "string",
+      "description": "The carrier specific identifier of the export Voyage.\n\n**Condition:** Mandatory if `expectedDepartureDate` or `expectedArrivalAtPlaceOfDeliveryStartDate` and `expectedArrivalAtPlaceOfDeliveryEndDate` is not provided.\n"
+    },
+    "universalExportVoyageReference": {
+      "maxLength": 5,
+      "minLength": 5,
+      "pattern": "^\\d{2}[0-9A-Z]{2}[NEWSR]$",
+      "type": "string",
+      "description": "A global unique voyage reference for the export Voyage, as per DCSA standard, agreed by VSA partners for the voyage. The voyage reference must match the regular expression pattern: `\\d{2}[0-9A-Z]{2}[NEWSR]`\n- `2 digits` for the year\n- `2 alphanumeric characters` for the sequence number of the voyage\n- `1 character` for the direction/haul (`N`orth, `E`ast, `W`est, `S`outh or `R`oundtrip).\n"
+    },
+    "declaredValue": {
+      "minimum": 0,
+      "type": "number",
+      "description": "The value of the cargo that the shipper declares in order to avoid the carrier's limitation of liability and \"Ad Valorem\" freight, i.e., freight which is calculated based on the value of the goods declared by the shipper.\n",
+      "format": "float"
+    },
+    "declaredValueCurrency": {
+      "maxLength": 3,
+      "minLength": 3,
+      "pattern": "^[A-Z]{3}$",
+      "type": "string",
+      "description": "The currency used for the declared value, using the 3-character code defined by [ISO 4217](https://www.iso.org/iso-4217-currency-codes.html).\n\n**Condition:** Mandatory if `declaredValue` is provided\n"
+    },
+    "carrierCode": {
+      "maxLength": 4,
+      "pattern": "^\\S+$",
+      "type": "string",
+      "description": "The `SCAC` code (provided by [NMFTA](https://nmfta.org/scac/)) or `SMDG` code (provided by [SMDG](https://smdg.org/documents/smdg-code-lists/smdg-liner-code-list/)) of the carrier the booking request is intended for. `carrierCodeListProvider` defines which list the `carrierCode` is based upon.\n"
+    },
+    "carrierCodeListProvider": {
+      "type": "string",
+      "description": "The code list provider for the `carrierCode`. Possible values are:\n- `SMDG` (Ship Message Design Group)\n- `NMFTA` (National Motor Freight Traffic Association)\n",
+      "enum": [
+        "SMDG",
+        "NMFTA"
+      ]
+    },
+    "isPartialLoadAllowed": {
+      "type": "boolean",
+      "description": "Indicates whether the shipper agrees to load part of the shipment in case not all of the cargo is delivered within cut-off.\n\n**Note:** The carrier is not liable in case unable to follow the customer's instructions due to operational constraints. If this value is omitted, it may be interpreted differently by different API providers and by the same API provider in different contexts.\n"
+    },
+    "isExportDeclarationRequired": {
+      "type": "boolean",
+      "description": "Information provided by the shipper whether an export declaration is required for this particular shipment/commodity/destination.\n\n**Note:** If this property is omitted, it may be interpreted differently by different API providers and by the same API provider in different contexts.\n"
+    },
+    "exportDeclarationReference": {
+      "maxLength": 35,
+      "pattern": "^\\S(?:.*\\S)?$",
+      "type": "string",
+      "description": "Reference number assigned to an Export declaration typically submitted by the exporter (or the freight forwarder on behalf of the exporter) that provides detailed information about the goods being exported. It serves as a record for the exporting country's government and is used for statistical, regulatory, and compliance purposes. The export declaration must typically be submitted to the relevant customs authorities before the goods leave the exporting country.\n"
+    },
+    "expectedDepartureDate": {
+      "type": "string",
+      "description": "The date when the shipment is expected to be loaded on board a vessel as provided by the shipper or its agent.\n\n**Condition:** Mandatory if vessel/voyage/service details or `expectedArrivalAtPlaceOfDeliveryDate` is not provided.\n",
+      "format": "date"
+    },
+    "expectedArrivalAtPlaceOfDeliveryStartDate": {
+      "type": "string",
+      "description": "The start date (provided as a range together with `expectedArrivalAtPlaceOfDeliveryEndDate`) for when the shipment is expected to arrive at `Place Of Delivery`.\n\n**Condition:** Mandatory if vessel/voyage/service details or `expectedDepartureDate` is not provided.\n",
+      "format": "date"
+    },
+    "expectedArrivalAtPlaceOfDeliveryEndDate": {
+      "type": "string",
+      "description": "The end date (provided as a range together with `expectedArrivalAtPlaceOfDeliveryStartDate`) for when the shipment is expected to arrive at `Place Of Delivery`.\n\n**Condition:** Mandatory if vessel/voyage/service details or `expectedDepartureDate` is not provided.\n",
+      "format": "date"
+    },
+    "transportDocumentTypeCode": {
+      "type": "string",
+      "description": "Specifies the type of the `Transport Document`. Possible values are:\n- `BOL` (Bill of Lading)\n- `SWB` (Sea Waybill)\n",
+      "enum": [
+        "BOL",
+        "SWB"
+      ]
+    },
+    "transportDocumentReference": {
+      "maxLength": 20,
+      "pattern": "^\\S(?:.*\\S)?$",
+      "type": "string",
+      "description": "A unique reference allocated by the shipping line to the `Transport Document` that the booking concerns.\n"
+    },
+    "bookingChannelReference": {
+      "maxLength": 20,
+      "pattern": "^\\S(?:.*\\S)?$",
+      "type": "string",
+      "description": "Identification number provided by the platform/channel used for booking request/confirmation, ex: Inttra booking reference, or GTNexus, other.\n\n**Condition:** a booking channel is being used\n"
+    },
+    "incoTerms": {
+      "maxLength": 3,
+      "type": "string",
+      "description": "Transport obligations, costs and risks as agreed between buyer and seller as defined by [Incoterms Rules](https://iccwbo.org/business-solutions/incoterms-rules/).\n"
+    },
+    "isEquipmentSubstitutionAllowed": {
+      "type": "boolean",
+      "description": "Indicates if an alternate equipment type can be provided by the carrier.\n"
+    },
+    "invoicePayableAt": {
+      "$ref": "#/$defs/InvoicePayableAt"
+    },
+    "placeOfBLIssue": {
+      "$ref": "#/$defs/PlaceOfBLIssue"
+    },
+    "references": {
+      "type": "array",
+      "description": "A list of `References`\n",
+      "items": {
+        "$ref": "#/$defs/ReferenceShipper"
+      }
+    },
+    "customsReferences": {
+      "type": "array",
+      "description": "A list of `Customs references`\n",
+      "items": {
+        "$ref": "#/$defs/CustomsReference"
+      }
+    },
+    "documentParties": {
+      "$ref": "#/$defs/DocumentPartiesReq"
+    },
+    "partyContactDetails": {
+      "type": "array",
+      "description": "The contact details of the person(s) to contact in relation to the **Booking** (changes, notifications etc.) \n",
+      "items": {
+        "$ref": "#/$defs/PartyContactDetail"
+      }
+    },
+    "shipmentLocations": {
+      "minItems": 1,
+      "type": "array",
+      "description": "A list of `Shipment Locations`\n",
+      "items": {
+        "$ref": "#/$defs/ShipmentLocation"
+      }
+    },
+    "requestedEquipments": {
+      "minItems": 1,
+      "type": "array",
+      "description": "List of `Requested Equipments`. Multiple containers can be requested within the same booking. For each Requested Equipment object with 2 or more units, it is a condition that the commodity (or list of commodities) defined within the same Requested Equipment object is the same for each requested unit.\n\n**Example:** 2 x 20' containing 50% shoes and 50% t-shirts can be requested within the same Requested Equipment object only if each 20' will contain 50% shoes and 50% t-shirts. If 1 x 20' will contain 100% shoes and the other 20' will be 100% t-shirts, 2 separate Requested Equipment objects must be defined.\n",
+      "items": {
+        "$ref": "#/$defs/RequestedEquipmentShipper"
+      }
+    }
+  },
+  "$defs": {
+    "ActiveReeferSettings": {
+      "title": "Active Reefer Settings",
+      "required": [
+        "temperatureSetpoint",
+        "temperatureUnit"
+      ],
+      "type": "object",
+      "properties": {
+        "temperatureSetpoint": {
+          "type": "number",
+          "description": "Target value of the temperature for the Reefer based on the cargo requirement.\n",
+          "format": "float"
+        },
+        "temperatureUnit": {
+          "type": "string",
+          "description": "The unit for temperature in Celsius or Fahrenheit\n- `CEL` (Celsius)\n- `FAH` (Fahrenheit)\n\n**Condition:** Mandatory to provide if `temperatureSetpoint` is provided\n",
+          "enum": [
+            "CEL",
+            "FAH"
+          ]
+        },
+        "o2Setpoint": {
+          "maximum": 100,
+          "minimum": 0,
+          "type": "number",
+          "description": "The percentage of the controlled atmosphere CO<sub>2</sub> target value\n",
+          "format": "float"
+        },
+        "co2Setpoint": {
+          "maximum": 100,
+          "minimum": 0,
+          "type": "number",
+          "description": "The percentage of the controlled atmosphere CO<sub>2</sub> target value\n",
+          "format": "float"
+        },
+        "humiditySetpoint": {
+          "maximum": 100,
+          "minimum": 0,
+          "type": "number",
+          "description": "The percentage of the controlled atmosphere humidity target value\n",
+          "format": "float"
+        },
+        "airExchangeSetpoint": {
+          "minimum": 0,
+          "type": "number",
+          "description": "Target value for the air exchange rate which is the rate at which outdoor air replaces indoor air within a Reefer container\n",
+          "format": "float"
+        },
+        "airExchangeUnit": {
+          "type": "string",
+          "description": "The unit for `airExchange` in metrics- or imperial- units per hour\n- `MQH` (Cubic metre per hour)\n- `FQH` (Cubic foot per hour)\n\n**Condition:** Mandatory to provide if `airExchange` is provided\n",
+          "enum": [
+            "MQH",
+            "FQH"
+          ]
+        },
+        "isVentilationOpen": {
+          "type": "boolean",
+          "description": "If `true` the ventilation orifice is `Open` - if `false` the ventilation orifice is `closed`\n"
+        },
+        "isDrainholesOpen": {
+          "type": "boolean",
+          "description": "Is drain holes open on the container\n"
+        },
+        "isBulbMode": {
+          "type": "boolean",
+          "description": "Is special container setting for handling flower bulbs active\n"
+        },
+        "isColdTreatmentRequired": {
+          "type": "boolean",
+          "description": "Indicator whether cargo requires cold treatment prior to loading at origin or during transit, but prior arrival at POD\n"
+        },
+        "isControlledAtmosphereRequired": {
+          "type": "boolean",
+          "description": "Indicator of whether cargo requires Controlled Atmosphere.\n"
+        },
+        "isPreCoolingRequired": {
+          "type": "boolean",
+          "description": "Indicator whether reefer container should be pre-cooled to the temperature setting required at time of release from depot\n"
+        },
+        "isGeneratorSetRequired": {
+          "type": "boolean",
+          "description": "Indicator whether reefer container should have a generator set attached at time of release from depot\n"
+        }
+      },
+      "description": "The specifications for a Reefer equipment.\n\n**Condition:** Only applicable when `isNonOperatingReefer` is set to `false`\n"
+    },
+    "Address": {
+      "title": "Address",
+      "required": [
+        "city",
+        "countryCode",
+        "street"
+      ],
+      "type": "object",
+      "properties": {
+        "street": {
+          "maxLength": 70,
+          "type": "string",
+          "description": "The name of the street."
+        },
+        "streetNumber": {
+          "maxLength": 50,
+          "type": "string",
+          "description": "The number of the street."
+        },
+        "floor": {
+          "maxLength": 50,
+          "pattern": "^\\S(?:.*\\S)?$",
+          "type": "string",
+          "description": "The floor of the street number.\n"
+        },
+        "postCode": {
+          "maxLength": 10,
+          "type": "string",
+          "description": "The post code."
+        },
+        "POBox": {
+          "maxLength": 20,
+          "type": "string",
+          "description": "A numbered box at a post office where a person or business can have mail or parcels delivered."
+        },
+        "city": {
+          "maxLength": 35,
+          "pattern": "^\\S(?:.*\\S)?$",
+          "type": "string",
+          "description": "The name of the city.\n"
+        },
+        "stateRegion": {
+          "maxLength": 65,
+          "type": "string",
+          "description": "The name of the state/region."
+        },
+        "countryCode": {
+          "maxLength": 2,
+          "minLength": 2,
+          "pattern": "^[A-Z]{2}$",
+          "type": "string",
+          "description": "The 2 characters for the country code using [ISO 3166-1 alpha-2](https://www.iso.org/obp/ui/#iso:pub:PUB500001:en)\n"
+        }
+      },
+      "description": "An object for storing address related information\n"
+    },
+    "BookingAgent": {
+      "title": "Booking Agent",
+      "required": [
+        "partyName"
+      ],
+      "type": "object",
+      "properties": {
+        "partyName": {
+          "maxLength": 70,
+          "pattern": "^\\S(?:.*\\S)?$",
+          "type": "string",
+          "description": "Name of the party.\n"
+        },
+        "address": {
+          "$ref": "#/$defs/PartyAddress"
+        },
+        "partyContactDetails": {
+          "minItems": 1,
+          "type": "array",
+          "description": "A list of contact details\n",
+          "items": {
+            "$ref": "#/$defs/PartyContactDetail"
+          }
+        },
+        "identifyingCodes": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/IdentifyingCode"
+          }
+        },
+        "taxLegalReferences": {
+          "type": "array",
+          "description": "A list of `Tax References` for a `Party`\n",
+          "items": {
+            "$ref": "#/$defs/TaxLegalReference"
+          }
+        },
+        "reference": {
+          "maxLength": 35,
+          "pattern": "^\\S(?:.*\\S)?$",
+          "type": "string",
+          "description": "A reference linked to the `Booking Agent`.\n"
+        }
+      },
+      "description": "The party placing the booking request on behalf of the customer.\n"
+    },
+    "CargoGrossVolume": {
+      "title": "Cargo Gross Volume",
+      "required": [
+        "unit",
+        "value"
+      ],
+      "type": "object",
+      "properties": {
+        "value": {
+          "minimum": 0,
+          "exclusiveMinimum": true,
+          "type": "number",
+          "description": "The estimated grand total volume of the cargo.\n",
+          "format": "float"
+        },
+        "unit": {
+          "type": "string",
+          "description": "The unit of measure which can be expressed in imperial or metric terms:\n- `FTQ` (Cubic foot)\n- `MTQ` (Cubic meter)\n",
+          "enum": [
+            "MTQ",
+            "FTQ"
+          ]
+        }
+      },
+      "description": "The estimated grand total volume of the cargo.\n"
+    },
+    "CargoGrossWeight": {
+      "title": "Cargo Gross Weight",
+      "required": [
+        "unit",
+        "value"
+      ],
+      "type": "object",
+      "properties": {
+        "value": {
+          "minimum": 0,
+          "exclusiveMinimum": true,
+          "type": "number",
+          "description": "The estimated grand total gross weight of the cargo, including packaging items being carried, which can be expressed in imperial or metric terms, as provided by the shipper.\n",
+          "format": "float"
+        },
+        "unit": {
+          "type": "string",
+          "description": "The unit of measure which can be expressed in imperial or metric terms:\n- `KGM` (Kilograms)\n- `LBR` (Pounds)\n",
+          "enum": [
+            "KGM",
+            "LBR"
+          ]
+        }
+      },
+      "description": "The estimated grand total gross weight of the cargo, including packaging items being carried, which can be expressed in imperial or metric terms, as provided by the shipper.\n\n**Condition:** Mandatory if not provided on `Requested Equipment` level.\n"
+    },
+    "CargoGrossWeightReq": {
+      "title": "Cargo Gross Weight (Requested Equipment)",
+      "required": [
+        "unit",
+        "value"
+      ],
+      "type": "object",
+      "properties": {
+        "value": {
+          "minimum": 0,
+          "exclusiveMinimum": true,
+          "type": "number",
+          "description": "The estimated grand total gross weight of the cargo, including packaging items being carried, which can be expressed in imperial or metric terms, as provided by the shipper.\n",
+          "format": "float"
+        },
+        "unit": {
+          "type": "string",
+          "description": "The unit of measure which can be expressed in imperial or metric terms:\n- `KGM` (Kilograms)\n- `LBR` (Pounds)\n",
+          "enum": [
+            "KGM",
+            "LBR"
+          ]
+        }
+      },
+      "description": "The estimated grand total gross weight of the cargo, including packaging items being carried, which can be expressed in imperial or metric terms, as provided by the shipper.\n\n**Condition:** Mandatory if not provided on `Commodity` level\n"
+    },
+    "CargoNetVolume": {
+      "title": "Cargo Net Volume",
+      "required": [
+        "unit",
+        "value"
+      ],
+      "type": "object",
+      "properties": {
+        "value": {
+          "minimum": 0,
+          "exclusiveMinimum": true,
+          "type": "number",
+          "description": "The estimated net total volume of the cargo.\n",
+          "format": "float"
+        },
+        "unit": {
+          "type": "string",
+          "description": "The unit of measure which can be expressed in imperial or metric terms:\n- `FTQ` (Cubic foot)\n- `MTQ` (Cubic meter)\n",
+          "enum": [
+            "MTQ",
+            "FTQ"
+          ]
+        }
+      },
+      "description": "The estimated net total volume of the cargo.\n"
+    },
+    "CargoNetWeight": {
+      "title": "Cargo Net Weight",
+      "required": [
+        "unit",
+        "value"
+      ],
+      "type": "object",
+      "properties": {
+        "value": {
+          "minimum": 0,
+          "exclusiveMinimum": true,
+          "type": "number",
+          "description": "The estimated grand total net weight of the cargo, excluding packaging items being carried, which can be expressed in imperial or metric terms, as provided by the shipper.\n",
+          "format": "float"
+        },
+        "unit": {
+          "type": "string",
+          "description": "The unit of measure which can be expressed in imperial or metric terms:\n- `KGM` (Kilograms)\n- `LBR` (Pounds)\n",
+          "enum": [
+            "KGM",
+            "LBR"
+          ]
+        }
+      },
+      "description": "The estimated grand total net weight of the cargo, excluding packaging items being carried, which can be expressed in imperial or metric terms, as provided by the shipper.\n"
+    },
+    "CarrierBookingOffice": {
+      "title": "Carrier Booking Office",
+      "required": [
+        "UNLocationCode",
+        "partyName"
+      ],
+      "type": "object",
+      "properties": {
+        "partyName": {
+          "maxLength": 70,
+          "pattern": "^\\S(?:.*\\S)?$",
+          "type": "string",
+          "description": "Name of the party.\n"
+        },
+        "UNLocationCode": {
+          "maxLength": 5,
+          "minLength": 5,
+          "pattern": "^[A-Z]{2}[A-Z2-9]{3}$",
+          "type": "string",
+          "description": "The UN Location code specifying where the carrier booking office is located. The pattern used must be\n\n- 2 characters for the country code using [ISO 3166-1 alpha-2](https://www.iso.org/obp/ui/#iso:pub:PUB500001:en)\n- 3 characters to code a location within that country. Letters A-Z and numbers from 2-9 can be used\n\nMore info can be found here: [UN/LOCODE](https://unece.org/trade/cefact/UNLOCODE-Download)\n"
+        },
+        "address": {
+          "$ref": "#/$defs/Address"
+        },
+        "partyContactDetails": {
+          "minItems": 1,
+          "type": "array",
+          "description": "A list of contact details\n",
+          "items": {
+            "$ref": "#/$defs/PartyContactDetail"
+          }
+        }
+      },
+      "description": "The carrier office responsible for processing the booking.\n"
+    },
+    "CommodityShipper": {
+      "title": "Commodity (Shipper)",
+      "required": [
+        "commodityType"
+      ],
+      "type": "object",
+      "properties": {
+        "commodityType": {
+          "maxLength": 550,
+          "pattern": "^\\S(?:.*\\S)?$",
+          "type": "string",
+          "description": "High-level description of goods to be shipped which allow the carrier to confirm acceptance and commercial terms. To be replaced by \"description of goods\" upon submission of `Shipping Instructions`\n"
+        },
+        "HSCodes": {
+          "type": "array",
+          "description": "A list of `HS Codes` that apply to this `commodity`\n",
+          "items": {
+            "maxLength": 10,
+            "minLength": 6,
+            "pattern": "^\\d{6,10}$",
+            "type": "string",
+            "description": "Used by customs to classify the product being shipped. The type of HS code depends on country and customs requirements. The code must be at least 6 and at most 10 digits.\n\nMore information can be found here: [HS Nomenclature](https://www.wcoomd.org/en/topics/nomenclature/instrument-and-tools).\n"
+          }
+        },
+        "nationalCommodityCodes": {
+          "type": "array",
+          "description": "A list of `National Commodity Codes` that apply to this `commodity`\n",
+          "items": {
+            "$ref": "#/$defs/NationalCommodityCode"
+          }
+        },
+        "cargoGrossWeight": {
+          "$ref": "#/$defs/CargoGrossWeight"
+        },
+        "cargoGrossVolume": {
+          "$ref": "#/$defs/CargoGrossVolume"
+        },
+        "cargoNetWeight": {
+          "$ref": "#/$defs/CargoNetWeight"
+        },
+        "cargoNetVolume": {
+          "$ref": "#/$defs/CargoNetVolume"
+        },
+        "exportLicense": {
+          "$ref": "#/$defs/ExportLicense"
+        },
+        "importLicense": {
+          "$ref": "#/$defs/ImportLicense"
+        },
+        "outerPackaging": {
+          "$ref": "#/$defs/OuterPackaging"
+        },
+        "references": {
+          "type": "array",
+          "description": "A list of `References`\n",
+          "items": {
+            "$ref": "#/$defs/ReferenceShipper"
+          }
+        },
+        "customsReferences": {
+          "type": "array",
+          "description": "A list of `Customs references`\n",
+          "items": {
+            "$ref": "#/$defs/CustomsReference"
+          }
+        }
+      },
+      "description": "Type of goods, defined by its commodity type\n"
+    },
+    "Consignee": {
+      "title": "Consignee",
+      "required": [
+        "partyName"
+      ],
+      "type": "object",
+      "properties": {
+        "partyName": {
+          "maxLength": 70,
+          "pattern": "^\\S(?:.*\\S)?$",
+          "type": "string",
+          "description": "Name of the party.\n"
+        },
+        "address": {
+          "$ref": "#/$defs/PartyAddress"
+        },
+        "partyContactDetails": {
+          "minItems": 1,
+          "type": "array",
+          "description": "A list of contact details\n",
+          "items": {
+            "$ref": "#/$defs/PartyContactDetail"
+          }
+        },
+        "identifyingCodes": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/IdentifyingCode"
+          }
+        },
+        "taxLegalReferences": {
+          "type": "array",
+          "description": "A list of `Tax References` for a `Party`\n",
+          "items": {
+            "$ref": "#/$defs/TaxLegalReference"
+          }
+        },
+        "reference": {
+          "maxLength": 35,
+          "pattern": "^\\S(?:.*\\S)?$",
+          "type": "string",
+          "description": "A reference linked to the `Consignee`.\n"
+        },
+        "purchaseOrderReferences": {
+          "type": "array",
+          "description": "A list of `Purchase Order Reference`s linked to the `Consignee`.\n",
+          "items": {
+            "maxLength": 35,
+            "pattern": "^\\S(?:.*\\S)?$",
+            "type": "string",
+            "description": "A purchase order reference linked to the `Consignee`.\n"
+          }
+        }
+      },
+      "description": "The party to which goods are consigned in the Master Bill of Lading.\n"
+    },
+    "ContainerPositioning": {
+      "title": "Container Positioning",
+      "required": [
+        "location"
+      ],
+      "type": "object",
+      "properties": {
+        "dateTime": {
+          "type": "string",
+          "description": "The date and time requested by the shipper for the positioning of the container(s) at the Container positioning location (`CPO`), if provided, or the Place of Receipt (`PRE`) if `CPO` location is not provided.\n",
+          "format": "date-time"
+        },
+        "location": {
+          "$ref": "#/$defs/ContainerPositioningLocation"
+        }
+      },
+      "description": "An object to capture the `Location` together with an optional `Date and Time`.\n"
+    },
+    "ContainerPositioningLocation": {
+      "title": "Container Positioning Location",
+      "type": "object",
+      "properties": {
+        "locationName": {
+          "maxLength": 100,
+          "pattern": "^\\S(?:.*\\S)?$",
+          "type": "string",
+          "description": "The name of the location."
+        },
+        "address": {
+          "$ref": "#/$defs/Address"
+        },
+        "facility": {
+          "$ref": "#/$defs/Facility"
+        },
+        "UNLocationCode": {
+          "maxLength": 5,
+          "minLength": 5,
+          "pattern": "^[A-Z]{2}[A-Z2-9]{3}$",
+          "type": "string",
+          "description": "The UN Location code specifying where the place is located. The pattern used must be\n\n- 2 characters for the country code using [ISO 3166-1 alpha-2](https://www.iso.org/obp/ui/#iso:pub:PUB500001:en)\n- 3 characters to code a location within that country. Letters A-Z and numbers from 2-9 can be used\n\nMore info can be found here: [UN/LOCODE](https://unece.org/trade/cefact/UNLOCODE-Download)\n"
+        },
+        "geoCoordinate": {
+          "$ref": "#/$defs/GeoCoordinate"
+        }
+      },
+      "description": "An object to capture the `Container Positioning Location`.\n\nThe location of the customer facility where the container(s) will be loaded.\n\n**Condition:** Only applicable to carrier haulage service at origin (`Receipt type at origin = 'SD'`).\n\nThe location can be specified in **any** of the following ways: `Address`, `Facility`, `UN Location Code` or a `GeoCoordinate`.\n\n**Condition:** It is expected that if a location is specified in multiple ways (e.g. both as an `Address` and as a `Facility`) that both ways point to the same location.\n"
+    },
+    "CustomsReference": {
+      "title": "Customs Reference",
+      "required": [
+        "countryCode",
+        "type",
+        "values"
+      ],
+      "type": "object",
+      "properties": {
+        "type": {
+          "maxLength": 50,
+          "pattern": "^\\S(?:.*\\S)?$",
+          "type": "string",
+          "description": "The reference type code as defined in the relevant customs jurisdiction.\n"
+        },
+        "countryCode": {
+          "maxLength": 2,
+          "minLength": 2,
+          "pattern": "^[A-Z]{2}$",
+          "type": "string",
+          "description": "The 2 characters for the country code using [ISO 3166-1 alpha-2](https://www.iso.org/obp/ui/#iso:pub:PUB500001:en)\n"
+        },
+        "values": {
+          "minItems": 1,
+          "type": "array",
+          "items": {
+            "maxLength": 35,
+            "pattern": "^\\S(?:.*\\S)?$",
+            "type": "string",
+            "description": "The value of the `customsReference`\n"
+          }
+        }
+      },
+      "description": "Reference associated with customs and/or excise purposes required by the relevant authorities for the import, export, or transit of the goods.\n\nA small list of **potential** examples:\n\n| Type  | Country | Description |\n|-------|:-------:|-------------|\n|ACID|EG|Advance Cargo Information Declaration in Egypt|\n|CERS|CA|Canadian Export Reporting System|\n|ITN|US|Internal Transaction Number in US|\n|PEB|ID|PEB reference number|\n|CSN|IN|Cargo Summary Notification (CSN)|\n"
+    },
+    "DangerousGoods": {
+      "title": "Dangerous Goods",
+      "required": [
+        "emergencyContactDetails",
+        "grossWeight",
+        "imoClass",
+        "isCompetentAuthorityApprovalRequired",
+        "isEmptyUncleanedResidue",
+        "isExceptedQuantity",
+        "isHot",
+        "isLimitedQuantity",
+        "isMarinePollutant",
+        "isReportableQuantity",
+        "isSalvagePackings",
+        "isWaste",
+        "properShippingName"
+      ],
+      "type": "object",
+      "properties": {
+        "codedVariantList": {
+          "maxLength": 4,
+          "minLength": 4,
+          "pattern": "^[0-3][0-9A-Z]{3}$",
+          "type": "string",
+          "description": "Four-character code supplied by Exis Technologies that assists to remove ambiguities when identifying a variant within a single `UN number` or `NA number` that may occur when two companies exchange DG information.\n\nCharacter | Valid Characters | Description\n:--------:|------------------|------------\n1| 0, 1, 2, 3|The packing group. Code 0 indicates there is no packing group\n2|0 to 9 and A to Z|A sequence letter for the PSN, or 0 if there were no alternative PSNs\n3 and 4|0 to 9 and A to Z|Two sequence letters for other information, for the cases where the variant is required because of different in subrisks, packing instruction etc.\n"
+        },
+        "properShippingName": {
+          "maxLength": 250,
+          "type": "string",
+          "description": "The proper shipping name for goods under IMDG Code, or the product name for goods under IBC Code and IGC Code, or the bulk cargo shipping name for goods under IMSBC Code, or the name of oil for goods under Annex I to the MARPOL Convention.\n"
+        },
+        "technicalName": {
+          "maxLength": 250,
+          "type": "string",
+          "description": "The recognized chemical or biological name or other name currently used for the referenced dangerous goods as described in chapter 3.1.2.8 of the IMDG Code.\n"
+        },
+        "imoClass": {
+          "maxLength": 4,
+          "type": "string",
+          "description": "The hazard class code of the referenced dangerous goods according to the specified regulation. Examples of possible values are:\n- `1.1A` (Substances and articles which have a mass explosion hazard)\n- `1.6N` (Extremely insensitive articles which do not have a mass explosion hazard)\n- `2.1` (Flammable gases)\n- `8` (Corrosive substances)\n"
+        },
+        "subsidiaryRisk1": {
+          "maxLength": 3,
+          "minLength": 1,
+          "pattern": "^[0-9](\\.[0-9])?$",
+          "type": "string",
+          "description": "Any risk in addition to the class of the referenced dangerous goods according to the IMO IMDG Code.\n"
+        },
+        "subsidiaryRisk2": {
+          "maxLength": 3,
+          "minLength": 1,
+          "pattern": "^[0-9](\\.[0-9])?$",
+          "type": "string",
+          "description": "Any risk in addition to the class of the referenced dangerous goods according to the IMO IMDG Code.\n"
+        },
+        "isMarinePollutant": {
+          "type": "boolean",
+          "description": "Indicates if the goods belong to the classification of Marine Pollutant.\n"
+        },
+        "packingGroup": {
+          "maximum": 3,
+          "minimum": 1,
+          "type": "integer",
+          "description": "The packing group according to the UN Recommendations on the Transport of Dangerous Goods and IMO IMDG Code.\n",
+          "format": "int32"
+        },
+        "isLimitedQuantity": {
+          "type": "boolean",
+          "description": "Indicates if the dangerous goods can be transported as limited quantity in accordance with Chapter 3.4 of the IMO IMDG Code.\n"
+        },
+        "isExceptedQuantity": {
+          "type": "boolean",
+          "description": "Indicates if the dangerous goods can be transported as excepted quantity in accordance with Chapter 3.5 of the IMO IMDG Code.\n"
+        },
+        "isSalvagePackings": {
+          "type": "boolean",
+          "description": "Indicates if the cargo has special packaging for the transport, recovery or disposal of damaged, defective, leaking or nonconforming hazardous materials packages, or hazardous materials that have spilled or leaked.\n"
+        },
+        "isEmptyUncleanedResidue": {
+          "type": "boolean",
+          "description": "Indicates if the cargo is residue.\n"
+        },
+        "isWaste": {
+          "type": "boolean",
+          "description": "Indicates if waste is being shipped\n"
+        },
+        "isHot": {
+          "type": "boolean",
+          "description": "Indicates if high temperature cargo is shipped.\n"
+        },
+        "isCompetentAuthorityApprovalRequired": {
+          "type": "boolean",
+          "description": "Indicates if the cargo require approval from authorities\n"
+        },
+        "competentAuthorityApproval": {
+          "maxLength": 70,
+          "pattern": "^\\S(?:.*\\S)?$",
+          "type": "string",
+          "description": "Name and reference number of the competent authority providing the approval.\n"
+        },
+        "segregationGroups": {
+          "type": "array",
+          "description": "List of the segregation groups applicable to specific hazardous goods according to the IMO IMDG Code.\n\n**Condition:** only applicable to specific hazardous goods.\n",
+          "items": {
+            "maxLength": 2,
+            "type": "string",
+            "description": "Grouping of Dangerous Goods having certain similar chemical properties. Possible values are:\n- `1` (Acids)\n- `2` (Ammonium Compounds)\n- `3` (Bromates)\n- `4` (Chlorates)\n- `5` (Chlorites)\n- `6` (Cyanides)\n- `7` (Heavy metals and their salts)\n- `8` (Hypochlorites)\n- `9` (Lead and its compounds)\n- `10` (Liquid halogenated hydrocarbons)\n- `11` (Mercury and mercury compounds)\n- `12` (Nitrites and their mixtures)\n- `13` (Perchlorates)\n- `14` (Permanganates)\n- `15` (Powdered metals)\n- `16` (Peroxides),\n- `17` (Azides)\n- `18` (Alkalis)\n"
+          }
+        },
+        "innerPackagings": {
+          "type": "array",
+          "description": "A list of `Inner Packings` contained inside this `outer packaging/overpack`.\n",
+          "items": {
+            "$ref": "#/$defs/InnerPackaging"
+          }
+        },
+        "emergencyContactDetails": {
+          "$ref": "#/$defs/EmergencyContactDetails"
+        },
+        "EMSNumber": {
+          "maxLength": 7,
+          "type": "string",
+          "description": "The emergency schedule identified in the IMO EmS Guide - Emergency Response Procedures for Ships Carrying Dangerous Goods. Comprises 2 values; 1 for spillage and 1 for fire. Possible values spillage: S-A to S-Z. Possible values fire: F-A to F-Z.\n"
+        },
+        "endOfHoldingTime": {
+          "type": "string",
+          "description": "Date by when the refrigerated liquid needs to be delivered.\n",
+          "format": "date"
+        },
+        "fumigationDateTime": {
+          "type": "string",
+          "description": "Date & time when the container was fumigated\n",
+          "format": "date-time"
+        },
+        "isReportableQuantity": {
+          "type": "boolean",
+          "description": "Indicates if a container of hazardous material is at the reportable quantity level. If `TRUE`, a report to the relevant authority must be made in case of spill.\n"
+        },
+        "inhalationZone": {
+          "maxLength": 1,
+          "minLength": 1,
+          "type": "string",
+          "description": "The zone classification of the toxicity of the inhalant. Possible values are:\n- `A` (Hazard Zone A) can be assigned to specific gases and liquids\n- `B` (Hazard Zone B) can be assigned to specific gases and liquids\n- `C` (Hazard Zone C) can **only** be assigned to specific gases\n- `D` (Hazard Zone D) can **only** be assigned to specific gases\n"
+        },
+        "grossWeight": {
+          "$ref": "#/$defs/GrossWeight"
+        },
+        "netWeight": {
+          "$ref": "#/$defs/NetWeight"
+        },
+        "netExplosiveContent": {
+          "$ref": "#/$defs/NetExplosiveContent"
+        },
+        "netVolume": {
+          "$ref": "#/$defs/NetVolume"
+        },
+        "limits": {
+          "$ref": "#/$defs/Limits"
+        },
+        "specialCertificateNumber": {
+          "maxLength": 255,
+          "type": "string",
+          "description": "Text field to indicate certificate number & segment for specific stowage requirements overruling IMDG code\n"
+        },
+        "additionalContainerCargoHandling": {
+          "maxLength": 255,
+          "type": "string",
+          "description": "Text field to provide cargo handling information already known at the booking stage.\n"
+        }
+      },
+      "description": "Specification for `Dangerous Goods`. It is mandatory to provide one of `UNNumber` or `NANumber`. Dangerous Goods is based on **IMDG Amendment Version 41-22**.\n",
+      "oneOf": [
+        {
+          "title": "UN Number",
+          "required": [
+            "UNNumber"
+          ],
+          "type": "object",
+          "properties": {
+            "UNNumber": {
+              "maxLength": 4,
+              "minLength": 4,
+              "pattern": "^\\d{4}$",
+              "type": "string",
+              "description": "United Nations Dangerous Goods Identifier (UNDG) assigned by the UN Sub-Committee of Experts on the Transport of Dangerous Goods and shown in the IMO IMDG.\n"
+            }
+          }
+        },
+        {
+          "title": "NA Number",
+          "required": [
+            "NANumber"
+          ],
+          "type": "object",
+          "properties": {
+            "NANumber": {
+              "maxLength": 4,
+              "minLength": 4,
+              "pattern": "^\\d{4}$",
+              "type": "string",
+              "description": "Four-digit number that is assigned to dangerous, hazardous, and harmful substances by the United States Department of Transportation.\n"
+            }
+          }
+        }
+      ]
+    },
+    "DestinationChargesPaymentTerm": {
+      "title": "Destination Charges Payment Term",
+      "type": "object",
+      "properties": {
+        "haulageChargesPaymentTermCode": {
+          "type": "string",
+          "description": "An indicator of whether the costs for inland transportation to the port, when applicable, are prepaid (`PRE`) or collect (`COL`).\n\n- `PRE` (Prepaid)\n- `COL` (Collect)\n",
+          "enum": [
+            "PRE",
+            "COL"
+          ]
+        },
+        "portChargesPaymentTermCode": {
+          "type": "string",
+          "description": "An indicator of whether the destination port charges are prepaid (`PRE`) or collect (`COL`).\n\n- `PRE` (Prepaid)\n- `COL` (Collect)\n",
+          "enum": [
+            "PRE",
+            "COL"
+          ]
+        },
+        "otherChargesPaymentTermCode": {
+          "type": "string",
+          "description": "An indicator of whether destination charges (excluding port and haulage) are prepaid (`PRE`) or collect (`COL`).\n\n- `PRE` (Prepaid)\n- `COL` (Collect)\n",
+          "enum": [
+            "PRE",
+            "COL"
+          ]
+        }
+      },
+      "description": "An indicator of whether destination charges are prepaid (`PRE`) or collect (`COL`). When prepaid, the charges are the responsibility of the shipper or the Invoice payer on behalf of the shipper (if provided). When collect, the charges are the responsibility of the consignee or the Invoice payer on behalf of the consignee (if provided).\n"
+    },
+    "DocumentPartiesReq": {
+      "title": "Document Parties",
+      "required": [
+        "bookingAgent"
+      ],
+      "type": "object",
+      "properties": {
+        "bookingAgent": {
+          "$ref": "#/$defs/BookingAgent"
+        },
+        "shipper": {
+          "$ref": "#/$defs/Shipper"
+        },
+        "consignee": {
+          "$ref": "#/$defs/Consignee"
+        },
+        "serviceContractOwner": {
+          "$ref": "#/$defs/ServiceContractOwner"
+        },
+        "carrierBookingOffice": {
+          "$ref": "#/$defs/CarrierBookingOffice"
+        },
+        "other": {
+          "type": "array",
+          "description": "A list of document parties that can be optionally provided at booking stage.",
+          "items": {
+            "$ref": "#/$defs/OtherDocumentParty"
+          }
+        }
+      },
+      "description": "All `Parties` with associated roles.\n"
+    },
+    "EmergencyContactDetails": {
+      "title": "Emergency Contact Details",
+      "required": [
+        "contact",
+        "phone"
+      ],
+      "type": "object",
+      "properties": {
+        "contact": {
+          "maxLength": 255,
+          "type": "string",
+          "description": "Name of the Contact person during an emergency.\n"
+        },
+        "provider": {
+          "maxLength": 255,
+          "type": "string",
+          "description": "Name of the third party vendor providing emergency support\n"
+        },
+        "phone": {
+          "maxLength": 30,
+          "pattern": "^\\S(?:.*\\S)?$",
+          "type": "string",
+          "description": "Phone number for the contact. Phone **MUST** include an international phone number format as defined in the [ITU-T recommendation E.123](https://www.itu.int/rec/T-REC-E.123/en).\n"
+        },
+        "referenceNumber": {
+          "maxLength": 255,
+          "type": "string",
+          "description": "Contract reference for the emergency support provided by an external third party vendor.\n"
+        }
+      },
+      "description": "24 hr emergency contact details\n"
+    },
+    "EmptyContainerDepotReleaseLocation": {
+      "title": "Empty Container Depot Release Location",
+      "type": "object",
+      "properties": {
+        "locationName": {
+          "maxLength": 100,
+          "pattern": "^\\S(?:.*\\S)?$",
+          "type": "string",
+          "description": "The name of the location."
+        },
+        "address": {
+          "$ref": "#/$defs/Address"
+        },
+        "facility": {
+          "$ref": "#/$defs/Facility"
+        },
+        "UNLocationCode": {
+          "maxLength": 5,
+          "minLength": 5,
+          "pattern": "^[A-Z]{2}[A-Z2-9]{3}$",
+          "type": "string",
+          "description": "The UN Location code specifying where the place is located. The pattern used must be\n\n- 2 characters for the country code using [ISO 3166-1 alpha-2](https://www.iso.org/obp/ui/#iso:pub:PUB500001:en)\n- 3 characters to code a location within that country. Letters A-Z and numbers from 2-9 can be used\n\nMore info can be found here: [UN/LOCODE](https://unece.org/trade/cefact/UNLOCODE-Download)\n"
+        },
+        "geoCoordinate": {
+          "$ref": "#/$defs/GeoCoordinate"
+        }
+      },
+      "description": "An object to capture the `Empty Container Depot Release Location`.\n\nThe location of the depot from which the empty container(s) will be released from\n\nThe location can be specified in **any** of the following ways: `Address`, `Facility`, `UN Location Code` or a `GeoCoordinate`.\n\n**Condition:** It is expected that if a location is specified in multiple ways (e.g. both as an `Address` and as a `Facility`) that both ways point to the same location.\n"
+    },
+    "EmptyContainerPickup": {
+      "title": "Empty Container Pickup",
+      "type": "object",
+      "properties": {
+        "dateTime": {
+          "type": "string",
+          "description": "The date and time for the pick-up of the empty container(s) at the Empty container depot release location, if provided.\n",
+          "format": "date-time"
+        },
+        "depotReleaseLocation": {
+          "$ref": "#/$defs/EmptyContainerDepotReleaseLocation"
+        }
+      },
+      "description": "The date and time and location for the empty container pick-up.\n\n**Condition:** Only applicable to merchant haulage service at origin (`Receipt type at origin = 'CY'`).\n"
+    },
+    "ExportLicense": {
+      "title": "Export License",
+      "type": "object",
+      "properties": {
+        "isRequired": {
+          "type": "boolean",
+          "description": "Information provided by the shipper to indicate whether an `Export License` or permit is required for this shipment/commodity/destination.\n  \n**Note:** If this property is omitted, it may be interpreted differently by different API providers and by the same API provider in different contexts.\n"
+        },
+        "reference": {
+          "maxLength": 35,
+          "pattern": "^\\S(?:.*\\S)?$",
+          "type": "string",
+          "description": "Reference number assigned to an `Export License` or permit, which authorizes a business or individual to export specific goods to specific countries under defined conditions. It is a permit that is required when shipping certain restricted or controlled goods, such as military equipment, high-tech items, chemicals, or items subject to international regulations. The `Export License` must be valid at time of departure.\n"
+        },
+        "issueDate": {
+          "type": "string",
+          "description": "Issue date of the `Export License` applicable to the booking.\n",
+          "format": "date"
+        },
+        "expiryDate": {
+          "type": "string",
+          "description": "Expiry date of the `Export License` applicable to the booking.\n",
+          "format": "date"
+        }
+      },
+      "description": "`Export License` required for this commodity\n"
+    },
+    "Facility": {
+      "title": "Facility",
+      "required": [
+        "facilityCode",
+        "facilityCodeListProvider"
+      ],
+      "type": "object",
+      "properties": {
+        "facilityCode": {
+          "maxLength": 6,
+          "pattern": "^\\S(?:.*\\S)?$",
+          "type": "string",
+          "description": "The code used for identifying the specific facility. This code does not include the UN Location Code.\n\nThe definition of the code depends on the `facilityCodeListProvider`. As code list providers maintain multiple codeLists the following codeList is used:\n\n- `SMDG` (the codeList used is the [SMDG Terminal Code List](https://smdg.org/documents/smdg-code-lists/))\n- `BIC` (the codeList used is the [BIC Facility Codes](https://www.bic-code.org/facility-codes/))\n"
+        },
+        "facilityCodeListProvider": {
+          "type": "string",
+          "description": "The provider used for identifying the facility Code. Some facility codes are only defined in combination with an `UN Location Code`\n- `BIC` (Requires a UN Location Code)\n- `SMDG` (Requires a UN Location Code)\n",
+          "enum": [
+            "BIC",
+            "SMDG"
+          ]
+        }
+      },
+      "description": "An object used to express a location using a `Facility`. The facility can be expressed using one of `BIC` code or `SMDG` code. The `facilityCode` does not contain the `UNLocationCode` - this should be provided in the `UnLocationCode` attribute.\n"
+    },
+    "GeoCoordinate": {
+      "title": "Geo Coordinate",
+      "required": [
+        "latitude",
+        "longitude"
+      ],
+      "type": "object",
+      "properties": {
+        "latitude": {
+          "maxLength": 10,
+          "type": "string",
+          "description": "Geographic coordinate that specifies the north�Vsouth position of a point on the Earth's surface."
+        },
+        "longitude": {
+          "maxLength": 11,
+          "type": "string",
+          "description": "Geographic coordinate that specifies the east�Vwest position of a point on the Earth's surface."
+        }
+      },
+      "description": "An object used to express a location using `latitude` and `longitude`.\n"
+    },
+    "GrossWeight": {
+      "title": "Gross Weight",
+      "required": [
+        "unit",
+        "value"
+      ],
+      "type": "object",
+      "properties": {
+        "value": {
+          "minimum": 0,
+          "exclusiveMinimum": true,
+          "type": "number",
+          "description": "The grand total weight of the DG cargo and weight per `UNNumber`/`NANumber` including packaging items being carried, which can be expressed in imperial or metric terms, as provided by the shipper.\n",
+          "format": "float"
+        },
+        "unit": {
+          "type": "string",
+          "description": "The unit of measure which can be expressed in imperial or metric terms:\n- `KGM` (Kilograms)\n- `LBR` (Pounds)\n",
+          "enum": [
+            "KGM",
+            "LBR"
+          ]
+        }
+      },
+      "description": "Total weight of the goods carried, including packaging.\n"
+    },
+    "IdentifyingCode": {
+      "title": "Identifying Code",
+      "required": [
+        "codeListProvider",
+        "partyCode"
+      ],
+      "type": "object",
+      "properties": {
+        "codeListProvider": {
+          "maxLength": 100,
+          "type": "string",
+          "description": "A list of codes identifying a party. Possible values are:\n- `WAVE` (Wave)\n- `CARX` (CargoX)\n- `ESSD` (EssDOCS)\n- `IDT` (ICE Digital Trade)\n- `BOLE` (Bolero)\n- `EDOX` (EdoxOnline)\n- `IQAX` (IQAX)\n- `SECR` (Secro)\n- `TRGO` (TradeGO)\n- `ETEU` (eTEU)\n- `TRAC` (Enigio trace:original)\n- `BRIT` (BRITC eBL)\n- `GSBN` (Global Shipping Business Network)\n- `WISE` (WiseTech)\n- `GLEIF` (Global Legal Entity Identifier Foundation)\n- `W3C` (World Wide Web Consortium)\n- `DNB` (Dun and Bradstreet)\n- `FMC` (Federal Maritime Commission)\n- `DCSA` (Digital Container Shipping Association)\n- `ZZZ` (Mutually defined)\n"
+        },
+        "partyCode": {
+          "maxLength": 150,
+          "type": "string",
+          "description": "Code to identify the party as provided by the code list provider\n"
+        },
+        "codeListName": {
+          "maxLength": 100,
+          "type": "string",
+          "description": "The name of the code list, code generation mechanism or code authority for the `partyCode`. Example values could be:\n- `DID` (Decentralized Identifier) for `codeListProvider` `W3C`\n- `LEI` (Legal Entity Identifier) for `codeListProvider` `GLEIF`\n- `DUNS` (Data Universal Numbering System) for `codeListProvider` `DNB`\n"
+        }
+      }
+    },
+    "ImportLicense": {
+      "title": "Import License",
+      "type": "object",
+      "properties": {
+        "isRequired": {
+          "type": "boolean",
+          "description": "Information provided by the shipper to indicate whether an `Import License` or permit is required for this shipment/commodity/destination.\n  \n**Note:** If this property is omitted, it may be interpreted differently by different API providers and by the same API provider in different contexts.\n"
+        },
+        "reference": {
+          "maxLength": 35,
+          "pattern": "^\\S(?:.*\\S)?$",
+          "type": "string",
+          "description": "Reference number assigned to an `Import License` or permit, issued by countries exercising import controls that athorizes the importation of the articles stated in the license. The `Import License` must be valid at time of arrival.\n"
+        },
+        "issueDate": {
+          "type": "string",
+          "description": "Issue date of the `Import License` applicable to the booking.\n",
+          "format": "date"
+        },
+        "expiryDate": {
+          "type": "string",
+          "description": "Expiry date of the `Import License` applicable to the booking.\n",
+          "format": "date"
+        }
+      },
+      "description": "`Import License` required for this commodity\n"
+    },
+    "InnerPackaging": {
+      "title": "Inner Packaging",
+      "required": [
+        "description",
+        "material",
+        "quantity"
+      ],
+      "type": "object",
+      "properties": {
+        "quantity": {
+          "type": "integer",
+          "description": "Count of `Inner Packagings` of the referenced `Dangerous Goods`.\n",
+          "format": "int32"
+        },
+        "material": {
+          "maxLength": 100,
+          "type": "string",
+          "description": "The `material` used for the `Inner Packaging` of the referenced `Dangerous Goods`.\n"
+        },
+        "description": {
+          "maxLength": 100,
+          "type": "string",
+          "description": "Description of the packaging.\n"
+        }
+      },
+      "description": "Object for inner packaging specification\n"
+    },
+    "InvoicePayableAt": {
+      "title": "Invoice Payable At",
+      "required": [
+        "UNLocationCode"
+      ],
+      "type": "object",
+      "properties": {
+        "UNLocationCode": {
+          "maxLength": 5,
+          "minLength": 5,
+          "pattern": "^[A-Z]{2}[A-Z2-9]{3}$",
+          "type": "string",
+          "description": "The UN Location code specifying where the place is located. The pattern used must be\n\n- 2 characters for the country code using [ISO 3166-1 alpha-2](https://www.iso.org/obp/ui/#iso:pub:PUB500001:en)\n- 3 characters to code a location within that country. Letters A-Z and numbers from 2-9 can be used\n\nMore info can be found here: [UN/LOCODE](https://unece.org/trade/cefact/UNLOCODE-Download)\n"
+        }
+      },
+      "description": "Location where payment of ocean freight and charges for the main transport will take place by the customer.\n\nThe location must be provided as a `UN Location Code`\n"
+    },
+    "Limits": {
+      "title": "Limits",
+      "required": [
+        "temperatureUnit"
+      ],
+      "type": "object",
+      "properties": {
+        "temperatureUnit": {
+          "type": "string",
+          "description": "The unit for **all attributes in the limits structure** in Celsius or Fahrenheit\n- `CEL` (Celsius)\n- `FAH` (Fahrenheit)\n",
+          "enum": [
+            "CEL",
+            "FAH"
+          ]
+        },
+        "flashPoint": {
+          "type": "number",
+          "description": "Lowest temperature at which a chemical can vaporize to form an ignitable mixture in air.\n\n**Condition:** only applicable to specific hazardous goods according to the IMO IMDG Code.\n",
+          "format": "float"
+        },
+        "transportControlTemperature": {
+          "type": "number",
+          "description": "Maximum temperature at which certain substance (such as organic peroxides and self-reactive and related substances) can be safely transported for a prolonged period.\n",
+          "format": "float"
+        },
+        "transportEmergencyTemperature": {
+          "type": "number",
+          "description": "Temperature at which emergency procedures shall be implemented\n",
+          "format": "float"
+        },
+        "SADT": {
+          "type": "number",
+          "description": "Lowest temperature in which self-accelerating decomposition may occur in a substance\n",
+          "format": "float"
+        },
+        "SAPT": {
+          "type": "number",
+          "description": "Lowest temperature in which self-accelerating polymerization may occur in a substance\n",
+          "format": "float"
+        }
+      },
+      "description": "Limits for the `Dangerous Goods`. The same `Temperature Unit` needs to apply to all attributes in this structure.\n"
+    },
+    "Location": {
+      "title": "Location",
+      "type": "object",
+      "properties": {
+        "locationName": {
+          "maxLength": 100,
+          "pattern": "^\\S(?:.*\\S)?$",
+          "type": "string",
+          "description": "The name of the location."
+        },
+        "address": {
+          "$ref": "#/$defs/Address"
+        },
+        "facility": {
+          "$ref": "#/$defs/Facility"
+        },
+        "UNLocationCode": {
+          "maxLength": 5,
+          "minLength": 5,
+          "pattern": "^[A-Z]{2}[A-Z2-9]{3}$",
+          "type": "string",
+          "description": "The UN Location code specifying where the place is located. The pattern used must be\n\n- 2 characters for the country code using [ISO 3166-1 alpha-2](https://www.iso.org/obp/ui/#iso:pub:PUB500001:en)\n- 3 characters to code a location within that country. Letters A-Z and numbers from 2-9 can be used\n\nMore info can be found here: [UN/LOCODE](https://unece.org/trade/cefact/UNLOCODE-Download)\n"
+        },
+        "geoCoordinate": {
+          "$ref": "#/$defs/GeoCoordinate"
+        }
+      },
+      "description": "The location can be specified using **any** of the nested structures:\n- `address` (used to specify the location via an Address)\n- `UNLocationCode`\n- `facility` (used to specify a location using a `facilityCode` and a `facilityCodeListProvider`)\n- `geoCoordinate` (used to specify a location using `latitude` and `longitude`)\n\n**Condition:** It is expected that if a location is specified in multiple ways (e.g. both as an `Address` and as a `Facility`) that both ways point to the same location.\n"
+    },
+    "NationalCommodityCode": {
+      "title": "National Commodity Code",
+      "required": [
+        "type",
+        "values"
+      ],
+      "type": "object",
+      "properties": {
+        "type": {
+          "maxLength": 10,
+          "pattern": "^\\S(?:.*\\S)?$",
+          "type": "string",
+          "description": "The national commodity classification code, which can be one of the following values defined by DCSA:\n- `NCM` (Nomenclatura Comum do Mercosul)\n- `HTS` (Harmonized Tariff Schedule)\n- `SCHEDULE_B` ( Schedule B)\n- `TARIC` (Integrated Tariff of the European Communities)\n- `CN` (Combined Nomenclature)\n- `CUS` (Customs Union and Statistics)\n"
+        },
+        "countryCode": {
+          "maxLength": 2,
+          "minLength": 2,
+          "pattern": "^[A-Z]{2}$",
+          "type": "string",
+          "description": "The 2 characters for the country code using [ISO 3166-1 alpha-2](https://www.iso.org/obp/ui/#iso:pub:PUB500001:en)\n"
+        },
+        "values": {
+          "minItems": 1,
+          "type": "array",
+          "description": "A list of `national commodity codes` values.\n",
+          "items": {
+            "maxLength": 10,
+            "pattern": "^\\S(?:.*\\S)?$",
+            "type": "string",
+            "description": "The value of the `National Commodity Code`\n"
+          }
+        }
+      },
+      "description": "The national commodity classification code linked to a country with a value.\n\nAn example could look like this:\n\n| Type  | Country | Value |\n|-------|:-------:|-------------|\n|NCM|BR|['1515', '2106', '2507', '2512']|\n"
+    },
+    "NetExplosiveContent": {
+      "title": "Net Explosive Content",
+      "required": [
+        "unit",
+        "value"
+      ],
+      "type": "object",
+      "properties": {
+        "value": {
+          "minimum": 0,
+          "exclusiveMinimum": true,
+          "type": "number",
+          "description": "The total weight of the explosive substances, without the packaging��s, casings, etc.\n",
+          "format": "float"
+        },
+        "unit": {
+          "type": "string",
+          "description": "Unit of measure used to describe the `netExplosiveWeight`. Possible values are:\n- `KGM` (Kilograms)\n- `LBR` (Pounds)\n- `GRM` (Grams)\n- `ONZ` (Ounce)\n",
+          "enum": [
+            "KGM",
+            "LBR",
+            "GRM",
+            "ONZ"
+          ]
+        }
+      },
+      "description": "The total weight of the explosive substances, without the packaging��s, casings, etc.\n"
+    },
+    "NetVolume": {
+      "title": "Net Volume",
+      "required": [
+        "unit",
+        "value"
+      ],
+      "type": "object",
+      "properties": {
+        "value": {
+          "minimum": 0,
+          "exclusiveMinimum": true,
+          "type": "number",
+          "description": "The volume of the referenced dangerous goods.\n",
+          "format": "float"
+        },
+        "unit": {
+          "type": "string",
+          "description": "The unit of measure which can be expressed in imperial or metric terms:\n- `FTQ` (Cubic foot)\n- `MTQ` (Cubic meter)\n- `LTR` (Litre)\n",
+          "enum": [
+            "MTQ",
+            "FTQ",
+            "LTR"
+          ]
+        }
+      },
+      "description": "The volume of the referenced dangerous goods.\n\n**Condition:** only applicable to liquids and gas.\n"
+    },
+    "NetWeight": {
+      "title": "Net Weight",
+      "required": [
+        "unit",
+        "value"
+      ],
+      "type": "object",
+      "properties": {
+        "value": {
+          "minimum": 0,
+          "exclusiveMinimum": true,
+          "type": "number",
+          "description": "Total weight of the goods carried, excluding packaging.\n",
+          "format": "float"
+        },
+        "unit": {
+          "type": "string",
+          "description": "The unit of measure which can be expressed in imperial or metric terms:\n- `KGM` (Kilograms)\n- `LBR` (Pounds)\n",
+          "enum": [
+            "KGM",
+            "LBR"
+          ]
+        }
+      },
+      "description": "Total weight of the goods carried, excluding packaging.\n"
+    },
+    "OriginChargesPaymentTerm": {
+      "title": "Origin Charges Payment Term",
+      "type": "object",
+      "properties": {
+        "haulageChargesPaymentTermCode": {
+          "type": "string",
+          "description": "An indicator of whether the costs for inland transportation to the port, when applicable, are prepaid (`PRE`) or collect (`COL`).\n\n- `PRE` (Prepaid)\n- `COL` (Collect)\n",
+          "enum": [
+            "PRE",
+            "COL"
+          ]
+        },
+        "portChargesPaymentTermCode": {
+          "type": "string",
+          "description": "An indicator of whether the origin port charges are prepaid (`PRE`) or collect (`COL`).\n\n- `PRE` (Prepaid)\n- `COL` (Collect)\n",
+          "enum": [
+            "PRE",
+            "COL"
+          ]
+        },
+        "otherChargesPaymentTermCode": {
+          "type": "string",
+          "description": "An indicator of whether origin charges (excluding port and haulage) are prepaid (`PRE`) or collect (`COL`).\n\n- `PRE` (Prepaid)\n- `COL` (Collect)\n",
+          "enum": [
+            "PRE",
+            "COL"
+          ]
+        }
+      },
+      "description": "An indicator of whether origin charges are prepaid (`PRE`) or collect (`COL`). When prepaid, the charges are the responsibility of the shipper or the Invoice payer on behalf of the shipper (if provided). When collect, the charges are the responsibility of the consignee or the Invoice payer on behalf of the consignee (if provided).\n"
+    },
+    "OtherDocumentParty": {
+      "title": "Other Document Party",
+      "required": [
+        "party",
+        "partyFunction"
+      ],
+      "type": "object",
+      "properties": {
+        "party": {
+          "$ref": "#/$defs/Party"
+        },
+        "partyFunction": {
+          "maxLength": 3,
+          "type": "string",
+          "description": "Specifies the role of the party in a given context. Possible values are:\n\n- `DDR` (Consignor's freight forwarder)\n- `DDS` (Consignee's freight forwarder)\n- `COW` (Invoice payer on behalf of the consignor (shipper))\n- `COX` (Invoice payer on behalf of the consignee)\n- `N1` (First Notify Party)\n- `N2` (Second Notify Party)\n- `NI` (Other Notify Party)\n"
+        }
+      },
+      "description": "A list of document parties that can be optionally provided at booking stage\n"
+    },
+    "OuterPackaging": {
+      "title": "Outer Packaging",
+      "type": "object",
+      "properties": {
+        "packageCode": {
+          "maxLength": 2,
+          "minLength": 2,
+          "pattern": "^[A-Z0-9]{2}$",
+          "type": "string",
+          "description": "A code identifying the outer packaging/overpack. `PackageCode` must follow the codes specified in [Recommendation N�X21](https://unece.org/trade/uncefact/cl-recommendations)\n\n**Condition:** only applicable to dangerous goods if the `IMO packaging code` is not available.\n"
+        },
+        "imoPackagingCode": {
+          "maxLength": 5,
+          "minLength": 1,
+          "pattern": "^[A-Z0-9]{1,5}$",
+          "type": "string",
+          "description": "The code of the packaging as per IMO.\n\n**Condition:** only applicable to dangerous goods if specified in the [IMO IMDG code](https://www.imo.org/en/publications/Pages/IMDG%20Code.aspx). If not available, the `packageCode` as per UN recommendation 21 should be used.\n"
+        },
+        "numberOfPackages": {
+          "maximum": 99999999,
+          "minimum": 1,
+          "type": "integer",
+          "description": "Specifies the number of outer packagings/overpacks associated with this `Commodity`.\n\n**Condition:** In case this `OuterPackaging` includes `Dangerous Goods` the `numberOfPackages` is mandatory to provide\n",
+          "format": "int32"
+        },
+        "description": {
+          "maxLength": 100,
+          "type": "string",
+          "description": "Description of the outer packaging/overpack.\n"
+        },
+        "dangerousGoods": {
+          "type": "array",
+          "description": "A list of `Dangerous Goods` related to the `Commodity`\n",
+          "items": {
+            "$ref": "#/$defs/DangerousGoods"
+          }
+        }
+      },
+      "description": "Object for outer packaging/overpack specification. Examples of overpacks are a number of packages stacked on to a pallet and secured by strapping or placed in a protective outer packaging such as a box or crate to form one unit for the convenience of handling and stowage during transport.\n\n**Condition:** Mandatory for DG (Dangerous Goods) cargo.\n"
+    },
+    "Party": {
+      "title": "Party",
+      "required": [
+        "partyName"
+      ],
+      "type": "object",
+      "properties": {
+        "partyName": {
+          "maxLength": 70,
+          "pattern": "^\\S(?:.*\\S)?$",
+          "type": "string",
+          "description": "Name of the party.\n"
+        },
+        "address": {
+          "$ref": "#/$defs/PartyAddress"
+        },
+        "identifyingCodes": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/IdentifyingCode"
+          }
+        },
+        "taxLegalReferences": {
+          "type": "array",
+          "description": "A list of `Tax References` for a `Party`\n",
+          "items": {
+            "$ref": "#/$defs/TaxLegalReference"
+          }
+        },
+        "partyContactDetails": {
+          "minItems": 1,
+          "type": "array",
+          "description": "A list of contact details\n",
+          "items": {
+            "$ref": "#/$defs/PartyContactDetail"
+          }
+        },
+        "reference": {
+          "maxLength": 35,
+          "pattern": "^\\S(?:.*\\S)?$",
+          "type": "string",
+          "description": "A reference linked to the `Party`.\n"
+        }
+      },
+      "description": "Refers to a company or a legal entity.\n"
+    },
+    "PartyAddress": {
+      "title": "Party Address",
+      "required": [
+        "city",
+        "countryCode",
+        "street"
+      ],
+      "type": "object",
+      "properties": {
+        "street": {
+          "maxLength": 70,
+          "type": "string",
+          "description": "The name of the street of the party's address."
+        },
+        "streetNumber": {
+          "maxLength": 50,
+          "type": "string",
+          "description": "The number of the street of the party's address."
+        },
+        "floor": {
+          "maxLength": 50,
+          "pattern": "^\\S(?:.*\\S)?$",
+          "type": "string",
+          "description": "The floor of the party's street number.\n"
+        },
+        "postCode": {
+          "maxLength": 10,
+          "type": "string",
+          "description": "The post code of the party's address."
+        },
+        "POBox": {
+          "maxLength": 20,
+          "type": "string",
+          "description": "A numbered box at a post office where a person or business can have mail or parcels delivered."
+        },
+        "city": {
+          "maxLength": 35,
+          "pattern": "^\\S(?:.*\\S)?$",
+          "type": "string",
+          "description": "The city name of the party's address.\n"
+        },
+        "UNLocationCode": {
+          "maxLength": 5,
+          "minLength": 5,
+          "pattern": "^[A-Z]{2}[A-Z2-9]{3}$",
+          "type": "string",
+          "description": "The UN Location code specifying where the carrier booking office is located. The pattern used must be\n\n- 2 characters for the country code using [ISO 3166-1 alpha-2](https://www.iso.org/obp/ui/#iso:pub:PUB500001:en)\n- 3 characters to code a location within that country. Letters A-Z and numbers from 2-9 can be used\n\nMore info can be found here: [UN/LOCODE](https://unece.org/trade/cefact/UNLOCODE-Download)\n"
+        },
+        "stateRegion": {
+          "maxLength": 65,
+          "type": "string",
+          "description": "The state/region of the party's address."
+        },
+        "countryCode": {
+          "maxLength": 2,
+          "minLength": 2,
+          "pattern": "^[A-Z]{2}$",
+          "type": "string",
+          "description": "The 2 characters for the country code using [ISO 3166-1 alpha-2](https://www.iso.org/obp/ui/#iso:pub:PUB500001:en)\n"
+        }
+      },
+      "description": "An object for storing address related information\n"
+    },
+    "PartyContactDetail": {
+      "title": "Party Contact Detail",
+      "required": [
+        "name"
+      ],
+      "type": "object",
+      "properties": {
+        "name": {
+          "maxLength": 35,
+          "pattern": "^\\S(?:.*\\S)?$",
+          "type": "string",
+          "description": "Name of the contact\n"
+        }
+      },
+      "description": "The contact details of the person to contact. It is mandatory to provide either `phone` and/or `email` along with the `name`, both can be provided.\n",
+      "anyOf": [
+        {
+          "title": "Phone required",
+          "required": [
+            "phone"
+          ],
+          "type": "object",
+          "properties": {
+            "phone": {
+              "maxLength": 30,
+              "pattern": "^\\S(?:.*\\S)?$",
+              "type": "string",
+              "description": "Phone number for the contact. Phone **MUST** include an international phone number format as defined in the [ITU-T recommendation E.123](https://www.itu.int/rec/T-REC-E.123/en).\n"
+            }
+          },
+          "description": "`Phone` is mandatory to provide\n"
+        },
+        {
+          "title": "Email required",
+          "required": [
+            "email"
+          ],
+          "type": "object",
+          "properties": {
+            "email": {
+              "maxLength": 100,
+              "pattern": "^.+@\\S+$",
+              "type": "string",
+              "description": "`E-mail` address to be used\n"
+            }
+          },
+          "description": "`Email` is mandatory to provide\n"
+        }
+      ]
+    },
+    "PlaceOfBLIssue": {
+      "title": "Place of B/L Issue",
+      "type": "object",
+      "properties": {
+        "locationName": {
+          "maxLength": 100,
+          "pattern": "^\\S(?:.*\\S)?$",
+          "type": "string",
+          "description": "The name of the location."
+        }
+      },
+      "description": "An object to capture where the original Transport Document (`Bill of Lading`) will be issued.\n\nThe location can be specified as one of `UN Location Code` or `CountryCode`, but not both.\n",
+      "oneOf": [
+        {
+          "title": "UN Location Code",
+          "required": [
+            "UNLocationCode"
+          ],
+          "type": "object",
+          "properties": {
+            "UNLocationCode": {
+              "maxLength": 5,
+              "minLength": 5,
+              "pattern": "^[A-Z]{2}[A-Z2-9]{3}$",
+              "type": "string",
+              "description": "The UN Location code specifying where the place is located. The pattern used must be\n\n- 2 characters for the country code using [ISO 3166-1 alpha-2](https://www.iso.org/obp/ui/#iso:pub:PUB500001:en)\n- 3 characters to code a location within that country. Letters A-Z and numbers from 2-9 can be used\n\nMore info can be found here: [UN/LOCODE](https://unece.org/trade/cefact/UNLOCODE-Download)\n"
+            }
+          }
+        },
+        {
+          "title": "Country Code",
+          "required": [
+            "countryCode"
+          ],
+          "type": "object",
+          "properties": {
+            "countryCode": {
+              "maxLength": 2,
+              "minLength": 2,
+              "pattern": "^[A-Z]{2}$",
+              "type": "string",
+              "description": "The 2 characters for the country code using [ISO 3166-1 alpha-2](https://www.iso.org/obp/ui/#iso:pub:PUB500001:en)\n"
+            }
+          }
+        }
+      ]
+    },
+    "ReferenceShipper": {
+      "title": "Reference (Shipper)",
+      "required": [
+        "type",
+        "value"
+      ],
+      "type": "object",
+      "properties": {
+        "type": {
+          "maxLength": 3,
+          "type": "string",
+          "description": "The reference type codes defined by DCSA. Possible values are:\n- `CR` (Customer's Reference)\n- `AKG` (Vehicle Identification Number)\n- `AEF` (Customer Load Reference)\n"
+        },
+        "value": {
+          "maxLength": 35,
+          "pattern": "^\\S(?:.*\\S)?$",
+          "type": "string",
+          "description": "The value of the reference. \n"
+        }
+      },
+      "description": "References provided by the shipper or freight forwarder at the time of `Booking` or at the time of providing `Shipping Instructions`. Carriers share it back when providing `Track & Trace` event updates, some are also printed on the B/L. Customers can use these references to track shipments in their internal systems.\n"
+    },
+    "RequestedEquipmentShipper": {
+      "title": "Requested Equipment (Shipper)",
+      "required": [
+        "ISOEquipmentCode",
+        "isShipperOwned",
+        "units"
+      ],
+      "type": "object",
+      "properties": {
+        "ISOEquipmentCode": {
+          "maxLength": 4,
+          "pattern": "^\\S(?:.*\\S)?$",
+          "type": "string",
+          "description": "Unique code for the different equipment size and type used to transport commodities. The code can refer to one of ISO size type (e.g. 22G1) or ISO type group (e.g. 22GP) following the [ISO 6346](https://www.iso.org/standard/83558.html) standard.\n"
+        },
+        "units": {
+          "minimum": 1,
+          "type": "integer",
+          "description": "Number of requested equipment units.\n",
+          "format": "int32"
+        },
+        "containerPositionings": {
+          "type": "array",
+          "description": "A list of date and time and locations of the customer facility where the container(s) will be loaded. If multiple Container positioning locations (`CPO`) are provided (multi-stop), the first location is where the empty container will be stuffed first. The order in which the `CPO` locations should be visited is implicitly defined by the shipper based on the date and time provided per location.\n\n**Condition:** Only applicable to carrier haulage service at origin (`Receipt type at origin = 'SD'`). \n",
+          "items": {
+            "$ref": "#/$defs/ContainerPositioning"
+          }
+        },
+        "emptyContainerPickup": {
+          "$ref": "#/$defs/EmptyContainerPickup"
+        },
+        "equipmentReferences": {
+          "type": "array",
+          "description": "A list of equipments to be used by the shipper if known at the time of booking\n",
+          "items": {
+            "maxLength": 11,
+            "pattern": "^\\S(?:.*\\S)?$",
+            "type": "string",
+            "description": "The unique identifier for the equipment, which should follow the BIC ISO Container Identification Number where possible.\n\nAccording to [ISO 6346](https://www.iso.org/standard/83558.html), a container identification code consists of a 4-letter prefix and a 7-digit number (composed of a 3-letter owner code, a category identifier, a serial number, and a check-digit).\n\nIf a container does not comply with [ISO 6346](https://www.iso.org/standard/83558.html), it is suggested to follow [Recommendation #2: Containers with non-ISO identification](https://smdg.org/documents/smdg-recommendations) from SMDG.\n"
+          }
+        },
+        "tareWeight": {
+          "$ref": "#/$defs/TareWeight"
+        },
+        "cargoGrossWeight": {
+          "$ref": "#/$defs/CargoGrossWeightReq"
+        },
+        "isShipperOwned": {
+          "type": "boolean",
+          "description": "Indicates whether the container is shipper owned (`SOC`).\n"
+        },
+        "isNonOperatingReefer": {
+          "type": "boolean",
+          "description": "If the equipment is a Reefer Container then setting this attribute will indicate that the container should be treated as a `DRY` container.\n\n**Condition:** Only applicable if `ISOEquipmentCode` shows a Reefer type.\n"
+        },
+        "activeReeferSettings": {
+          "$ref": "#/$defs/ActiveReeferSettings"
+        },
+        "references": {
+          "type": "array",
+          "description": "A list of `References`\n",
+          "items": {
+            "$ref": "#/$defs/ReferenceShipper"
+          }
+        },
+        "customsReferences": {
+          "type": "array",
+          "description": "A list of `Customs references`\n",
+          "items": {
+            "$ref": "#/$defs/CustomsReference"
+          }
+        },
+        "commodities": {
+          "type": "array",
+          "description": "A list of `Commodities`\n",
+          "items": {
+            "$ref": "#/$defs/CommodityShipper"
+          }
+        }
+      },
+      "description": "If needed - it is **only** possible to specify a single Reefer setting. If multiple settings are required for the same `equipmentSizeType` then multiple `requestedEquipment` should be specified (one for each Reefer setting).\n"
+    },
+    "ServiceContractOwner": {
+      "title": "Service Contract Owner",
+      "required": [
+        "partyName"
+      ],
+      "type": "object",
+      "properties": {
+        "partyName": {
+          "maxLength": 70,
+          "pattern": "^\\S(?:.*\\S)?$",
+          "type": "string",
+          "description": "Name of the party.\n"
+        },
+        "address": {
+          "$ref": "#/$defs/PartyAddress"
+        },
+        "partyContactDetails": {
+          "minItems": 1,
+          "type": "array",
+          "description": "A list of contact details\n",
+          "items": {
+            "$ref": "#/$defs/PartyContactDetail"
+          }
+        },
+        "identifyingCodes": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/IdentifyingCode"
+          }
+        },
+        "taxLegalReferences": {
+          "type": "array",
+          "description": "A list of `Tax References` for a `Party`\n",
+          "items": {
+            "$ref": "#/$defs/TaxLegalReference"
+          }
+        },
+        "reference": {
+          "maxLength": 35,
+          "pattern": "^\\S(?:.*\\S)?$",
+          "type": "string",
+          "description": "A reference linked to the `Service Contract Owner`.\n"
+        }
+      },
+      "description": "The party signing the service contract with the carrier.\n"
+    },
+    "ShipmentLocation": {
+      "title": "Shipment Location",
+      "required": [
+        "location",
+        "locationTypeCode"
+      ],
+      "type": "object",
+      "properties": {
+        "location": {
+          "$ref": "#/$defs/Location"
+        },
+        "locationTypeCode": {
+          "maxLength": 3,
+          "type": "string",
+          "description": "Links to the Location Type Code defined by DCSA. Possible values are:\n- `PRE` (Place of Receipt)\n- `POL` (Port of Loading)\n- `POD` (Port of Discharge)\n- `PDE` (Place of Delivery)\n- `PCF` (Pre-carriage From)\n- `OIR` (Onward In-land Routing)\n- `ORI` (Origin of goods)\n- `IEL` (Container intermediate export stop off location)\n- `PTP` (Prohibited transshipment port)\n- `RTP` (Requested transshipment port)\n- `FCD` (Full container drop-off location)\n"
+        }
+      },
+      "description": "Maps the relationship between `Shipment` and `Location`, e.g., the `Place of Receipt` and the `Place of Delivery` for a specific shipment. This is a reusable object between `Booking` and `Transport Document`\n"
+    },
+    "Shipper": {
+      "title": "Shipper",
+      "required": [
+        "partyName"
+      ],
+      "type": "object",
+      "properties": {
+        "partyName": {
+          "maxLength": 70,
+          "pattern": "^\\S(?:.*\\S)?$",
+          "type": "string",
+          "description": "Name of the party.\n"
+        },
+        "address": {
+          "$ref": "#/$defs/PartyAddress"
+        },
+        "partyContactDetails": {
+          "minItems": 1,
+          "type": "array",
+          "description": "A list of contact details\n",
+          "items": {
+            "$ref": "#/$defs/PartyContactDetail"
+          }
+        },
+        "identifyingCodes": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/IdentifyingCode"
+          }
+        },
+        "taxLegalReferences": {
+          "type": "array",
+          "description": "A list of `Tax References` for a `Party`\n",
+          "items": {
+            "$ref": "#/$defs/TaxLegalReference"
+          }
+        },
+        "reference": {
+          "maxLength": 35,
+          "pattern": "^\\S(?:.*\\S)?$",
+          "type": "string",
+          "description": "A reference linked to the `Shipper`.\n"
+        },
+        "purchaseOrderReferences": {
+          "type": "array",
+          "description": "A list of `Purchase Order Reference`s linked to the `Shipper`.\n",
+          "items": {
+            "maxLength": 35,
+            "pattern": "^\\S(?:.*\\S)?$",
+            "type": "string",
+            "description": "A purchase order reference linked to the `Shipper`.\n"
+          }
+        }
+      },
+      "description": "The party by whom or in whose name or on whose behalf a contract of carriage of goods by sea has been concluded with a carrier, or the party by whom or in whose name, or on whose behalf, the goods are actually delivered to the carrier in relation to the contract of carriage by sea.\n"
+    },
+    "TareWeight": {
+      "title": "Tare Weight",
+      "required": [
+        "unit",
+        "value"
+      ],
+      "type": "object",
+      "properties": {
+        "value": {
+          "minimum": 0,
+          "exclusiveMinimum": true,
+          "type": "number",
+          "description": "The weight of an empty container (gross container weight).\n",
+          "format": "float"
+        },
+        "unit": {
+          "type": "string",
+          "description": "The unit of measure which can be expressed in imperial or metric terms\n- `KGM` (Kilograms)\n- `LBR` (Pounds)\n",
+          "enum": [
+            "KGM",
+            "LBR"
+          ]
+        }
+      },
+      "description": "The weight of an empty container (gross container weight).\n\n**Condition:** In case of Shipper Owned Containers (`SOC`) this is a required property\n"
+    },
+    "TaxLegalReference": {
+      "title": "Tax & Legal Reference",
+      "required": [
+        "countryCode",
+        "type",
+        "value"
+      ],
+      "type": "object",
+      "properties": {
+        "type": {
+          "maxLength": 50,
+          "pattern": "^\\S(?:.*\\S)?$",
+          "type": "string",
+          "description": "The reference type code as defined by the relevant tax and/or legal authority.\n"
+        },
+        "countryCode": {
+          "maxLength": 2,
+          "minLength": 2,
+          "pattern": "^[A-Z]{2}$",
+          "type": "string",
+          "description": "The 2 characters for the country code using [ISO 3166-1 alpha-2](https://www.iso.org/obp/ui/#iso:pub:PUB500001:en)\n"
+        },
+        "value": {
+          "maxLength": 35,
+          "pattern": "^\\S(?:.*\\S)?$",
+          "type": "string",
+          "description": "The value of the `taxLegalReference`\n"
+        }
+      },
+      "description": "Reference that uniquely identifies a party for tax and/or legal purposes in accordance with the relevant jurisdiction.\n\nA small list of **potential** examples:\n\n| Type  | Country | Description |\n|-------|:-------:|-------------|\n|PAN|IN|Goods and Services Tax Identification Number in India|\n|GSTIN|IN|Goods and Services Tax Identification Number in India|\n|IEC|IN|Importer-Exported Code in India|\n|RUC|EC|Registro Unico del Contribuyente in Ecuador|\n|RUC|PE|Registro Unico del Contribuyente in Peru|\n|NIF|MG|Numero d'Identification Fiscal in Madagascar|\n|NIF|DZ|Numero d'Identification Fiscal in Algeria|\n"
+    },
+    "Vessel": {
+      "title": "Vessel",
+      "required": [
+        "name"
+      ],
+      "type": "object",
+      "properties": {
+        "name": {
+          "maxLength": 50,
+          "pattern": "^\\S(?:.*\\S)?$",
+          "type": "string",
+          "description": "The name of the Vessel given by the Vessel Operator and registered with IMO.\n"
+        },
+        "vesselIMONumber": {
+          "maxLength": 8,
+          "minLength": 7,
+          "pattern": "^\\d{7,8}$",
+          "type": "string",
+          "description": "The unique reference for a registered Vessel. The reference is the International Maritime Organisation (IMO) number, also sometimes known as the Lloyd&apos;s register code, which does not change during the lifetime of the vessel\n"
+        }
+      },
+      "description": "Vessels related to this booking request.\n\n**Condition:** Mandatory if `carrierExportVoyageNumber` is provided and `carrierServiceCode` or `carrierServiceName` are blank.\n"
+    }
+  }
+}

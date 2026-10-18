@@ -1,0 +1,1433 @@
+{
+  "@context": {
+    "@vocab": "https://evergreen-marine.com/schema#",
+    "schema": "https://schema.org/",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "dcterms": "http://purl.org/dc/terms/",
+    "evergreen": "https://evergreen-marine.com/schema#",
+    "ActiveReeferSettings": "evergreen:ActiveReeferSettings",
+    "temperatureSetpoint": {
+      "@id": "evergreen:temperatureSetpoint",
+      "@type": "xsd:decimal"
+    },
+    "temperatureUnit": {
+      "@id": "evergreen:temperatureUnit",
+      "@type": "xsd:string"
+    },
+    "o2Setpoint": {
+      "@id": "evergreen:o2Setpoint",
+      "@type": "xsd:decimal"
+    },
+    "co2Setpoint": {
+      "@id": "evergreen:co2Setpoint",
+      "@type": "xsd:decimal"
+    },
+    "humiditySetpoint": {
+      "@id": "evergreen:humiditySetpoint",
+      "@type": "xsd:decimal"
+    },
+    "airExchangeSetpoint": {
+      "@id": "evergreen:airExchangeSetpoint",
+      "@type": "xsd:decimal"
+    },
+    "airExchangeUnit": {
+      "@id": "evergreen:airExchangeUnit",
+      "@type": "xsd:string"
+    },
+    "isVentilationOpen": {
+      "@id": "evergreen:isVentilationOpen",
+      "@type": "xsd:boolean"
+    },
+    "isDrainholesOpen": {
+      "@id": "evergreen:isDrainholesOpen",
+      "@type": "xsd:boolean"
+    },
+    "isBulbMode": {
+      "@id": "evergreen:isBulbMode",
+      "@type": "xsd:boolean"
+    },
+    "isColdTreatmentRequired": {
+      "@id": "evergreen:isColdTreatmentRequired",
+      "@type": "xsd:boolean"
+    },
+    "isControlledAtmosphereRequired": {
+      "@id": "evergreen:isControlledAtmosphereRequired",
+      "@type": "xsd:boolean"
+    },
+    "Address": "evergreen:Address",
+    "street": {
+      "@id": "evergreen:street",
+      "@type": "xsd:string"
+    },
+    "streetNumber": {
+      "@id": "evergreen:streetNumber",
+      "@type": "xsd:string"
+    },
+    "floor": {
+      "@id": "evergreen:floor",
+      "@type": "xsd:string"
+    },
+    "postCode": {
+      "@id": "evergreen:postCode",
+      "@type": "xsd:string"
+    },
+    "POBox": {
+      "@id": "evergreen:POBox",
+      "@type": "xsd:string"
+    },
+    "city": {
+      "@id": "evergreen:city",
+      "@type": "xsd:string"
+    },
+    "stateRegion": {
+      "@id": "evergreen:stateRegion",
+      "@type": "xsd:string"
+    },
+    "countryCode": {
+      "@id": "evergreen:countryCode",
+      "@type": "xsd:string"
+    },
+    "addressLines": {
+      "@id": "evergreen:addressLines",
+      "@container": "@list"
+    },
+    "ArrivalNotice": "evergreen:ArrivalNotice",
+    "issueDateTime": {
+      "@id": "evergreen:issueDateTime",
+      "@type": "xsd:dateTime"
+    },
+    "typeLabel": {
+      "@id": "evergreen:typeLabel",
+      "@type": "xsd:string"
+    },
+    "versionLabel": {
+      "@id": "evergreen:versionLabel",
+      "@type": "xsd:string"
+    },
+    "carrierCode": {
+      "@id": "evergreen:carrierCode",
+      "@type": "xsd:string"
+    },
+    "carrierCodeListProvider": {
+      "@id": "evergreen:carrierCodeListProvider",
+      "@type": "xsd:string"
+    },
+    "carrierContactInformation": {
+      "@id": "evergreen:carrierContactInformation",
+      "@container": "@list"
+    },
+    "pickupInformation": {
+      "@id": "evergreen:pickupInformation"
+    },
+    "returnInformation": {
+      "@id": "evergreen:returnInformation"
+    },
+    "releaseInformation": {
+      "@id": "evergreen:releaseInformation"
+    },
+    "customsClearance": {
+      "@id": "evergreen:customsClearance"
+    },
+    "additionalInformation": {
+      "@id": "evergreen:additionalInformation",
+      "@type": "xsd:string"
+    },
+    "references": {
+      "@id": "evergreen:references",
+      "@container": "@list"
+    },
+    "houseBillOfLadingReferences": {
+      "@id": "evergreen:houseBillOfLadingReferences",
+      "@container": "@list"
+    },
+    "transportDocumentReference": {
+      "@id": "evergreen:transportDocumentReference",
+      "@type": "xsd:string"
+    },
+    "transportDocumentTypeCode": {
+      "@id": "evergreen:transportDocumentTypeCode",
+      "@type": "xsd:string"
+    },
+    "placeOfBLIssue": {
+      "@id": "evergreen:placeOfBLIssue"
+    },
+    "isElectronic": {
+      "@id": "evergreen:isElectronic",
+      "@type": "xsd:boolean"
+    },
+    "deliveryTypeAtDestination": {
+      "@id": "evergreen:deliveryTypeAtDestination",
+      "@type": "xsd:string"
+    },
+    "cargoMovementTypeAtDestination": {
+      "@id": "evergreen:cargoMovementTypeAtDestination",
+      "@type": "xsd:string"
+    },
+    "serviceContractReference": {
+      "@id": "evergreen:serviceContractReference",
+      "@type": "xsd:string"
+    },
+    "termsAndConditions": {
+      "@id": "evergreen:termsAndConditions",
+      "@type": "xsd:string"
+    },
+    "carrierClauses": {
+      "@id": "evergreen:carrierClauses",
+      "@container": "@list"
+    },
+    "documentParties": {
+      "@id": "evergreen:documentParties",
+      "@container": "@list"
+    },
+    "transport": {
+      "@id": "evergreen:transport"
+    },
+    "freeTimes": {
+      "@id": "evergreen:freeTimes",
+      "@container": "@list"
+    },
+    "charges": {
+      "@id": "evergreen:charges",
+      "@container": "@list"
+    },
+    "paymentRemittance": {
+      "@id": "evergreen:paymentRemittance"
+    },
+    "freightPaymentStatus": {
+      "@id": "evergreen:freightPaymentStatus",
+      "@type": "xsd:string"
+    },
+    "utilizedTransportEquipments": {
+      "@id": "evergreen:utilizedTransportEquipments",
+      "@container": "@list"
+    },
+    "consignmentItems": {
+      "@id": "evergreen:consignmentItems",
+      "@container": "@list"
+    },
+    "arrivalNoticeVisualization": {
+      "@id": "evergreen:arrivalNoticeVisualization"
+    },
+    "ArrivalNoticeNotification": "evergreen:ArrivalNoticeNotification",
+    "equipmentReferences": {
+      "@id": "evergreen:equipmentReferences",
+      "@container": "@list"
+    },
+    "portOfDischarge": {
+      "@id": "evergreen:portOfDischarge"
+    },
+    "placeOfDelivery": {
+      "@id": "evergreen:placeOfDelivery"
+    },
+    "portOfDischargeArrivalDate": {
+      "@id": "evergreen:portOfDischargeArrivalDate"
+    },
+    "placeOfDeliveryArrivalDate": {
+      "@id": "evergreen:placeOfDeliveryArrivalDate"
+    },
+    "CargoItem": "evergreen:CargoItem",
+    "equipmentReference": {
+      "@id": "evergreen:equipmentReference",
+      "@type": "xsd:string"
+    },
+    "cargoGrossWeight": {
+      "@id": "evergreen:cargoGrossWeight"
+    },
+    "cargoGrossVolume": {
+      "@id": "evergreen:cargoGrossVolume"
+    },
+    "cargoNetWeight": {
+      "@id": "evergreen:cargoNetWeight"
+    },
+    "cargoNetVolume": {
+      "@id": "evergreen:cargoNetVolume"
+    },
+    "exportLicense": {
+      "@id": "evergreen:exportLicense"
+    },
+    "importLicense": {
+      "@id": "evergreen:importLicense"
+    },
+    "outerPackaging": {
+      "@id": "evergreen:outerPackaging"
+    },
+    "customsReferences": {
+      "@id": "evergreen:customsReferences",
+      "@container": "@list"
+    },
+    "nationalCommodityCodes": {
+      "@id": "evergreen:nationalCommodityCodes",
+      "@container": "@list"
+    },
+    "position": {
+      "@id": "evergreen:position",
+      "@type": "xsd:integer"
+    },
+    "Charge": "evergreen:Charge",
+    "chargeName": {
+      "@id": "evergreen:chargeName",
+      "@type": "xsd:string"
+    },
+    "currencyAmount": {
+      "@id": "evergreen:currencyAmount",
+      "@type": "xsd:decimal"
+    },
+    "currencyCode": {
+      "@id": "evergreen:currencyCode",
+      "@type": "xsd:string"
+    },
+    "paymentTermCode": {
+      "@id": "evergreen:paymentTermCode",
+      "@type": "xsd:string"
+    },
+    "calculationBasis": {
+      "@id": "evergreen:calculationBasis",
+      "@type": "xsd:string"
+    },
+    "unitPrice": {
+      "@id": "evergreen:unitPrice",
+      "@type": "xsd:decimal"
+    },
+    "quantity": {
+      "@id": "evergreen:quantity",
+      "@type": "xsd:decimal"
+    },
+    "paymentCurrency": {
+      "@id": "evergreen:paymentCurrency",
+      "@type": "xsd:string"
+    },
+    "carrierRateOfExchange": {
+      "@id": "evergreen:carrierRateOfExchange",
+      "@type": "xsd:string"
+    },
+    "chargeCode": {
+      "@id": "evergreen:chargeCode",
+      "@type": "xsd:string"
+    },
+    "paymentLocation": {
+      "@id": "evergreen:paymentLocation"
+    },
+    "invoicePayerCode": {
+      "@id": "evergreen:invoicePayerCode",
+      "@type": "xsd:string"
+    },
+    "ClassifiedDate": "evergreen:ClassifiedDate",
+    "value": {
+      "@id": "evergreen:value",
+      "@type": "xsd:date"
+    },
+    "classifier": {
+      "@id": "evergreen:classifier",
+      "@type": "xsd:string"
+    },
+    "ClassifiedDateTime": "evergreen:ClassifiedDateTime",
+    "ConsignmentItem": "evergreen:ConsignmentItem",
+    "carrierBookingReference": {
+      "@id": "evergreen:carrierBookingReference",
+      "@type": "xsd:string"
+    },
+    "descriptionOfGoods": {
+      "@id": "evergreen:descriptionOfGoods",
+      "@container": "@list"
+    },
+    "shippingMarks": {
+      "@id": "evergreen:shippingMarks",
+      "@container": "@list"
+    },
+    "cargoItems": {
+      "@id": "evergreen:cargoItems",
+      "@container": "@list"
+    },
+    "HSCodes": {
+      "@id": "evergreen:HSCodes",
+      "@container": "@list"
+    },
+    "CustomsClearance": "evergreen:CustomsClearance",
+    "customsClearancePoint": {
+      "@id": "evergreen:customsClearancePoint"
+    },
+    "immediateTransportationEntry": {
+      "@id": "evergreen:immediateTransportationEntry"
+    },
+    "customsImportDeclarationProcedure": {
+      "@id": "evergreen:customsImportDeclarationProcedure",
+      "@type": "xsd:string"
+    },
+    "manifestReferenceNumber": {
+      "@id": "evergreen:manifestReferenceNumber",
+      "@type": "xsd:string"
+    },
+    "masterSequenceNumber": {
+      "@id": "evergreen:masterSequenceNumber",
+      "@type": "xsd:string"
+    },
+    "CustomsReference": "evergreen:CustomsReference",
+    "type": {
+      "@id": "evergreen:type",
+      "@type": "xsd:string"
+    },
+    "values": {
+      "@id": "evergreen:values",
+      "@container": "@list"
+    },
+    "DangerousGoods": "evergreen:DangerousGoods",
+    "UNNumber": {
+      "@id": "evergreen:UNNumber",
+      "@type": "xsd:string"
+    },
+    "NANumber": {
+      "@id": "evergreen:NANumber",
+      "@type": "xsd:string"
+    },
+    "codedVariantList": {
+      "@id": "evergreen:codedVariantList",
+      "@type": "xsd:string"
+    },
+    "properShippingName": {
+      "@id": "evergreen:properShippingName",
+      "@type": "xsd:string"
+    },
+    "technicalName": {
+      "@id": "evergreen:technicalName",
+      "@type": "xsd:string"
+    },
+    "IMOClass": {
+      "@id": "evergreen:IMOClass",
+      "@type": "xsd:string"
+    },
+    "subsidiaryRisk1": {
+      "@id": "evergreen:subsidiaryRisk1",
+      "@type": "xsd:string"
+    },
+    "subsidiaryRisk2": {
+      "@id": "evergreen:subsidiaryRisk2",
+      "@type": "xsd:string"
+    },
+    "isMarinePollutant": {
+      "@id": "evergreen:isMarinePollutant",
+      "@type": "xsd:boolean"
+    },
+    "packingGroup": {
+      "@id": "evergreen:packingGroup",
+      "@type": "xsd:integer"
+    },
+    "isLimitedQuantity": {
+      "@id": "evergreen:isLimitedQuantity",
+      "@type": "xsd:boolean"
+    },
+    "isExceptedQuantity": {
+      "@id": "evergreen:isExceptedQuantity",
+      "@type": "xsd:boolean"
+    },
+    "isSalvagePackings": {
+      "@id": "evergreen:isSalvagePackings",
+      "@type": "xsd:boolean"
+    },
+    "isEmptyUncleanedResidue": {
+      "@id": "evergreen:isEmptyUncleanedResidue",
+      "@type": "xsd:boolean"
+    },
+    "isWaste": {
+      "@id": "evergreen:isWaste",
+      "@type": "xsd:boolean"
+    },
+    "isHot": {
+      "@id": "evergreen:isHot",
+      "@type": "xsd:boolean"
+    },
+    "isCompetentAuthorityApprovalRequired": {
+      "@id": "evergreen:isCompetentAuthorityApprovalRequired",
+      "@type": "xsd:boolean"
+    },
+    "competentAuthorityApproval": {
+      "@id": "evergreen:competentAuthorityApproval",
+      "@type": "xsd:string"
+    },
+    "segregationGroups": {
+      "@id": "evergreen:segregationGroups",
+      "@container": "@list"
+    },
+    "innerPackagings": {
+      "@id": "evergreen:innerPackagings",
+      "@container": "@list"
+    },
+    "emergencyContactDetails": {
+      "@id": "evergreen:emergencyContactDetails"
+    },
+    "EMSNumber": {
+      "@id": "evergreen:EMSNumber",
+      "@type": "xsd:string"
+    },
+    "endOfHoldingTime": {
+      "@id": "evergreen:endOfHoldingTime",
+      "@type": "xsd:date"
+    },
+    "fumigationDateTime": {
+      "@id": "evergreen:fumigationDateTime",
+      "@type": "xsd:dateTime"
+    },
+    "isReportableQuantity": {
+      "@id": "evergreen:isReportableQuantity",
+      "@type": "xsd:boolean"
+    },
+    "inhalationZone": {
+      "@id": "evergreen:inhalationZone",
+      "@type": "xsd:string"
+    },
+    "grossWeight": {
+      "@id": "evergreen:grossWeight"
+    },
+    "netWeight": {
+      "@id": "evergreen:netWeight"
+    },
+    "netExplosiveContent": {
+      "@id": "evergreen:netExplosiveContent"
+    },
+    "netVolume": {
+      "@id": "evergreen:netVolume"
+    },
+    "limits": {
+      "@id": "evergreen:limits"
+    },
+    "DocumentParty": "evergreen:DocumentParty",
+    "partyFunction": {
+      "@id": "evergreen:partyFunction",
+      "@type": "xsd:string"
+    },
+    "partyName": {
+      "@id": "evergreen:partyName",
+      "@type": "xsd:string"
+    },
+    "address": {
+      "@id": "evergreen:address"
+    },
+    "identifyingCodes": {
+      "@id": "evergreen:identifyingCodes",
+      "@container": "@list"
+    },
+    "taxLegalReferences": {
+      "@id": "evergreen:taxLegalReferences",
+      "@container": "@list"
+    },
+    "partyContactDetails": {
+      "@id": "evergreen:partyContactDetails",
+      "@container": "@list"
+    },
+    "reference": {
+      "@id": "evergreen:reference",
+      "@type": "xsd:string"
+    },
+    "purchaseOrderReferences": {
+      "@id": "evergreen:purchaseOrderReferences",
+      "@container": "@list"
+    },
+    "EmbeddedDocument": "evergreen:EmbeddedDocument",
+    "name": {
+      "@id": "evergreen:name",
+      "@type": "xsd:string"
+    },
+    "content": {
+      "@id": "evergreen:content",
+      "@type": "xsd:string"
+    },
+    "contentType": {
+      "@id": "evergreen:contentType",
+      "@type": "xsd:string"
+    },
+    "EmergencyContactDetails": "evergreen:EmergencyContactDetails",
+    "contact": {
+      "@id": "evergreen:contact",
+      "@type": "xsd:string"
+    },
+    "provider": {
+      "@id": "evergreen:provider",
+      "@type": "xsd:string"
+    },
+    "phone": {
+      "@id": "evergreen:phone",
+      "@type": "xsd:string"
+    },
+    "referenceNumber": {
+      "@id": "evergreen:referenceNumber",
+      "@type": "xsd:string"
+    },
+    "Equipment": "evergreen:Equipment",
+    "ISOEquipmentCode": {
+      "@id": "evergreen:ISOEquipmentCode",
+      "@type": "xsd:string"
+    },
+    "tareWeight": {
+      "@id": "evergreen:tareWeight"
+    },
+    "ExportLicense": "evergreen:ExportLicense",
+    "isRequired": {
+      "@id": "evergreen:isRequired",
+      "@type": "xsd:boolean"
+    },
+    "issueDate": {
+      "@id": "evergreen:issueDate",
+      "@type": "xsd:date"
+    },
+    "expiryDate": {
+      "@id": "evergreen:expiryDate",
+      "@type": "xsd:date"
+    },
+    "Facility": "evergreen:Facility",
+    "facilityName": {
+      "@id": "evergreen:facilityName",
+      "@type": "xsd:string"
+    },
+    "facilityCode": {
+      "@id": "evergreen:facilityCode",
+      "@type": "xsd:string"
+    },
+    "facilityCodeListProvider": {
+      "@id": "evergreen:facilityCodeListProvider",
+      "@type": "xsd:string"
+    },
+    "FeedbackElement": "evergreen:FeedbackElement",
+    "severity": {
+      "@id": "evergreen:severity",
+      "@type": "xsd:string"
+    },
+    "message": {
+      "@id": "evergreen:message",
+      "@type": "xsd:string"
+    },
+    "propertyPath": {
+      "@id": "evergreen:propertyPath",
+      "@type": "xsd:string"
+    },
+    "FreeTime": "evergreen:FreeTime",
+    "typeCodes": {
+      "@id": "evergreen:typeCodes",
+      "@container": "@list"
+    },
+    "ISOEquipmentCodes": {
+      "@id": "evergreen:ISOEquipmentCodes",
+      "@container": "@list"
+    },
+    "duration": {
+      "@id": "evergreen:duration",
+      "@type": "xsd:integer"
+    },
+    "timeUnit": {
+      "@id": "evergreen:timeUnit",
+      "@type": "xsd:string"
+    },
+    "lastFreeDate": {
+      "@id": "evergreen:lastFreeDate"
+    },
+    "lastFreeDateTime": {
+      "@id": "evergreen:lastFreeDateTime"
+    },
+    "GeoCoordinate": "evergreen:GeoCoordinate",
+    "latitude": {
+      "@id": "evergreen:latitude",
+      "@type": "xsd:string"
+    },
+    "longitude": {
+      "@id": "evergreen:longitude",
+      "@type": "xsd:string"
+    },
+    "GetArrivalNoticesError": "evergreen:GetArrivalNoticesError",
+    "feedbackElements": {
+      "@id": "evergreen:feedbackElements",
+      "@container": "@list"
+    },
+    "GetArrivalNoticesResponse": "evergreen:GetArrivalNoticesResponse",
+    "arrivalNotices": {
+      "@id": "evergreen:arrivalNotices",
+      "@container": "@list"
+    },
+    "IdentifyingCode": "evergreen:IdentifyingCode",
+    "codeListProvider": {
+      "@id": "evergreen:codeListProvider",
+      "@type": "xsd:string"
+    },
+    "partyCode": {
+      "@id": "evergreen:partyCode",
+      "@type": "xsd:string"
+    },
+    "codeListName": {
+      "@id": "evergreen:codeListName",
+      "@type": "xsd:string"
+    },
+    "ImmediateTransportationEntry": "evergreen:ImmediateTransportationEntry",
+    "FIRMSCode": {
+      "@id": "evergreen:FIRMSCode",
+      "@type": "xsd:string"
+    },
+    "ITNumber": {
+      "@id": "evergreen:ITNumber",
+      "@type": "xsd:string"
+    },
+    "ITDate": {
+      "@id": "evergreen:ITDate",
+      "@type": "xsd:date"
+    },
+    "ImportLicense": "evergreen:ImportLicense",
+    "InnerPackaging": "evergreen:InnerPackaging",
+    "material": {
+      "@id": "evergreen:material",
+      "@type": "xsd:string"
+    },
+    "description": {
+      "@id": "evergreen:description",
+      "@type": "xsd:string"
+    },
+    "Leg": "evergreen:Leg",
+    "transportPlanStage": {
+      "@id": "evergreen:transportPlanStage",
+      "@type": "xsd:string"
+    },
+    "transportPlanStageSequenceNumber": {
+      "@id": "evergreen:transportPlanStageSequenceNumber",
+      "@type": "xsd:integer"
+    },
+    "loadLocation": {
+      "@id": "evergreen:loadLocation"
+    },
+    "dischargeLocation": {
+      "@id": "evergreen:dischargeLocation"
+    },
+    "departureDate": {
+      "@id": "evergreen:departureDate"
+    },
+    "arrivalDate": {
+      "@id": "evergreen:arrivalDate"
+    },
+    "modeOfTransport": {
+      "@id": "evergreen:modeOfTransport",
+      "@type": "xsd:string"
+    },
+    "vesselVoyage": {
+      "@id": "evergreen:vesselVoyage"
+    },
+    "Limits": "evergreen:Limits",
+    "flashPoint": {
+      "@id": "evergreen:flashPoint",
+      "@type": "xsd:decimal"
+    },
+    "transportControlTemperature": {
+      "@id": "evergreen:transportControlTemperature",
+      "@type": "xsd:decimal"
+    },
+    "transportEmergencyTemperature": {
+      "@id": "evergreen:transportEmergencyTemperature",
+      "@type": "xsd:decimal"
+    },
+    "SADT": {
+      "@id": "evergreen:SADT",
+      "@type": "xsd:decimal"
+    },
+    "SAPT": {
+      "@id": "evergreen:SAPT",
+      "@type": "xsd:decimal"
+    },
+    "Location": "evergreen:Location",
+    "locationName": {
+      "@id": "evergreen:locationName",
+      "@type": "xsd:string"
+    },
+    "facilityTypeCode": {
+      "@id": "evergreen:facilityTypeCode",
+      "@type": "xsd:string"
+    },
+    "UNLocationCode": {
+      "@id": "evergreen:UNLocationCode",
+      "@type": "xsd:string"
+    },
+    "facility": {
+      "@id": "evergreen:facility"
+    },
+    "geoCoordinate": {
+      "@id": "evergreen:geoCoordinate"
+    },
+    "NationalCommodityCode": "evergreen:NationalCommodityCode",
+    "OuterPackaging": "evergreen:OuterPackaging",
+    "packageCode": {
+      "@id": "evergreen:packageCode",
+      "@type": "xsd:string"
+    },
+    "IMOPackagingCode": {
+      "@id": "evergreen:IMOPackagingCode",
+      "@type": "xsd:string"
+    },
+    "numberOfPackages": {
+      "@id": "evergreen:numberOfPackages",
+      "@type": "xsd:integer"
+    },
+    "woodDeclaration": {
+      "@id": "evergreen:woodDeclaration",
+      "@type": "xsd:string"
+    },
+    "dangerousGoods": {
+      "@id": "evergreen:dangerousGoods",
+      "@container": "@list"
+    },
+    "PartyContactDetail": "evergreen:PartyContactDetail",
+    "email": {
+      "@id": "evergreen:email",
+      "@type": "xsd:string"
+    },
+    "PaymentRemittance": "evergreen:PaymentRemittance",
+    "bankName": {
+      "@id": "evergreen:bankName",
+      "@type": "xsd:string"
+    },
+    "accountNumber": {
+      "@id": "evergreen:accountNumber",
+      "@type": "xsd:string"
+    },
+    "SWIFTCode": {
+      "@id": "evergreen:SWIFTCode",
+      "@type": "xsd:string"
+    },
+    "beneficiary": {
+      "@id": "evergreen:beneficiary",
+      "@type": "xsd:string"
+    },
+    "remittanceEmail": {
+      "@id": "evergreen:remittanceEmail",
+      "@type": "xsd:string"
+    },
+    "PickupInformation": "evergreen:PickupInformation",
+    "pickupNumber": {
+      "@id": "evergreen:pickupNumber",
+      "@type": "xsd:string"
+    },
+    "pickupLocation": {
+      "@id": "evergreen:pickupLocation"
+    },
+    "PostArrivalNoticeNotificationsRequest": "evergreen:PostArrivalNoticeNotificationsRequest",
+    "arrivalNoticeNotifications": {
+      "@id": "evergreen:arrivalNoticeNotifications",
+      "@container": "@list"
+    },
+    "PostArrivalNoticesError": "evergreen:PostArrivalNoticesError",
+    "PostArrivalNoticesRequest": "evergreen:PostArrivalNoticesRequest",
+    "PostArrivalNoticesResponse": "evergreen:PostArrivalNoticesResponse",
+    "Reference": "evergreen:Reference",
+    "ReferenceConsignmentItem": "evergreen:ReferenceConsignmentItem",
+    "ReleaseInformation": "evergreen:ReleaseInformation",
+    "isReleasedByEmail": {
+      "@id": "evergreen:isReleasedByEmail",
+      "@type": "xsd:boolean"
+    },
+    "isOBLReceived": {
+      "@id": "evergreen:isOBLReceived",
+      "@type": "xsd:boolean"
+    },
+    "isFreightReleased": {
+      "@id": "evergreen:isFreightReleased",
+      "@type": "xsd:boolean"
+    },
+    "freightReleaseDate": {
+      "@id": "evergreen:freightReleaseDate",
+      "@type": "xsd:date"
+    },
+    "isCustomsReleased": {
+      "@id": "evergreen:isCustomsReleased",
+      "@type": "xsd:boolean"
+    },
+    "carrierInformationForCargoRelease": {
+      "@id": "evergreen:carrierInformationForCargoRelease",
+      "@container": "@list"
+    },
+    "ReturnInformation": "evergreen:ReturnInformation",
+    "turnInReference": {
+      "@id": "evergreen:turnInReference",
+      "@type": "xsd:string"
+    },
+    "returnLocation": {
+      "@id": "evergreen:returnLocation"
+    },
+    "returnInstructions": {
+      "@id": "evergreen:returnInstructions",
+      "@type": "xsd:string"
+    },
+    "Seal": "evergreen:Seal",
+    "number": {
+      "@id": "evergreen:number",
+      "@type": "xsd:string"
+    },
+    "source": {
+      "@id": "evergreen:source",
+      "@type": "xsd:string"
+    },
+    "placement": {
+      "@id": "evergreen:placement",
+      "@type": "xsd:string"
+    },
+    "TaxLegalReference": "evergreen:TaxLegalReference",
+    "Transport": "evergreen:Transport",
+    "placeOfReceipt": {
+      "@id": "evergreen:placeOfReceipt"
+    },
+    "portOfLoading": {
+      "@id": "evergreen:portOfLoading"
+    },
+    "receivedForShipmentDate": {
+      "@id": "evergreen:receivedForShipmentDate"
+    },
+    "onBoardDate": {
+      "@id": "evergreen:onBoardDate"
+    },
+    "inlandArrivalDate": {
+      "@id": "evergreen:inlandArrivalDate"
+    },
+    "generalOrderDateTime": {
+      "@id": "evergreen:generalOrderDateTime"
+    },
+    "borderCrossingLocation": {
+      "@id": "evergreen:borderCrossingLocation"
+    },
+    "legs": {
+      "@id": "evergreen:legs",
+      "@container": "@list"
+    },
+    "UtilizedTransportEquipment": "evergreen:UtilizedTransportEquipment",
+    "equipment": {
+      "@id": "evergreen:equipment"
+    },
+    "isShipperOwned": {
+      "@id": "evergreen:isShipperOwned",
+      "@type": "xsd:boolean"
+    },
+    "isNonOperatingReefer": {
+      "@id": "evergreen:isNonOperatingReefer",
+      "@type": "xsd:boolean"
+    },
+    "activeReeferSettings": {
+      "@id": "evergreen:activeReeferSettings"
+    },
+    "seals": {
+      "@id": "evergreen:seals",
+      "@container": "@list"
+    },
+    "VesselVoyage": "evergreen:VesselVoyage",
+    "vesselName": {
+      "@id": "evergreen:vesselName",
+      "@type": "xsd:string"
+    },
+    "vesselFlag": {
+      "@id": "evergreen:vesselFlag",
+      "@type": "xsd:string"
+    },
+    "vesselIMONumber": {
+      "@id": "evergreen:vesselIMONumber",
+      "@type": "xsd:string"
+    },
+    "vesselCallSign": {
+      "@id": "evergreen:vesselCallSign",
+      "@type": "xsd:string"
+    },
+    "carrierServiceCode": {
+      "@id": "evergreen:carrierServiceCode",
+      "@type": "xsd:string"
+    },
+    "universalServiceReference": {
+      "@id": "evergreen:universalServiceReference",
+      "@type": "xsd:string"
+    },
+    "carrierImportVoyageNumber": {
+      "@id": "evergreen:carrierImportVoyageNumber",
+      "@type": "xsd:string"
+    },
+    "universalImportVoyageReference": {
+      "@id": "evergreen:universalImportVoyageReference",
+      "@type": "xsd:string"
+    },
+    "carrierExportVoyageNumber": {
+      "@id": "evergreen:carrierExportVoyageNumber",
+      "@type": "xsd:string"
+    },
+    "universalExportVoyageReference": {
+      "@id": "evergreen:universalExportVoyageReference",
+      "@type": "xsd:string"
+    },
+    "callReferenceNumber": {
+      "@id": "evergreen:callReferenceNumber",
+      "@type": "xsd:string"
+    },
+    "Volume": "evergreen:Volume",
+    "unit": {
+      "@id": "evergreen:unit",
+      "@type": "xsd:string"
+    },
+    "Weight": "evergreen:Weight",
+    "CreateBookingResponse": "evergreen:CreateBookingResponse",
+    "carrierBookingRequestReference": {
+      "@id": "evergreen:carrierBookingRequestReference",
+      "@type": "xsd:string"
+    },
+    "CancelBookingRequest": "evergreen:CancelBookingRequest",
+    "reason": {
+      "@id": "evergreen:reason",
+      "@type": "xsd:string"
+    },
+    "BookingNotification": "evergreen:BookingNotification",
+    "specversion": {
+      "@id": "evergreen:specversion",
+      "@type": "xsd:string"
+    },
+    "id": {
+      "@id": "evergreen:id",
+      "@type": "xsd:string"
+    },
+    "time": {
+      "@id": "evergreen:time",
+      "@type": "xsd:dateTime"
+    },
+    "datacontenttype": {
+      "@id": "evergreen:datacontenttype",
+      "@type": "xsd:string"
+    },
+    "subscriptionReference": {
+      "@id": "evergreen:subscriptionReference",
+      "@type": "xsd:string"
+    },
+    "data": {
+      "@id": "evergreen:data",
+      "@type": "@id"
+    },
+    "BookingNotificationData": "evergreen:BookingNotificationData",
+    "bookingStatus": {
+      "@id": "evergreen:bookingStatus",
+      "@type": "xsd:string"
+    },
+    "amendedBookingStatus": {
+      "@id": "evergreen:amendedBookingStatus",
+      "@type": "xsd:string"
+    },
+    "bookingCancellationStatus": {
+      "@id": "evergreen:bookingCancellationStatus",
+      "@type": "xsd:string"
+    },
+    "feedbacks": {
+      "@id": "evergreen:feedbacks",
+      "@container": "@list"
+    },
+    "booking": {
+      "@id": "evergreen:booking",
+      "@type": "@id"
+    },
+    "amendedBooking": {
+      "@id": "evergreen:amendedBooking",
+      "@type": "@id"
+    },
+    "Feedback": "evergreen:Feedback",
+    "code": {
+      "@id": "evergreen:code",
+      "@type": "xsd:string"
+    },
+    "jsonPath": {
+      "@id": "evergreen:jsonPath",
+      "@type": "xsd:string"
+    },
+    "property": {
+      "@id": "evergreen:property",
+      "@type": "xsd:string"
+    },
+    "ErrorResponse": "evergreen:ErrorResponse",
+    "httpMethod": {
+      "@id": "evergreen:httpMethod",
+      "@type": "xsd:string"
+    },
+    "requestUri": {
+      "@id": "evergreen:requestUri",
+      "@type": "xsd:string"
+    },
+    "statusCode": {
+      "@id": "evergreen:statusCode",
+      "@type": "xsd:integer"
+    },
+    "statusCodeText": {
+      "@id": "evergreen:statusCodeText",
+      "@type": "xsd:string"
+    },
+    "statusCodeMessage": {
+      "@id": "evergreen:statusCodeMessage",
+      "@type": "xsd:string"
+    },
+    "providerCorrelationReference": {
+      "@id": "evergreen:providerCorrelationReference",
+      "@type": "xsd:string"
+    },
+    "errorDateTime": {
+      "@id": "evergreen:errorDateTime",
+      "@type": "xsd:dateTime"
+    },
+    "errors": {
+      "@id": "evergreen:errors",
+      "@container": "@list"
+    },
+    "DetailedError": "evergreen:DetailedError",
+    "errorCode": {
+      "@id": "evergreen:errorCode",
+      "@type": "xsd:integer"
+    },
+    "errorCodeText": {
+      "@id": "evergreen:errorCodeText",
+      "@type": "xsd:string"
+    },
+    "errorCodeMessage": {
+      "@id": "evergreen:errorCodeMessage",
+      "@type": "xsd:string"
+    },
+    "CreateBooking": "evergreen:CreateBooking",
+    "receiptTypeAtOrigin": {
+      "@id": "evergreen:receiptTypeAtOrigin",
+      "@type": "xsd:string"
+    },
+    "cargoMovementTypeAtOrigin": {
+      "@id": "evergreen:cargoMovementTypeAtOrigin",
+      "@type": "xsd:string"
+    },
+    "freightPaymentTermCode": {
+      "@id": "evergreen:freightPaymentTermCode",
+      "@type": "xsd:string"
+    },
+    "originChargesPaymentTerm": {
+      "@id": "evergreen:originChargesPaymentTerm",
+      "@type": "@id"
+    },
+    "destinationChargesPaymentTerm": {
+      "@id": "evergreen:destinationChargesPaymentTerm",
+      "@type": "@id"
+    },
+    "contractQuotationReference": {
+      "@id": "evergreen:contractQuotationReference",
+      "@type": "xsd:string"
+    },
+    "vessel": {
+      "@id": "evergreen:vessel",
+      "@type": "@id"
+    },
+    "carrierServiceName": {
+      "@id": "evergreen:carrierServiceName",
+      "@type": "xsd:string"
+    },
+    "declaredValue": {
+      "@id": "evergreen:declaredValue",
+      "@type": "xsd:decimal"
+    },
+    "declaredValueCurrency": {
+      "@id": "evergreen:declaredValueCurrency",
+      "@type": "xsd:string"
+    },
+    "isPartialLoadAllowed": {
+      "@id": "evergreen:isPartialLoadAllowed",
+      "@type": "xsd:boolean"
+    },
+    "isExportDeclarationRequired": {
+      "@id": "evergreen:isExportDeclarationRequired",
+      "@type": "xsd:boolean"
+    },
+    "exportDeclarationReference": {
+      "@id": "evergreen:exportDeclarationReference",
+      "@type": "xsd:string"
+    },
+    "expectedDepartureDate": {
+      "@id": "evergreen:expectedDepartureDate",
+      "@type": "xsd:date"
+    },
+    "expectedArrivalAtPlaceOfDeliveryStartDate": {
+      "@id": "evergreen:expectedArrivalAtPlaceOfDeliveryStartDate",
+      "@type": "xsd:date"
+    },
+    "expectedArrivalAtPlaceOfDeliveryEndDate": {
+      "@id": "evergreen:expectedArrivalAtPlaceOfDeliveryEndDate",
+      "@type": "xsd:date"
+    },
+    "bookingChannelReference": {
+      "@id": "evergreen:bookingChannelReference",
+      "@type": "xsd:string"
+    },
+    "incoTerms": {
+      "@id": "evergreen:incoTerms",
+      "@type": "xsd:string"
+    },
+    "isEquipmentSubstitutionAllowed": {
+      "@id": "evergreen:isEquipmentSubstitutionAllowed",
+      "@type": "xsd:boolean"
+    },
+    "invoicePayableAt": {
+      "@id": "evergreen:invoicePayableAt",
+      "@type": "@id"
+    },
+    "shipmentLocations": {
+      "@id": "evergreen:shipmentLocations",
+      "@container": "@list"
+    },
+    "requestedEquipments": {
+      "@id": "evergreen:requestedEquipments",
+      "@container": "@list"
+    },
+    "UpdateBooking": "evergreen:UpdateBooking",
+    "DocumentPartiesReq": "evergreen:DocumentPartiesReq",
+    "bookingAgent": {
+      "@id": "evergreen:bookingAgent",
+      "@type": "@id"
+    },
+    "shipper": {
+      "@id": "evergreen:shipper",
+      "@type": "@id"
+    },
+    "consignee": {
+      "@id": "evergreen:consignee",
+      "@type": "@id"
+    },
+    "serviceContractOwner": {
+      "@id": "evergreen:serviceContractOwner",
+      "@type": "@id"
+    },
+    "carrierBookingOffice": {
+      "@id": "evergreen:carrierBookingOffice",
+      "@type": "@id"
+    },
+    "other": {
+      "@id": "evergreen:other",
+      "@container": "@list"
+    },
+    "Booking": "evergreen:Booking",
+    "confirmedEquipments": {
+      "@id": "evergreen:confirmedEquipments",
+      "@container": "@list"
+    },
+    "transportPlan": {
+      "@id": "evergreen:transportPlan",
+      "@container": "@list"
+    },
+    "shipmentCutOffTimes": {
+      "@id": "evergreen:shipmentCutOffTimes",
+      "@container": "@list"
+    },
+    "advanceManifestFilings": {
+      "@id": "evergreen:advanceManifestFilings",
+      "@container": "@list"
+    },
+    "InvoicePayableAt": "evergreen:InvoicePayableAt",
+    "PlaceOfBLIssue": "evergreen:PlaceOfBLIssue",
+    "DocumentParties": "evergreen:DocumentParties",
+    "PartyAddress": "evergreen:PartyAddress",
+    "OtherDocumentParty": "evergreen:OtherDocumentParty",
+    "party": {
+      "@id": "evergreen:party",
+      "@type": "@id"
+    },
+    "BookingAgent": "evergreen:BookingAgent",
+    "Shipper": "evergreen:Shipper",
+    "Consignee": "evergreen:Consignee",
+    "ServiceContractOwner": "evergreen:ServiceContractOwner",
+    "CarrierBookingOffice": "evergreen:CarrierBookingOffice",
+    "Party": "evergreen:Party",
+    "ReferenceShipper": "evergreen:ReferenceShipper",
+    "ShipmentLocation": "evergreen:ShipmentLocation",
+    "location": {
+      "@id": "evergreen:location",
+      "@type": "@id"
+    },
+    "locationTypeCode": {
+      "@id": "evergreen:locationTypeCode",
+      "@type": "xsd:string"
+    },
+    "RequestedEquipment": "evergreen:RequestedEquipment",
+    "units": {
+      "@id": "evergreen:units",
+      "@type": "xsd:integer"
+    },
+    "containerPositionings": {
+      "@id": "evergreen:containerPositionings",
+      "@container": "@list"
+    },
+    "emptyContainerPickup": {
+      "@id": "evergreen:emptyContainerPickup",
+      "@type": "@id"
+    },
+    "commodities": {
+      "@id": "evergreen:commodities",
+      "@container": "@list"
+    },
+    "RequestedEquipmentShipper": "evergreen:RequestedEquipmentShipper",
+    "TareWeight": "evergreen:TareWeight",
+    "ContainerPositioning": "evergreen:ContainerPositioning",
+    "dateTime": {
+      "@id": "evergreen:dateTime",
+      "@type": "xsd:dateTime"
+    },
+    "ContainerPositioningEstimated": "evergreen:ContainerPositioningEstimated",
+    "estimatedDateTime": {
+      "@id": "evergreen:estimatedDateTime",
+      "@type": "xsd:dateTime"
+    },
+    "ContainerPositioningLocation": "evergreen:ContainerPositioningLocation",
+    "EmptyContainerDepotReleaseLocation": "evergreen:EmptyContainerDepotReleaseLocation",
+    "CommodityShipper": "evergreen:CommodityShipper",
+    "commodityType": {
+      "@id": "evergreen:commodityType",
+      "@type": "xsd:string"
+    },
+    "Commodity": "evergreen:Commodity",
+    "commoditySubReference": {
+      "@id": "evergreen:commoditySubReference",
+      "@type": "xsd:string"
+    },
+    "CargoGrossWeightReq": "evergreen:CargoGrossWeightReq",
+    "CargoGrossWeight": "evergreen:CargoGrossWeight",
+    "CargoGrossVolume": "evergreen:CargoGrossVolume",
+    "CargoNetWeight": "evergreen:CargoNetWeight",
+    "CargoNetVolume": "evergreen:CargoNetVolume",
+    "GrossWeight": "evergreen:GrossWeight",
+    "NetWeight": "evergreen:NetWeight",
+    "NetExplosiveContent": "evergreen:NetExplosiveContent",
+    "NetVolume": "evergreen:NetVolume",
+    "ConfirmedEquipment": "evergreen:ConfirmedEquipment",
+    "EmptyContainerPickup": "evergreen:EmptyContainerPickup",
+    "depotReleaseLocation": {
+      "@id": "evergreen:depotReleaseLocation",
+      "@type": "@id"
+    },
+    "LoadLocation": "evergreen:LoadLocation",
+    "DischargeLocation": "evergreen:DischargeLocation",
+    "ShipmentCutOffTime": "evergreen:ShipmentCutOffTime",
+    "cutOffDateTimeCode": {
+      "@id": "evergreen:cutOffDateTimeCode",
+      "@type": "xsd:string"
+    },
+    "cutOffDateTime": {
+      "@id": "evergreen:cutOffDateTime",
+      "@type": "xsd:dateTime"
+    },
+    "AdvanceManifestFiling": "evergreen:AdvanceManifestFiling",
+    "manifestTypeCode": {
+      "@id": "evergreen:manifestTypeCode",
+      "@type": "xsd:string"
+    },
+    "OriginChargesPaymentTerm": "evergreen:OriginChargesPaymentTerm",
+    "haulageChargesPaymentTermCode": {
+      "@id": "evergreen:haulageChargesPaymentTermCode",
+      "@type": "xsd:string"
+    },
+    "portChargesPaymentTermCode": {
+      "@id": "evergreen:portChargesPaymentTermCode",
+      "@type": "xsd:string"
+    },
+    "otherChargesPaymentTermCode": {
+      "@id": "evergreen:otherChargesPaymentTermCode",
+      "@type": "xsd:string"
+    },
+    "DestinationChargesPaymentTerm": "evergreen:DestinationChargesPaymentTerm",
+    "Vessel": "evergreen:Vessel",
+    "PlaceOfReceipt": "evergreen:PlaceOfReceipt",
+    "PlaceOfDelivery": "evergreen:PlaceOfDelivery",
+    "PlaceOfArrival": "evergreen:PlaceOfArrival",
+    "PlaceOfDeparture": "evergreen:PlaceOfDeparture",
+    "PointToPoint": "evergreen:PointToPoint",
+    "cutOffTimes": {
+      "@id": "evergreen:cutOffTimes",
+      "@container": "@list"
+    },
+    "solutionNumber": {
+      "@id": "evergreen:solutionNumber",
+      "@type": "xsd:integer"
+    },
+    "transitTime": {
+      "@id": "evergreen:transitTime",
+      "@type": "xsd:integer"
+    },
+    "PortSchedule": "evergreen:PortSchedule",
+    "vesselSchedules": {
+      "@id": "evergreen:vesselSchedules",
+      "@container": "@list"
+    },
+    "Schedule": "evergreen:Schedule",
+    "servicePartners": {
+      "@id": "evergreen:servicePartners",
+      "@container": "@list"
+    },
+    "isDummyVessel": {
+      "@id": "evergreen:isDummyVessel",
+      "@type": "xsd:boolean"
+    },
+    "timestamps": {
+      "@id": "evergreen:timestamps",
+      "@container": "@list"
+    },
+    "TransportCall": "evergreen:TransportCall",
+    "portVisitReference": {
+      "@id": "evergreen:portVisitReference",
+      "@type": "xsd:string"
+    },
+    "transportCallReference": {
+      "@id": "evergreen:transportCallReference",
+      "@type": "xsd:string"
+    },
+    "Timestamp": "evergreen:Timestamp",
+    "eventTypeCode": {
+      "@id": "evergreen:eventTypeCode",
+      "@type": "xsd:string"
+    },
+    "eventClassifierCode": {
+      "@id": "evergreen:eventClassifierCode",
+      "@type": "xsd:string"
+    },
+    "eventDateTime": {
+      "@id": "evergreen:eventDateTime",
+      "@type": "xsd:dateTime"
+    },
+    "ServiceSchedule": "evergreen:ServiceSchedule",
+    "VesselSchedule": "evergreen:VesselSchedule",
+    "transportCalls": {
+      "@id": "evergreen:transportCalls",
+      "@container": "@list"
+    },
+    "CutOffTime": "evergreen:CutOffTime",
+    "Barge": "evergreen:Barge",
+    "MMSINumber": {
+      "@id": "evergreen:MMSINumber",
+      "@type": "xsd:string"
+    },
+    "flag": {
+      "@id": "evergreen:flag",
+      "@type": "xsd:string"
+    },
+    "callSign": {
+      "@id": "evergreen:callSign",
+      "@type": "xsd:string"
+    },
+    "operatorCarrierCode": {
+      "@id": "evergreen:operatorCarrierCode",
+      "@type": "xsd:string"
+    },
+    "operatorCarrierCodeListProvider": {
+      "@id": "evergreen:operatorCarrierCodeListProvider",
+      "@type": "xsd:string"
+    },
+    "VesselTransport": "evergreen:VesselTransport",
+    "BargeTransport": "evergreen:BargeTransport",
+    "barge": {
+      "@id": "evergreen:barge"
+    },
+    "OtherTransport": "evergreen:OtherTransport",
+    "ServicePartner": "evergreen:ServicePartner",
+    "ServicePartnerSchedule": "evergreen:ServicePartnerSchedule",
+    "TransportCallLocation": "evergreen:TransportCallLocation",
+    "facilitySMDGCode": {
+      "@id": "evergreen:facilitySMDGCode",
+      "@type": "xsd:string"
+    }
+  },
+  "@type": "schema:Dataset",
+  "schema:name": "Evergreen Marine Corp. API JSON-LD context",
+  "schema:description": "A JSON-LD @context for the objects Evergreen Marine Corp.'s own API contract declares: one class per component schema, one property per declared field, typed from the contract. Derived by script (derive-json-ld.py, 2026-10-18) from openapi/evergreen-marine-arrival-notice-openapi.yml, openapi/evergreen-marine-booking-openapi.yml, openapi/evergreen-marine-commercial-schedules-openapi.yml.",
+  "dcterms:created": "2026-10-18",
+  "dcterms:source": [
+    "openapi/evergreen-marine-arrival-notice-openapi.yml",
+    "openapi/evergreen-marine-booking-openapi.yml",
+    "openapi/evergreen-marine-commercial-schedules-openapi.yml",
+    "openapi/evergreen-marine-ebl-issuance-openapi.yml",
+    "openapi/evergreen-marine-ebl-surrender-openapi.yml"
+  ]
+}

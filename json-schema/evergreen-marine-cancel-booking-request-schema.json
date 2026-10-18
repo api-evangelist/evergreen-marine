@@ -1,0 +1,61 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/evergreen-marine/main/json-schema/evergreen-marine-cancel-booking-request-schema.json",
+  "title": "Cancel Booking Request",
+  "x-generated": "2026-10-18",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/evergreen-marine-booking-openapi.yml#/components/schemas/CancelBookingRequest",
+  "type": "object",
+  "properties": {
+    "reason": {
+      "maxLength": 5000,
+      "type": "string",
+      "description": "An optional property where a reason for cancelling the booking or the amendment can be given.\n"
+    }
+  },
+  "oneOf": [
+    {
+      "title": "Cancel Booking Request (prior to Booking Confirmation)",
+      "required": [
+        "bookingStatus"
+      ],
+      "type": "object",
+      "properties": {
+        "bookingStatus": {
+          "maxLength": 50,
+          "type": "string",
+          "description": "Setting the `bookingStatus` to `CANCELLED` cancels the `Booking Request` (only possible **before** it is `CONFIRMED` and using this property is only possible in combination with the `bookingReference` path-property being the `carrierBookingRequestReference`). The `Booking Request` will discontinue if the request is accepted by the provider.\n\n**Condition:** It is a precondition that the `bookingStatus` **is NOT** `CONFIRMED` or `PENDING_AMENDMENT` in order to cancel it. If this is not the case a `409` (Conflict) error response should be returned.\n\nOnly possible value to set is `CANCELLED`.\n"
+        }
+      }
+    },
+    {
+      "title": "Only cancel the amendment to a Confirmed Booking",
+      "required": [
+        "amendedBookingStatus"
+      ],
+      "type": "object",
+      "properties": {
+        "amendedBookingStatus": {
+          "maxLength": 50,
+          "type": "string",
+          "description": "Setting the `amendedBookingStatus` to `AMENDMENT_CANCELLED` **only** cancels the amendment to a confirmed `Booking`. This is only possible in combination with the `bookingReference` path-property being the `carrierBookingReference`.\n\n**Condition:** It is a precondition that the `amendedBookingStatus` **is** `AMENDMENT_RECEIVED` in order to cancel it. If this is not the case a `404` (Not Found) error response should be returned.\n\nOnly possible value to set is `AMENDMENT_CANCELLED`.\n"
+        }
+      }
+    },
+    {
+      "title": "Request to cancel a Confirmed Booking",
+      "required": [
+        "bookingCancellationStatus"
+      ],
+      "type": "object",
+      "properties": {
+        "bookingCancellationStatus": {
+          "maxLength": 50,
+          "type": "string",
+          "description": "Setting the `bookingCancellationStatus` to `CANCELLATION_RECEIVED` is a request to cancel a confirmed Booking (only possible **after** it is `CONFIRMED` and using this property is only possible in combination with the `bookingReference` path-property being the `carrierBookingReference`). Upon receiving this request the provider will check if it is possible to cancel the confirmed booking. Further processing is needed by the provider.\n\n**Condition:** It is a precondition that the `bookingStatus` **is** `CONFIRMED` or `PENDING_AMENDMENT` in order to cancel it. If this is not the case a `409` (Conflict) error response should be returned.\n\nOnly possible value to set is `CANCELLATION_RECEIVED`.\n"
+        }
+      }
+    }
+  ]
+}

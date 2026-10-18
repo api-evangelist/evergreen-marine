@@ -1,0 +1,60 @@
+generated: '2026-10-18'
+method: searched
+source: https://www.shipmentlink.com/_ec/APIPORTAL_Home
+standards:
+- id: DCSA
+  name: Digital Container Shipping Association
+  conforms: true
+  evidence: '"Evergreen has been participating in the Digital Container Shipping Association (DCSA) since 2019 and cooperated with international
+    carrier shipping companies to promote digitization and standardization of information in the container shipping industry, including API specifications
+    for shipping information transmissions."
+
+    From API Developer Portal homepage.
+
+    '
+- id: DCSA-TNT
+  name: DCSA Track & Trace API
+  conforms: true
+  evidence: Implements DCSA TNT API version 2.2
+- id: DCSA-Booking
+  name: DCSA Booking API
+  conforms: true
+  evidence: Implements DCSA Booking API version 2.0.0
+- id: DCSA-SI
+  name: DCSA Shipping Instruction API
+  conforms: true
+  evidence: Implements DCSA Shipping Instruction API
+- id: DCSA-TD
+  name: DCSA Transport Document API
+  conforms: true
+  evidence: Implements DCSA Transport Document API
+- id: DCSA-ArrivalNotice
+  name: DCSA Arrival Notice API
+  conforms: true
+  evidence: Implements DCSA Arrival Notice API
+- id: DCSA-CommercialSchedules
+  name: DCSA Commercial Schedules API
+  conforms: true
+  evidence: Implements DCSA Commercial Schedules API
+- id: openapi-3.0
+  conforms: true
+  evidence: the document declares 3.0.3
+- id: swagger-2.0
+  conforms: true
+  evidence: the document declares swagger-2.0
+- id: oauth2
+  conforms: false
+  evidence: no securitySchemes declared
+- id: rfc9457
+  conforms: false
+  evidence: no response declares application/problem+json
+- id: idempotency
+  conforms: false
+  evidence: no idempotency key parameter on mutating operations
+- id: pagination
+  conforms: true
+  evidence: list operations take cursor, limit
+domain_standard_conformance:
+  standard: DCSA
+  market: Container Shipping
+  evidence: All APIs implement DCSA standards for container shipping industry

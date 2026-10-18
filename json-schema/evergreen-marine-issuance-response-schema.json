@@ -1,0 +1,71 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/evergreen-marine/main/json-schema/evergreen-marine-issuance-response-schema.json",
+  "title": "Issuance Response",
+  "x-generated": "2026-10-18",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/evergreen-marine-ebl-issuance-openapi.yml#/components/schemas/IssuanceResponse",
+  "type": "object",
+  "properties": {
+    "transportDocumentReference": {
+      "type": "string",
+      "pattern": "^\\S(?:.*\\S)?$",
+      "maxLength": 20,
+      "description": "A unique number allocated by the shipping line to the transport document and the main number used for the tracking of the status of the shipment.\n"
+    },
+    "transportDocumentSubReference": {
+      "type": "string",
+      "pattern": "^\\S(?:.*\\S)?$",
+      "maxLength": 100,
+      "description": "Additional reference that can be optionally used alongside the `transportDocumentReference` in order to distinguish between versions of the same `Transport Document`.\n"
+    },
+    "issuanceResponseCode": {
+      "type": "string",
+      "description": "The platforms verdict on the issuance of the eBL  identified by the `transportDocumentReference`\n\nOptions are:\n  - `ISSU`: The document was successfully `ISSU` and successfully delivered to the initial possessor.\n  - `BREQ`: The platform reviewed the document and believe they cannot issue the document due to an error/issue with the content of the issuance request.\n  - `REFU`: The eBL issuance is rejected for a reason that the issuing eBL platform cannot resolve (for example when an Interoperable transfer fails, due to a reject of the receiving eBL platform via the `BENV` code from the interoperability standard). One reason could be that the `issueTo` referenced a valid eBL platform but the receiving platform did not recognise the recipient specified.\n\nRegardless of the response code, the issuance request is now considered handled. In case of successful issuance, the platform will still have some responsibility but that is covered by other processes and APIs (e.g., the DCSA_SUR API mentioned in the description of this API). In case of failed issuance, it is up to the carrier to resolve the issue and, if needed, submit a revised issuance request.\n",
+      "enum": [
+        "ISSU",
+        "BREQ",
+        "REFU"
+      ]
+    },
+    "reason": {
+      "type": "string",
+      "maxLength": 255,
+      "pattern": "^\\S(?:.*\\S)?$",
+      "description": "Human readable description of the rationale for an unsuccessful issuance.\n\nThe `reason` should be omitted when the `issuanceResponseCode` is `ISSU`. If the platform for some reason chooses to deviate from this and provide the field anyway, they should use canned phrased like `Issued` that matches the meaning of the `issuanceResponseCode`.\n"
+    },
+    "errors": {
+      "type": "array",
+      "description": "A list of errors if the issuance failed for some reason.\n",
+      "maxItems": 255,
+      "items": {
+        "$ref": "#/$defs/IssuanceError"
+      }
+    }
+  },
+  "required": [
+    "transportDocumentReference",
+    "issuanceResponseCode"
+  ],
+  "$defs": {
+    "IssuanceError": {
+      "type": "object",
+      "title": "Issuance Error",
+      "properties": {
+        "reason": {
+          "type": "string",
+          "maxLength": 255,
+          "pattern": "^\\S(?:.*\\S)?$",
+          "description": "Human readable description of the rationale for an unsuccessful issuance.\n\nThe `reason` should be omitted when the `issuanceResponseCode` is `ISSU`. If the platform for some reason chooses to deviate from this and provide the field anyway, they should use canned phrased like `Issued` that matches the meaning of the `issuanceResponseCode`.\n"
+        },
+        "errorCode": {
+          "type": "string",
+          "maxLength": 50,
+          "pattern": "^\\S+$",
+          "description": "A vendor provided error code.\n\nThe meaning of each code is agreed bilaterally between the vendor.\n"
+        }
+      }
+    }
+  }
+}

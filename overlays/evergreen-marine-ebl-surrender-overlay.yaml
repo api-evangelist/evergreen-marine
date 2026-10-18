@@ -1,0 +1,40 @@
+overlay: 1.0.0
+info:
+  title: API Evangelist overlay for Evergreen eBL Surrender API
+  version: 1.0.0
+extends: ../openapi/_original/evergreen-marine-ebl-surrender-openapi.yml
+x-generated: '2026-10-18'
+x-method: generated
+x-source: openapi/evergreen-marine-ebl-surrender-openapi.yml
+x-rationale: The captured spec has no security scheme, no servers and no externalDocs. Evergreen documents JWT access
+  via Client ID & secret in its API portal FAQ. Server base URLs and the token URL are not published, so none are
+  added. The original spec is not changed.
+actions:
+- target: $.info
+  description: Point to the provider documentation page and record access model.
+  update:
+    x-provider: Evergreen Marine Corp. (ShipmentLink API Developer Portal)
+    x-api-evangelist-aid: evergreen-marine:ebl-surrender
+    x-access: Registration required via https://www.shipmentlink.com/_ec/APIPORTAL_Register; Evergreen issues a
+      Client ID and secret used to obtain a JWT (per https://www.shipmentlink.com/_ec/APIPORTAL_FAQ).
+- target: $
+  description: Add externalDocs pointing at the ShipmentLink API portal spec page.
+  update:
+    externalDocs:
+      description: Evergreen eBL Surrender API on the ShipmentLink API Developer Portal
+      url: https://www.shipmentlink.com/_ec/APIPORTAL_SpecSUR
+- target: $.components
+  description: Add the documented JWT bearer scheme.
+  update:
+    securitySchemes:
+      evergreenJWT:
+        type: http
+        scheme: bearer
+        bearerFormat: JWT
+        description: JWT obtained from Evergreen JWT Service with the Client ID & secret issued at registration.
+          Token URL is supplied per client in the service confirmation and is not published.
+- target: $
+  description: Apply the JWT scheme as the root security requirement.
+  update:
+    security:
+    - evergreenJWT: []
