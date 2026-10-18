@@ -25,3 +25,15 @@ plans:
     FAQ Question 9: "Does the client pay for your API service?"
     Answer: "API Track & Trace is a free service at present."
     Other APIs (Booking, Shipping Instruction, etc.) are also available through the same registration process.
+x-canonical:
+  generated: '2026-10-18'
+  vocabulary: all/0-working/economics/plans-canonical.yml
+  models: []
+  units: []
+  plans:
+  - name: Free API Access
+    access: other
+    model: unstated
+    model_how: derived
+    units: []
+    periods: []
