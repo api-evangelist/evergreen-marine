@@ -1,5 +1,5 @@
 generated: '2026-10-18'
-method: none
+method: searched
 source:
 - https://zapier.com/apps/evergreen-marine/integrations
 - https://zapier.com/apps/evergreen-marine-corp/integrations
@@ -15,7 +15,42 @@ checked:
 - https://www.shipmentlink.com/_ec/APIPORTAL_Home
 - https://zapier.com/apps/evergreen-marine-corp/integrations
 - https://zapier.com/apps/evergreen-marine/integrations
+- https://openapi.twse.com.tw/
+- https://openapi.twse.com.tw/v1/opendata/t187ap03_L
+- https://www.tpex.org.tw/openapi/v1/mopsfin_t187ap03_O
 summary: null
 marketplace_apps: []
-edges: []
+edges:
+- partner_name: Taiwan Stock Exchange (TWSE) listed companies
+  partner: null
+  partner_match: register
+  type: register
+  channel: exchange-register
+  relationship: standard-participant
+  direction: partner-built
+  evidence: https://openapi.twse.com.tw/v1/opendata/t187ap03_L
+  category: Taiwan public listing (TWSE main board)
+  contract_reference:
+    register: Taiwan Stock Exchange (TWSE) listed companies
+    spec_file: null
+    standard: null
+    role: listed-on-twse
+    registrations:
+    - registered_name: 長榮海運股份有限公司
+      english_short_name: EMC
+      stock_code: '2603'
+      register_status: listed
+      register_country: TW
+      matched_domain: evergreen-marine.com
+      matched_by: domain+local-verified
+      evidence_url: https://openapi.twse.com.tw/v1/opendata/t187ap03_L
+      industry_code: '15'
+      industry_code_note: raw exchange industry code; the code table is not published on the OpenAPI index
+      listing_date: '19870921'
+    signal_note: 'participation only: a public listing on a Taiwan exchange; no API conformance is published by
+      this register'
+    detected_by: sweep-taiwan-listed-companies-twse-tpex.py
+    detected: '2026-10-23'
+  detected_by: sweep-taiwan-listed-companies-twse-tpex.py
+  first_seen: '2026-10-23'
 templates: []
